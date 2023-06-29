@@ -1,0 +1,12 @@
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\DatabaseManager.dll.config
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\DatabaseManager.dll
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\DatabaseManager.pdb
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\EntityFramework.dll
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\EntityFramework.SqlServer.dll
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\EntityFramework.xml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\bin\EntityFramework.SqlServer.xml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\obj\Debug\DatabaseManager.csproj.AssemblyReference.cache
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\obj\Debug\DatabaseManager.csproj.CoreCompileInputs.cache
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\obj\Debug\DatabaseManager.csproj.CopyComplete
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\obj\Debug\DatabaseManager.dll
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\DatabaseManager\obj\Debug\DatabaseManager.pdb

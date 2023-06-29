@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="DatabaseManager.Implementations.AnalogOutputService" CodeBehind="AnalogOutputService.svc.cs" %>
