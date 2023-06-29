@@ -27,11 +27,11 @@ namespace SCADACore.Implementations
         public void StartScan(int ioAdress)
         {
             DigitalInput digitalInput = GetForIOAddress(ioAdress);
+            IScanCallback proxy = OperationContext.Current.GetCallbackChannel<IScanCallback>();
             Thread thread = new Thread(() =>
             {
                 Thread.Sleep(digitalInput.ScanTime);
                 // Iscitati vrednosti
-                IScanCallback proxy = OperationContext.Current.GetCallbackChannel<IScanCallback>();
 
                 var val = true;
                 proxy.DigitalScanDone(ioAdress, val);

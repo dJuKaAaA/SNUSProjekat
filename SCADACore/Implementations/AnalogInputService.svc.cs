@@ -40,14 +40,17 @@ namespace SCADACore.Implementations
         public void StartScan(int ioAdress)
         {
             AnalogInput analogInput = GetForIOAddress(ioAdress);
+            IScanCallback proxy = OperationContext.Current.GetCallbackChannel<IScanCallback>();
             Thread thread = new Thread(() =>
             {
-                Thread.Sleep(analogInput.ScanTime);
-                // Iscitati vrednosti
-                IScanCallback proxy = OperationContext.Current.GetCallbackChannel<IScanCallback>();
+                while (true)
+                {
+                    Thread.Sleep(analogInput.ScanTime);
+                    // Iscitati vrednosti
 
-                var val = new Random().NextDouble();
-                proxy.AnalogScanDone(ioAdress, val);
+                    var val = new Random().NextDouble();
+                    proxy.AnalogScanDone(ioAdress, val);
+                }
             });
             _threadScannerContainter.Add(ioAdress, thread);
             thread.Start();

@@ -327,9 +327,9 @@
       <soap:address location="http://localhost:49980/Implementations/AnalogInputService.svc/AnalogInput" />
     </wsdl:port>
     <wsdl:port name="WSDualHttpBinding_IScanService" binding="tns:WSDualHttpBinding_IScanService">
-      <soap12:address location="http://localhost:49980/Implementations/AnalogInputService.svc/AnalogInput/Scan" />
+      <soap12:address location="http://localhost:49980/Implementations/AnalogInputService.svc/AnalogInput-Scan" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:49980/Implementations/AnalogInputService.svc/AnalogInput/Scan</wsa10:Address>
+        <wsa10:Address>http://localhost:49980/Implementations/AnalogInputService.svc/AnalogInput-Scan</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Upn>DESKTOP-GI9D7GB\ivanvm</Upn>
         </Identity>

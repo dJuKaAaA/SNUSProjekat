@@ -80,13 +80,11 @@ namespace Trending.MVVM.ViewModel
 
         public void AnalogScanDone(int ioAdress, double value)
         {
-            MessageBox.Show("Yea");
             Value = value;
         }
 
         public void DigitalScanDone(int ioAdress, bool value)
         {
-            MessageBox.Show("No");
             BoolValue = value;
         }
     }
