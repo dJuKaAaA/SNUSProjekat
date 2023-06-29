@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SCADACore.Implementations.AnalogOutputService" CodeBehind="AnalogOutputService.svc.cs" %>
