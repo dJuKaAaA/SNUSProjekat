@@ -1,4 +1,5 @@
-﻿using SCADACore.Interfaces;
+﻿using SCADACore.Context;
+using SCADACore.Interfaces;
 using SCADACore.Models;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,19 @@ namespace SCADACore.Implementations
 
         public AnalogInput GetForIOAddress(int ioAddress)
         {
-            throw new NotImplementedException();
+            using (DbIOContext db = new DbIOContext())
+            {
+                return db.AnalogInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
+            }
+        }
+
+        public void Save(AnalogInput analogInput)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                db.AnalogInputs.Add(analogInput);
+                db.SaveChanges();
+            }
         }
 
         public void StartScan(int ioAdress)
@@ -33,7 +46,7 @@ namespace SCADACore.Implementations
                 // Iscitati vrednosti
                 IScanCallback proxy = OperationContext.Current.GetCallbackChannel<IScanCallback>();
 
-                var val = 10;
+                var val = new Random().NextDouble();
                 proxy.AnalogScanDone(ioAdress, val);
             });
             _threadScannerContainter.Add(ioAdress, thread);
@@ -47,5 +60,6 @@ namespace SCADACore.Implementations
             thread.Abort();
             _threadScannerContainter.Remove(ioAdress);
         }
+
     }
 }

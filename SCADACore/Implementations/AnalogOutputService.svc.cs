@@ -1,4 +1,5 @@
-﻿using SCADACore.Interfaces;
+﻿using SCADACore.Context;
+using SCADACore.Interfaces;
 using SCADACore.Models;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,15 @@ namespace SCADACore.Implementations
         public AnalogOutput GetForIOAddress(int ioAddress)
         {
             throw new NotImplementedException();
+        }
+
+        public void Save(AnalogOutput analogOutput)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                db.AnalogOutputs.Add(analogOutput);
+                db.SaveChanges();
+            }
         }
     }
 }

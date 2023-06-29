@@ -16,5 +16,8 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         AnalogOutput GetForIOAddress(int ioAddress);
+
+        [OperationContract]
+        void Save(AnalogOutput analogOutput);
     }
 }
