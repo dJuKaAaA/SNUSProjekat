@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -14,6 +15,8 @@ namespace Trending.MVVM.ViewModel
 {
     public class InputsViewModel : ViewModelBase
     {
+        public ObservableCollection<AnalogInput> AnalogInputs { get; set; }
+
         private CoreAnalogInputRef.AnalogInputServiceClient _analogInputServiceClient;
         private CoreAnalogOutputRef.AnalogOutputServiceClient _analogOutputServiceClient;
         private CoreAnalogInputRef.ScanServiceClient _scanClient;
@@ -55,8 +58,31 @@ namespace Trending.MVVM.ViewModel
             InstanceContext ic = new InstanceContext(InputCallback);
             _scanClient = new CoreAnalogInputRef.ScanServiceClient(ic);
 
+            LoadAnalogInputs();
+
             StartScanCommand = new RelayCommand(o => _scanClient.StartScan(ioAddress), o => true);
             EndScanCommand = new RelayCommand(o => _scanClient.EndScan(ioAddress), o => true);
+        }
+
+        public void LoadAnalogInputs()
+        {
+            AnalogInputs = new ObservableCollection<AnalogInput>();
+            for (int i = 0; i < 10; ++i)
+            {
+                AnalogInputs.Add(new AnalogInput()
+                {
+                    TagName = "AnalogInput1",
+                    IOAddress = 20,
+                    Description = "Some description",
+                    ScanTime = 500,
+                    OnScan = false,
+                    Value = 100,
+                    LowLimit = 0,
+                    HighLimit = 1000,
+                    Units = "cm"
+                });
+            }
+
         }
     }
 
