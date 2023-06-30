@@ -15,47 +15,22 @@ namespace SCADACore.Implementations
     {
         public User CreateAccount(string username, string password)
         {
-            using (var dbContext = new DbUserContext())
-            {
-                User existingUser = dbContext.Users.Where(u => u.Username == username).FirstOrDefault();
-                if (existingUser != null) throw new UserAlreadyExistException();
-
-                User newUser = new User { Username = username, Password = password, Role = Role.Standard };
-                dbContext.Users.Add(newUser);
-                dbContext.SaveChanges();
-                return newUser;
-            }
+            throw new NotImplementedException();
         }
 
         public IEnumerable<User> GetAll()
         {
-            using (var dbContext = new DbUserContext())
-            {
-                List<User> users = dbContext.Users.ToList();
-                return users;
-            }
+            throw new NotImplementedException();
         }
 
         public User GetById(int id)
         {
-            using (var dbContext = new DbUserContext())
-            {
-                User user = dbContext.Users.Where(u => u.Id == id).FirstOrDefault();
-
-                if (user == null) throw new UserNotFoundException();
-
-                return user;
-            }
+            throw new NotImplementedException();
         }
 
         public User LogIn(string username, string password)
         {
-            using (var dbContext = new DbUserContext())
-            {
-                User user = dbContext.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
-                if (user == null) throw new UserNotFoundException();
-                return user;
-            }
+            throw new NotImplementedException();
         }
     }
 }

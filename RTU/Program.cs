@@ -33,7 +33,7 @@ namespace RTU
                         double newValue = GenerateRandomDouble(analogOutput.LowLimit, analogOutput.HighLimit);
                         analogOutputServiceClient.SetNewValue(analogOutput.IOAddress, newValue);
                         Thread.Sleep(secondsToUpdate);
-                        Console.WriteLine("Analogni: " + analogOutput.IOAddress.ToString() + " " + newValue);
+                        Console.WriteLine("AnalogOutput: " + analogOutput.IOAddress.ToString() + ", NewValue: " + newValue);
                     }
                 });
                 thread.Start();
@@ -47,7 +47,7 @@ namespace RTU
                         bool newValue = GenerateRandomBool();
                         digitalOutputServiceClient.SetNewValue(digitalOutput.IOAddress, newValue);
                         Thread.Sleep(secondsToUpdate);
-                        Console.WriteLine("Digitalni: " + digitalOutput.IOAddress.ToString() + " " + newValue);
+                        Console.WriteLine("DigitalOutput: " + digitalOutput.IOAddress.ToString() + ", NewValue: " + newValue);
                     }
                 });
                 thread.Start();
@@ -79,14 +79,16 @@ namespace RTU
 
             DigitalOutput digitalOutput2 = new DigitalOutput { TagName = "Tag4", Description = "Opis", IOAddress = 4, Value = false };
 
-            Console.WriteLine("Dodajem analogne");
+            Console.WriteLine("Adding AnalogOutput...");
 
             analogOutputServiceClient.Save(analogOutput1);
             analogOutputServiceClient.Save(analogOutput2);
 
-            Console.WriteLine("Dodajem Digitalne");
+            Console.WriteLine("Adding DigitalOutput...");
             digitalOutputServiceClient.Save(digitalOutput1);
             digitalOutputServiceClient.Save(digitalOutput2);
+
+            Console.WriteLine("Outputs saved!");
         }
     }
 }

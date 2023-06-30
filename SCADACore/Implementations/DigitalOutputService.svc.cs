@@ -26,7 +26,7 @@ namespace SCADACore.Implementations
             using (var db = new DbIOContext())
             {
                 DigitalOutput digitalOutput = db.DigitalOutputs.Where(output => output.IOAddress == ioAddress).FirstOrDefault();
-                if (digitalOutput == null) throw new IONotExistException();
+                if (digitalOutput == null) throw new IONotExistException(IOType.DigitalOutput);
                 return digitalOutput;
             }
         }
@@ -36,7 +36,7 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 DigitalOutput existingDigitalOutput = db.DigitalOutputs.Where(output => output.TagName == digitalOutput.TagName).FirstOrDefault();
-                if (existingDigitalOutput != null) throw new IOAlreadyExistException();
+                if (existingDigitalOutput != null) throw new IOAlreadyExistException(IOType.DigitalOutput);
 
                 db.DigitalOutputs.Add(digitalOutput);
                 db.SaveChanges();
@@ -48,7 +48,7 @@ namespace SCADACore.Implementations
             using (var db = new DbIOContext())
             {
                 DigitalOutput existingDigitalOutput = db.DigitalOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
-                if (existingDigitalOutput == null) throw new IONotExistException();
+                if (existingDigitalOutput == null) throw new IONotExistException(IOType.DigitalOutput);
 
                 existingDigitalOutput.Value = newValue;
                 db.SaveChanges();

@@ -31,7 +31,7 @@ namespace SCADACore.Implementations
             using (var db = new DbIOContext())
             {
                 DigitalInput digitalInput = db.DigitalInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-                if (digitalInput == null) throw new IONotExistException();
+                if (digitalInput == null) throw new IONotExistException(IOType.DigitalInput);
                 return digitalInput;
             }
         }
@@ -65,7 +65,7 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 DigitalOutput digitalOutput = db.DigitalOutputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-                if (digitalOutput == null) throw new IONotExistException();
+                if (digitalOutput == null) throw new IONotExistException(IOType.DigitalOutput);
                 return digitalOutput;
             }
         }
@@ -75,7 +75,7 @@ namespace SCADACore.Implementations
             using (var dbContext = new DbIOContext())
             {
                 DigitalInput existingDigitalInput = dbContext.DigitalInputs.FirstOrDefault(input => input.IOAddress == ioAddress);
-                if (existingDigitalInput == null) throw new IONotExistException();
+                if (existingDigitalInput == null) throw new IONotExistException(IOType.DigitalInput);
 
                 existingDigitalInput.OnScan = status;
                 dbContext.SaveChanges();

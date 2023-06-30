@@ -31,5 +31,10 @@ namespace SCADACore.Models
 
         [DataMember]
         public string Units { get; set; }
+
+        public override string ToString()
+        {
+            return $"TagName: {TagName}, Description: {Description}, IOAddress: {IOAddress}, Value: {Value}, LowLimit: {LowLimit}, HighLimit: {HighLimit}, Units: {Units}";
+        }
     }
 }

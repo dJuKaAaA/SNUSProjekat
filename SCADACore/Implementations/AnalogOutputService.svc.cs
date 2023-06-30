@@ -26,7 +26,7 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 AnalogOutput analogOutput = db.AnalogOutputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-                if (analogOutput == null) throw new IONotExistException();
+                if (analogOutput == null) throw new IONotExistException(IOType.AnalogOutput);
                 return analogOutput;
             }
         }
@@ -36,7 +36,7 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 AnalogOutput existingAnalogOutput = db.AnalogOutputs.Where(output => output.TagName == analogOutput.TagName).FirstOrDefault();
-                if (existingAnalogOutput != null) throw new IOAlreadyExistException();
+                if (existingAnalogOutput != null) throw new IOAlreadyExistException(IOType.AnalogOutput);
 
                 db.AnalogOutputs.Add(analogOutput);
                 db.SaveChanges();
@@ -48,7 +48,7 @@ namespace SCADACore.Implementations
             using (var db = new DbIOContext())
             {
                 AnalogOutput existingAnalogOutput = db.AnalogOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
-                if (existingAnalogOutput == null) throw new IONotExistException();
+                if (existingAnalogOutput == null) throw new IONotExistException(IOType.AnalogOutput);
 
                 existingAnalogOutput.Value = newValue;
                 db.SaveChanges();
