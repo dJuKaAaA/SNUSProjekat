@@ -84,6 +84,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Connected Services\CoreAnalogInputRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CoreAnalogOutputRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Core\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -155,6 +165,32 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\CoreAnalogInputRef\AnalogInputService.wsdl" />
+    <None Include="Connected Services\CoreAnalogInputRef\AnalogInputService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreAnalogInputRef\AnalogInputService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreAnalogInputRef\AnalogInputService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreAnalogInputRef\Trending.CoreAnalogInputRef.AnalogInput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CoreAnalogOutputRef\AnalogOutputService.wsdl" />
+    <None Include="Connected Services\CoreAnalogOutputRef\AnalogOutputService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreAnalogOutputRef\AnalogOutputService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreAnalogOutputRef\AnalogOutputService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreAnalogOutputRef\Trending.CoreAnalogOutputRef.AnalogOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -169,6 +205,40 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CoreAnalogInputRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreAnalogOutputRef\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogInputRef\AnalogInputService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogInputRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogInputRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogInputRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogOutputRef\AnalogOutputService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogOutputRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogOutputRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreAnalogOutputRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

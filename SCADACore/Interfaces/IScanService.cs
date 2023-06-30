@@ -10,19 +10,19 @@ namespace SCADACore.Interfaces
     [ServiceContract(CallbackContract = typeof(IScanCallback))]
     public interface IScanService
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void StartScan(int ioAdress);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void EndScan(int ioAdress);
     }
 
     public interface IScanCallback
     {
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void AnalogScanDone(int ioAdress, double value);
 
-        [OperationContract]
+        [OperationContract(IsOneWay = true)]
         void DigitalScanDone(int ioAdress, bool value);
     }
 }

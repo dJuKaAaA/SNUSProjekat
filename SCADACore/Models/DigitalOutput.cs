@@ -22,5 +22,10 @@ namespace SCADACore.Models
 
         [DataMember]
         public bool Value { get; set; }
+
+        public override string ToString()
+        {
+            return $"TagName: {TagName}, Description: {Description}, IOAddress: {IOAddress}, Value: {Value}";
+        }
     }
 }
