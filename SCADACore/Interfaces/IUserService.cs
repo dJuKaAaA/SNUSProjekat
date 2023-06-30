@@ -15,12 +15,15 @@ namespace SCADACore.Interfaces
         User LogIn(string username, string password);
 
         [OperationContract]
-        User CreateAccount(string username, string password);
+        User CreateAccount(User user, string password);
 
         [OperationContract]
         IEnumerable<User> GetAll();
 
         [OperationContract]
         User GetById(int id);
+
+        [OperationContract]
+        User GetByUsername(string username);
     }
 }

@@ -4,9 +4,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Trending.MVVM.View"
+             xmlns:core="clr-namespace:Trending.Core"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalAlignment="Center"
+                   Margin="0 10"
+                   Text="Create User"
+                   FontSize="24"/>
+
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
+                    Margin="20 10"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Name"
+                       FontSize="16"/>
+            <TextBox FontSize="18"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="20 10"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Surname"
+                       FontSize="16"/>
+            <TextBox FontSize="18"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="0"
+                    Margin="20 10"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Username"
+                       FontSize="16"/>
+            <TextBox FontSize="18"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="20 10"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Password"
+                       FontSize="16"/>
+            <core:BindablePasswordBox FontSize="18"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3"
+                    Grid.Column="0"
+                    Margin="20 10"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Confirm password"
+                       FontSize="16"/>
+            <core:BindablePasswordBox FontSize="18"/>
+        </StackPanel>
+
+        <Button Grid.Row="3"
+                Grid.Column="1"
+                Content="Create"
+                FontSize="20"
+                Padding="50 10"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0 10"/>
+
     </Grid>
 </UserControl>

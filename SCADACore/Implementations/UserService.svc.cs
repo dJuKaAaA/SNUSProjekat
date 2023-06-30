@@ -1,4 +1,6 @@
-﻿using SCADACore.Interfaces;
+﻿using SCADACore.Context;
+using SCADACore.Exceptions;
+using SCADACore.Interfaces;
 using SCADACore.Models;
 using System;
 using System.Collections.Generic;
@@ -11,24 +13,53 @@ namespace SCADACore.Implementations
 {
     public class UserService : IUserService
     {
-        public User CreateAccount(string username, string password)
+        public User CreateAccount(User user, string password)
         {
-            throw new NotImplementedException();
+            if (GetByUsername(user.Username) != null)
+            {
+                throw new UserDbException("Username already exists!");
+            }
+
+            using (DbUserContext db = new DbUserContext())
+            {
+                user.Password = password;
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+
+            return GetByUsername(user.Username);
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            using (DbUserContext db = new DbUserContext())
+            {
+                return db.Users.ToList();
+            }
         }
 
         public User GetById(int id)
         {
-            throw new NotImplementedException();
+            using (DbUserContext db = new DbUserContext())
+            {
+                return db.Users.Where(user => user.Id == id).FirstOrDefault();
+            }
+        }
+
+        public User GetByUsername(string username)
+        {
+            using (DbUserContext db = new DbUserContext())
+            {
+                return db.Users.Where(user => user.Username == username).FirstOrDefault();
+            }
         }
 
         public User LogIn(string username, string password)
         {
-            throw new NotImplementedException();
+            using (DbUserContext db = new DbUserContext())
+            {
+                return db.Users.Where(user => user.Username == username && user.Password == password).FirstOrDefault();
+            }
         }
     }
 }

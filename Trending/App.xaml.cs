@@ -31,7 +31,7 @@ namespace Trending
             services.AddTransient<Func<Type, ViewModelBase>>(provider => viewModelType => (ViewModelBase)provider.GetRequiredService(viewModelType));
 
             // register ViewModel classes for injection here (use AddTransient)
-            services.AddTransient<MainViewModel>();
+            services.AddSingleton<MainViewModel>();
             services.AddTransient<LogInViewModel>();
             services.AddTransient<InputsViewModel>();
             services.AddTransient<CreateUserViewModel>();
