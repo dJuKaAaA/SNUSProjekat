@@ -13,7 +13,7 @@ using Trending.CoreAnalogOutputRef;
 
 namespace Trending.MVVM.ViewModel
 {
-    public class InputsViewModel : ViewModelBase
+    public class MonitorInputsViewModel : ViewModelBase
     {
         public ObservableCollection<AnalogInput> AnalogInputs { get; set; }
 
@@ -25,7 +25,7 @@ namespace Trending.MVVM.ViewModel
         public ICommand StartScanCommand { get; }
         public ICommand EndScanCommand { get; }
 
-        public InputsViewModel()
+        public MonitorInputsViewModel()
         {
             _analogInputServiceClient = new CoreAnalogInputRef.AnalogInputServiceClient();
             _analogOutputServiceClient = new CoreAnalogOutputRef.AnalogOutputServiceClient();

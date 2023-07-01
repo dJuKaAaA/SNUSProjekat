@@ -50,7 +50,15 @@ namespace Trending.MVVM.ViewModel
             if (user != null)
             {
                 MainViewModel.SignedUser = user;
-                _navigationService.NavigateTo<InputsViewModel>();
+                switch (MainViewModel.SignedUser.Role)
+                {
+                    case CoreUserRef.Role.Admin:
+                        _navigationService.NavigateTo<DbAnalogInputsViewModel>();
+                        break;
+                    case CoreUserRef.Role.Standard:
+                        _navigationService.NavigateTo<MonitorInputsViewModel>();
+                        break;
+                }
             }
             else
             {

@@ -33,10 +33,15 @@ namespace Trending
             // register ViewModel classes for injection here (use AddTransient)
             services.AddSingleton<MainViewModel>();
             services.AddTransient<LogInViewModel>();
-            services.AddTransient<InputsViewModel>();
+            services.AddTransient<MonitorInputsViewModel>();
             services.AddTransient<CreateUserViewModel>();
             services.AddTransient<CreateInputViewModel>();
             services.AddTransient<CreateOutputViewModel>();
+            services.AddTransient<DbAnalogInputsViewModel>();
+            services.AddTransient<DbAnalogOutputsViewModel>();
+            services.AddTransient<DbDigitalInputsViewModel>();
+            services.AddTransient<DbDigitalOutputsViewModel>();
+            services.AddTransient<DbUsersViewModel>();
 
             services.AddSingleton<NavigationService>();
 

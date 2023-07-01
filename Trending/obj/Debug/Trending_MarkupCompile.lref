@@ -5,6 +5,11 @@ FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MainWindow.xaml;;
 FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\CreateInputView.xaml;;
 FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\CreateOutputView.xaml;;
 FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\CreateUserView.xaml;;
-FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\InputsView.xaml;;
+FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\DbAnalogInputsView.xaml;;
+FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\DbAnalogOutputsView.xaml;;
+FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\DbDigitalInputsView.xaml;;
+FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\DbDigitalOutputsView.xaml;;
+FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\DbUsersView.xaml;;
+FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\MonitorInputsView.xaml;;
 FC:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\MVVM\View\LogInView.xaml;;
 

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="Trending.MVVM.View.DbDigitalOutputsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Trending.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+            
+        <DataGrid ItemsSource="{Binding Outputs}"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False">
+
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </DataGrid.CellStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Tag Name (ID)"
+                                    Binding="{Binding TagName}"/>
+                <DataGridTextColumn Header="Description"
+                                    Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="I/O Address"
+                                    Binding="{Binding IOAddress}"/>
+                <DataGridCheckBoxColumn Header="Value"
+                                        Binding="{Binding Value}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>

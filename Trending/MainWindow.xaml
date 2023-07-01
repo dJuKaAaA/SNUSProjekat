@@ -19,18 +19,27 @@
         <Menu Grid.Row="0"
               Visibility="{Binding AdminMenuVisibility}">
             <MenuItem Header="Create">
-                <MenuItem Header="User"/>
-                <MenuItem Header="Input"/>
-                <MenuItem Header="Output"/>
+                <MenuItem Header="User"
+                          Command="{Binding NavigateToCreateUserViewCommand}"/>
+                <MenuItem Header="Input"
+                          Command="{Binding NavigateToCreateInputViewCommand}"/>
+                <MenuItem Header="Output"
+                          Command="{Binding NavigateToCreateOutputViewCommand}"/>
             </MenuItem>
             <MenuItem Header="View">
-                <MenuItem Header="Users"/>
-                <MenuItem Header="Digital Inputs"/>
-                <MenuItem Header="Digital Outputs"/>
-                <MenuItem Header="Analog Inputs"/>
-                <MenuItem Header="Analog Outputs"/>
+                <MenuItem Header="Users"
+                          Command="{Binding NavigateToDbUsersViewCommand}"/>
+                <MenuItem Header="Digital Inputs"
+                          Command="{Binding NavigateToDbDigitalInputsViewCommand}"/>
+                <MenuItem Header="Digital Outputs"
+                          Command="{Binding NavigateToDbDigitalOutputsViewCommand}"/>
+                <MenuItem Header="Analog Inputs"
+                          Command="{Binding NavigateToDbAnalogInputsViewCommand}"/>
+                <MenuItem Header="Analog Outputs"
+                          Command="{Binding NavigateToDbAnalogOutputsViewCommand}"/>
             </MenuItem>
-            <MenuItem Header="Log Out"/>
+            <MenuItem Header="Log Out"
+                      Command="{Binding LogOutCommand}"/>
         </Menu>
 
         <ContentControl Content="{Binding NavigationService.CurrentViewModel}"
@@ -46,8 +55,8 @@
                     <view:CreateUserView/>
                 </DataTemplate>
 
-                <DataTemplate DataType="{x:Type viewmodel:InputsViewModel}">
-                    <view:InputsView/>
+                <DataTemplate DataType="{x:Type viewmodel:MonitorInputsViewModel}">
+                    <view:MonitorInputsView/>
                 </DataTemplate>
                 
                 <DataTemplate DataType="{x:Type viewmodel:CreateInputViewModel}">
@@ -56,6 +65,26 @@
 
                 <DataTemplate DataType="{x:Type viewmodel:CreateOutputViewModel}">
                     <view:CreateOutputView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodel:DbAnalogInputsViewModel}">
+                    <view:DbAnalogInputsView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodel:DbAnalogOutputsViewModel}">
+                    <view:DbAnalogOutputsView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodel:DbDigitalInputsViewModel}">
+                    <view:DbDigitalInputsView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodel:DbDigitalOutputsViewModel}">
+                    <view:DbDigitalOutputsView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodel:DbUsersViewModel}">
+                    <view:DbUsersView/>
                 </DataTemplate>
             
             </ContentControl.Resources>

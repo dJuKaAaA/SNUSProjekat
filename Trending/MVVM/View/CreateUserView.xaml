@@ -12,13 +12,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0"
                    Grid.ColumnSpan="2"
@@ -27,55 +22,63 @@
                    Text="Create User"
                    FontSize="24"/>
 
-        <StackPanel Grid.Row="1"
-                    Grid.Column="0"
-                    Margin="20 10"
-                    VerticalAlignment="Center">
-            <TextBlock Text="Name"
-                       FontSize="16"/>
-            <TextBox FontSize="18"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="20 10"
-                    VerticalAlignment="Center">
-            <TextBlock Text="Surname"
-                       FontSize="16"/>
-            <TextBox FontSize="18"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2"
-                    Grid.Column="0"
-                    Margin="20 10"
-                    VerticalAlignment="Center">
-            <TextBlock Text="Username"
-                       FontSize="16"/>
-            <TextBox FontSize="18"/>
-        </StackPanel>
-        <StackPanel Grid.Row="2"
-                    Grid.Column="1"
-                    Margin="20 10"
-                    VerticalAlignment="Center">
-            <TextBlock Text="Password"
-                       FontSize="16"/>
-            <core:BindablePasswordBox FontSize="18"/>
-        </StackPanel>
-        <StackPanel Grid.Row="3"
-                    Grid.Column="0"
-                    Margin="20 10"
-                    VerticalAlignment="Center">
-            <TextBlock Text="Confirm password"
-                       FontSize="16"/>
-            <core:BindablePasswordBox FontSize="18"/>
-        </StackPanel>
+        <WrapPanel HorizontalAlignment="Center"
+                   Grid.Row="1">
+            
+            <StackPanel Grid.Row="1"
+                        Grid.Column="0"
+                        Width="250"
+                        Margin="20 10"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Name"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="20 10"
+                        Width="250"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Surname"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Grid.Column="0"
+                        Width="250"
+                        Margin="20 10"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Username"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1"
+                        Width="250"
+                        Margin="20 10"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Password"
+                           FontSize="16"/>
+                <core:BindablePasswordBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0"
+                        Width="250"
+                        Margin="20 10"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Confirm password"
+                           FontSize="16"/>
+                <core:BindablePasswordBox FontSize="18"/>
+            </StackPanel>
 
-        <Button Grid.Row="3"
-                Grid.Column="1"
+        </WrapPanel>
+        <Button Grid.Row="2"
                 Content="Create"
                 FontSize="20"
                 Padding="50 10"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
-                Margin="0 10"/>
+                Margin="0 20"/>
 
     </Grid>
 </UserControl>

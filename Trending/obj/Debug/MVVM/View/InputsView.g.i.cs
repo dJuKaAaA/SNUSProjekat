@@ -38,7 +38,7 @@ namespace Trending.MVVM.View {
     /// <summary>
     /// InputsView
     /// </summary>
-    public partial class InputsView : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
+    public partial class MonitorInputsView : System.Windows.Controls.UserControl, System.Windows.Markup.IComponentConnector {
         
         private bool _contentLoaded;
         

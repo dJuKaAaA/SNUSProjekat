@@ -4,7 +4,6 @@ C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Core\BindableP
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\CreateInputView.g.cs
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\CreateOutputView.g.cs
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\CreateUserView.g.cs
-C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\InputsView.g.cs
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\LogInView.g.cs
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\App.g.cs
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Trending_MarkupCompile.cache
@@ -14,7 +13,6 @@ C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Core\BindableP
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\CreateInputView.baml
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\CreateOutputView.baml
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\CreateUserView.baml
-C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\InputsView.baml
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\LogInView.baml
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Trending.exe
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Trending.pdb
@@ -38,3 +36,15 @@ C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Trending.cspro
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Trending.csproj.CoreCompileInputs.cache
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\Trending.csproj.CopyComplete
 C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbAnalogInputsView.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbAnalogOutputsView.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbDigitalInputsView.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbDigitalOutputsView.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbUsersView.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\MonitorInputsView.g.cs
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbAnalogInputsView.baml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbAnalogOutputsView.baml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbDigitalInputsView.baml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbDigitalOutputsView.baml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\DbUsersView.baml
+C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\MVVM\View\MonitorInputsView.baml

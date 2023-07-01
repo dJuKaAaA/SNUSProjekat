@@ -7,6 +7,96 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       Text="Create Input"
+                       FontSize="20"
+                       HorizontalAlignment="Center"
+                       Margin="0 10"/>
+
+            <RadioButton Content="Digital" 
+                         Grid.Row="1"
+                         Margin="0 5"
+                         Grid.Column="0"
+                         HorizontalAlignment="Center"/>
+            <RadioButton Content="Analog" 
+                         Grid.Row="1"
+                         Margin="0 5"
+                         Grid.Column="1"
+                         HorizontalAlignment="Center"/>
+        </Grid>
+
+        <WrapPanel Grid.Row="1"
+                   HorizontalAlignment="Center">
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="Tag Name (ID)"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="Description"
+                           FontSize="16"/>
+                <TextBox FontSize="18"
+                         TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="I/O Address"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="Scan Time (in milliseconds)"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="Low Limit"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="High Limit"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+            <StackPanel Margin="20 10"
+                        Width="200">
+                <TextBlock Text="Units"
+                           FontSize="16"/>
+                <TextBox FontSize="18"/>
+            </StackPanel>
+
+        </WrapPanel>
+
+        <Button Grid.Row="2"
+                FontSize="20"
+                Padding="50 10"
+                Content="Create"
+                HorizontalAlignment="Center"
+                Margin="0 20"/>
+
     </Grid>
 </UserControl>
