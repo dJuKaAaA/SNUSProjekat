@@ -32,7 +32,8 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Name"
                            FontSize="16"/>
-                <TextBox FontSize="18"/>
+                <TextBox FontSize="18"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="1"
                         Grid.Column="1"
@@ -41,7 +42,8 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Surname"
                            FontSize="16"/>
-                <TextBox FontSize="18"/>
+                <TextBox FontSize="18"
+                         Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="2"
                         Grid.Column="0"
@@ -50,7 +52,8 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Username"
                            FontSize="16"/>
-                <TextBox FontSize="18"/>
+                <TextBox FontSize="18"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel Grid.Row="2"
                         Grid.Column="1"
@@ -59,7 +62,8 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Password"
                            FontSize="16"/>
-                <core:BindablePasswordBox FontSize="18"/>
+                <core:BindablePasswordBox FontSize="18"
+                                          Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </StackPanel>
             <StackPanel Grid.Row="3"
                         Grid.Column="0"
@@ -68,7 +72,8 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Confirm password"
                            FontSize="16"/>
-                <core:BindablePasswordBox FontSize="18"/>
+                <core:BindablePasswordBox FontSize="18"
+                                          Password="{Binding ConfirmPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </StackPanel>
 
         </WrapPanel>
@@ -76,6 +81,7 @@
                 Content="Create"
                 FontSize="20"
                 Padding="50 10"
+                Command="{Binding CreateUserCommand}"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
                 Margin="0 20"/>

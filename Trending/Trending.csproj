@@ -286,6 +286,9 @@
     <None Include="Connected Services\CoreUserRef\UserService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\CoreUserRef\UserService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -339,21 +342,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CoreUserRef\UserService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreUserRef\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreUserRef\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreUserRef\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Connected Services\CoreDigitalInputRef\DigitalInputService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -379,6 +367,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CoreDigitalOutputRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\UserService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

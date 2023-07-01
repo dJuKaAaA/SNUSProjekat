@@ -81,6 +81,7 @@
   <ItemGroup>
     <Compile Include="Context\DbIOContext.cs" />
     <Compile Include="Context\DbUserContext.cs" />
+    <Compile Include="Faults\UserDbFault.cs" />
     <Compile Include="Implementations\AnalogInputService.svc.cs">
       <DependentUpon>AnalogInputService.svc</DependentUpon>
     </Compile>

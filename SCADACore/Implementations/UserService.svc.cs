@@ -1,5 +1,5 @@
 ﻿using SCADACore.Context;
-using SCADACore.Exceptions;
+using SCADACore.Faults;
 using SCADACore.Interfaces;
 using SCADACore.Models;
 using System;
@@ -17,7 +17,8 @@ namespace SCADACore.Implementations
         {
             if (GetByUsername(user.Username) != null)
             {
-                throw new UserDbException("Username already exists!");
+                UserDbFault fault = new UserDbFault("Username already exists!");
+                throw new FaultException<UserDbFault>(fault, "A fault has occurred");
             }
 
             using (DbUserContext db = new DbUserContext())

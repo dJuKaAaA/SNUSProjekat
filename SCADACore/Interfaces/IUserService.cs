@@ -1,4 +1,5 @@
-﻿using SCADACore.Models;
+﻿using SCADACore.Faults;
+using SCADACore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace SCADACore.Interfaces
         User LogIn(string username, string password);
 
         [OperationContract]
+        [FaultContract(typeof(UserDbFault))]
         User CreateAccount(User user, string password);
 
         [OperationContract]
