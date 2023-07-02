@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Trending.Core;
+using Trending.CoreAnalogOutputRef;
+using Trending.CoreDigitalOutputRef;
 
 namespace Trending.MVVM.ViewModel
 {
@@ -107,6 +109,35 @@ namespace Trending.MVVM.ViewModel
 
 		private void OnCreateOutput(object o)
 		{
+			// TODO: Catch exceptions
+			if (DigitalTypeSelected)
+			{
+				DigitalOutput output = new DigitalOutput()
+				{
+					TagName = TagName,
+					Description = Description,
+					IOAddress = IOAddress,
+					Value = false
+				};
+				_digitalOutputServiceClient.Create(output);
+			}
+
+			if (AnalogTypeSelected)
+			{
+				AnalogOutput output = new AnalogOutput()
+				{
+					TagName = TagName,
+					Description = Description,
+					IOAddress = IOAddress,
+					LowLimit = LowLimit,
+					HighLimit = HighLimit,
+					Units = Units,
+					Value = (HighLimit + LowLimit) / 2
+				};
+				_analogOutputServiceClient.Create(output);
+			}
+
+			MessageBox.Show("Output created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
 		}
 

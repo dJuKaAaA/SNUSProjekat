@@ -24,20 +24,9 @@ namespace Trending.MVVM.ViewModel
         private void LoadInputs()
         {
             Inputs = new ObservableCollection<CoreAnalogInputRef.AnalogInput>();
-            for (int i = 0; i < 10; ++i)
+            foreach (CoreAnalogInputRef.AnalogInput input in _analogInputServiceClient.GetAll())
             {
-                Inputs.Add(new CoreAnalogInputRef.AnalogInput()
-                {
-                    TagName = "AnalogInputTag",
-                    IOAddress = 20,
-                    Description = "Some description",
-                    ScanTime = 500,
-                    OnScan = false,
-                    Value = 100,
-                    LowLimit = 0,
-                    HighLimit = 1000,
-                    Units = "cm"
-                });
+                Inputs.Add(input);
             }
         }
     }

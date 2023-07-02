@@ -121,6 +121,30 @@ namespace Trending.CoreDigitalOutputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/GetForIOAddress", ReplyAction="http://tempuri.org/IDigitalOutputService/GetForIOAddressResponse")]
         System.Threading.Tasks.Task<Trending.CoreDigitalOutputRef.DigitalOutput> GetForIOAddressAsync(int ioAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/Save", ReplyAction="http://tempuri.org/IDigitalOutputService/SaveResponse")]
+        void Save(Trending.CoreDigitalOutputRef.DigitalOutput digitalOutput);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/Save", ReplyAction="http://tempuri.org/IDigitalOutputService/SaveResponse")]
+        System.Threading.Tasks.Task SaveAsync(Trending.CoreDigitalOutputRef.DigitalOutput digitalOutput);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/SetNewValue", ReplyAction="http://tempuri.org/IDigitalOutputService/SetNewValueResponse")]
+        void SetNewValue(int ioAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/SetNewValue", ReplyAction="http://tempuri.org/IDigitalOutputService/SetNewValueResponse")]
+        System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/Create", ReplyAction="http://tempuri.org/IDigitalOutputService/CreateResponse")]
+        Trending.CoreDigitalOutputRef.DigitalOutput Create(Trending.CoreDigitalOutputRef.DigitalOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/Create", ReplyAction="http://tempuri.org/IDigitalOutputService/CreateResponse")]
+        System.Threading.Tasks.Task<Trending.CoreDigitalOutputRef.DigitalOutput> CreateAsync(Trending.CoreDigitalOutputRef.DigitalOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalOutputService/GetByTagNameResponse")]
+        Trending.CoreDigitalOutputRef.DigitalOutput GetByTagName(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalOutputService/GetByTagNameResponse")]
+        System.Threading.Tasks.Task<Trending.CoreDigitalOutputRef.DigitalOutput> GetByTagNameAsync(string tagName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -164,6 +188,38 @@ namespace Trending.CoreDigitalOutputRef {
         
         public System.Threading.Tasks.Task<Trending.CoreDigitalOutputRef.DigitalOutput> GetForIOAddressAsync(int ioAddress) {
             return base.Channel.GetForIOAddressAsync(ioAddress);
+        }
+        
+        public void Save(Trending.CoreDigitalOutputRef.DigitalOutput digitalOutput) {
+            base.Channel.Save(digitalOutput);
+        }
+        
+        public System.Threading.Tasks.Task SaveAsync(Trending.CoreDigitalOutputRef.DigitalOutput digitalOutput) {
+            return base.Channel.SaveAsync(digitalOutput);
+        }
+        
+        public void SetNewValue(int ioAddress, bool newValue) {
+            base.Channel.SetNewValue(ioAddress, newValue);
+        }
+        
+        public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue) {
+            return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public Trending.CoreDigitalOutputRef.DigitalOutput Create(Trending.CoreDigitalOutputRef.DigitalOutput output) {
+            return base.Channel.Create(output);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreDigitalOutputRef.DigitalOutput> CreateAsync(Trending.CoreDigitalOutputRef.DigitalOutput output) {
+            return base.Channel.CreateAsync(output);
+        }
+        
+        public Trending.CoreDigitalOutputRef.DigitalOutput GetByTagName(string tagName) {
+            return base.Channel.GetByTagName(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreDigitalOutputRef.DigitalOutput> GetByTagNameAsync(string tagName) {
+            return base.Channel.GetByTagNameAsync(tagName);
         }
     }
 }

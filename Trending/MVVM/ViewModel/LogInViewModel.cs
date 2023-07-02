@@ -40,6 +40,13 @@ namespace Trending.MVVM.ViewModel
             _navigationService = navigationService;
 
             _userServiceClient = new CoreUserRef.UserServiceClient();
+            //_userServiceClient.CreateAccount(new CoreUserRef.User()
+            //{
+            //    Name = "Andrew",
+            //    Surname = "Tate",
+            //    Username = "admin",
+            //    Role = CoreUserRef.Role.Admin
+            //}, "admin");
 
             LogInCommand = new RelayCommand(OnLogIn, CanLogIn);
         }

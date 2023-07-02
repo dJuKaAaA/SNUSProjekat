@@ -11,18 +11,21 @@ namespace SCADACore.Interfaces
     public interface IScanService
     {
         [OperationContract(IsOneWay = true)]
-        void StartScan(int ioAdress);
+        void StartScan(int ioAddress);
 
         [OperationContract(IsOneWay = true)]
-        void EndScan(int ioAdress);
+        void EndScan(int ioAddress);
+
+        [OperationContract(IsOneWay = true)]
+        void EndAllScans();
     }
 
     public interface IScanCallback
     {
         [OperationContract(IsOneWay = true)]
-        void AnalogScanDone(int ioAdress, double value);
+        void AnalogScanDone(int ioAddress, double value);
 
         [OperationContract(IsOneWay = true)]
-        void DigitalScanDone(int ioAdress, bool value);
+        void DigitalScanDone(int ioAddress, bool value);
     }
 }

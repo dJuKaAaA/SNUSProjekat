@@ -22,5 +22,11 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         void SetNewValue(int ioAddress, double newValue);
+
+        [OperationContract]
+        AnalogOutput Create(AnalogOutput output);
+
+        [OperationContract]
+        AnalogOutput GetByTagName(string tagName);
     }
 }

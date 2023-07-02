@@ -149,6 +149,29 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IScanService_EndAllScans_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IScanService_AnalogScanDone_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -214,11 +237,26 @@
   <wsdl:message name="IDigitalInputService_GetForIOAddress_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetForIOAddressResponse" />
   </wsdl:message>
+  <wsdl:message name="IDigitalInputService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalInputService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalInputService_GetByTagName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByTagName" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalInputService_GetByTagName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByTagNameResponse" />
+  </wsdl:message>
   <wsdl:message name="IScanService_StartScan_InputMessage">
     <wsdl:part name="parameters" element="tns:StartScan" />
   </wsdl:message>
   <wsdl:message name="IScanService_EndScan_InputMessage">
     <wsdl:part name="parameters" element="tns:EndScan" />
+  </wsdl:message>
+  <wsdl:message name="IScanService_EndAllScans_InputMessage">
+    <wsdl:part name="parameters" element="tns:EndAllScans" />
   </wsdl:message>
   <wsdl:message name="IScanService_AnalogScanDone_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:AnalogScanDone" />
@@ -235,6 +273,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDigitalInputService/GetForIOAddress" message="tns:IDigitalInputService_GetForIOAddress_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDigitalInputService/GetForIOAddressResponse" message="tns:IDigitalInputService_GetForIOAddress_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDigitalInputService/Create" message="tns:IDigitalInputService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDigitalInputService/CreateResponse" message="tns:IDigitalInputService_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByTagName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDigitalInputService/GetByTagName" message="tns:IDigitalInputService_GetByTagName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDigitalInputService/GetByTagNameResponse" message="tns:IDigitalInputService_GetByTagName_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IScanService">
     <wsdl:operation name="StartScan">
@@ -242,6 +288,9 @@
     </wsdl:operation>
     <wsdl:operation name="EndScan">
       <wsdl:input wsaw:Action="http://tempuri.org/IScanService/EndScan" message="tns:IScanService_EndScan_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EndAllScans">
+      <wsdl:input wsaw:Action="http://tempuri.org/IScanService/EndAllScans" message="tns:IScanService_EndAllScans_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AnalogScanDone">
       <wsdl:output wsaw:Action="http://tempuri.org/IScanService/AnalogScanDone" message="tns:IScanService_AnalogScanDone_OutputCallbackMessage" />
@@ -270,6 +319,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://tempuri.org/IDigitalInputService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByTagName">
+      <soap:operation soapAction="http://tempuri.org/IDigitalInputService/GetByTagName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WSDualHttpBinding_IScanService" type="tns:IScanService">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IScanService_policy" />
@@ -285,6 +352,13 @@
       <soap12:operation soapAction="http://tempuri.org/IScanService/EndScan" style="document" />
       <wsdl:input>
         <wsp:PolicyReference URI="#WSDualHttpBinding_IScanService_EndScan_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="EndAllScans">
+      <soap12:operation soapAction="http://tempuri.org/IScanService/EndAllScans" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IScanService_EndAllScans_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
     </wsdl:operation>
@@ -312,7 +386,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:49980/Implementations/DigitalInputService.svc/DigitalInput-Scan</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-TTNFD2L\ivanm</Upn>
+          <Upn>DESKTOP-GI9D7GB\ivanvm</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

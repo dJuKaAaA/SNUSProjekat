@@ -13,6 +13,26 @@ namespace SCADACore.Implementations
 {
     public class AnalogOutputService : IAnalogOutputService
     {
+        public AnalogOutput Create(AnalogOutput output)
+        {
+            // TODO: Throw exceptions
+            if (GetByTagName(output.TagName) != null)
+            {
+                return null;
+            }
+            if (GetForIOAddress(output.IOAddress) != null)
+            {
+                return null;
+            }
+
+            using (DbIOContext db = new DbIOContext())
+            {
+                db.AnalogOutputs.Add(output);
+                db.SaveChanges();
+            }
+            return output;
+        }
+
         public IEnumerable<AnalogOutput> GetAll()
         {
             using (var db = new DbIOContext())
@@ -21,12 +41,19 @@ namespace SCADACore.Implementations
             }
         }
 
+        public AnalogOutput GetByTagName(string tagName)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                return db.AnalogOutputs.Where(output => output.TagName == tagName).FirstOrDefault();
+            }
+        }
+
         public AnalogOutput GetForIOAddress(int ioAddress)
         {
             using (DbIOContext db = new DbIOContext())
             {
                 AnalogOutput analogOutput = db.AnalogOutputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-                if (analogOutput == null) throw new IONotExistException(IOType.AnalogOutput);
                 return analogOutput;
             }
         }

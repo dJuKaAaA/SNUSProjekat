@@ -13,6 +13,26 @@ namespace SCADACore.Implementations
 {
     public class DigitalOutputService : IDigitalOutputService
     {
+        public DigitalOutput Create(DigitalOutput output)
+        {
+            // TODO: Throw exceptions
+            if (GetByTagName(output.TagName) != null)
+            {
+                return null;
+            }
+            if (GetForIOAddress(output.IOAddress) != null)
+            {
+                return null;
+            }
+
+            using (DbIOContext db = new DbIOContext())
+            {
+                db.DigitalOutputs.Add(output);
+                db.SaveChanges();
+            }
+            return output;
+        }
+
         public IEnumerable<DigitalOutput> GetAll()
         {
             using (var db = new DbIOContext())
@@ -21,12 +41,19 @@ namespace SCADACore.Implementations
             }
         }
 
+        public DigitalOutput GetByTagName(string tagName)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                return db.DigitalOutputs.Where(output => output.TagName == tagName).FirstOrDefault();
+            }
+        }
+
         public DigitalOutput GetForIOAddress(int ioAddress)
         {
             using (var db = new DbIOContext())
             {
                 DigitalOutput digitalOutput = db.DigitalOutputs.Where(output => output.IOAddress == ioAddress).FirstOrDefault();
-                if (digitalOutput == null) throw new IONotExistException(IOType.DigitalOutput);
                 return digitalOutput;
             }
         }

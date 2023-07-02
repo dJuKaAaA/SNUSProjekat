@@ -31,6 +31,18 @@
   <wsdl:message name="IDigitalOutputService_SetNewValue_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetNewValueResponse" />
   </wsdl:message>
+  <wsdl:message name="IDigitalOutputService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalOutputService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalOutputService_GetByTagName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByTagName" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalOutputService_GetByTagName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByTagNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDigitalOutputService">
     <wsdl:operation name="GetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IDigitalOutputService/GetAll" message="tns:IDigitalOutputService_GetAll_InputMessage" />
@@ -47,6 +59,14 @@
     <wsdl:operation name="SetNewValue">
       <wsdl:input wsaw:Action="http://tempuri.org/IDigitalOutputService/SetNewValue" message="tns:IDigitalOutputService_SetNewValue_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDigitalOutputService/SetNewValueResponse" message="tns:IDigitalOutputService_SetNewValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDigitalOutputService/Create" message="tns:IDigitalOutputService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDigitalOutputService/CreateResponse" message="tns:IDigitalOutputService_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByTagName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDigitalOutputService/GetByTagName" message="tns:IDigitalOutputService_GetByTagName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDigitalOutputService/GetByTagNameResponse" message="tns:IDigitalOutputService_GetByTagName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDigitalOutputService" type="tns:IDigitalOutputService">
@@ -80,6 +100,24 @@
     </wsdl:operation>
     <wsdl:operation name="SetNewValue">
       <soap:operation soapAction="http://tempuri.org/IDigitalOutputService/SetNewValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://tempuri.org/IDigitalOutputService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByTagName">
+      <soap:operation soapAction="http://tempuri.org/IDigitalOutputService/GetByTagName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

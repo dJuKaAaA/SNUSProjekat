@@ -15,7 +15,7 @@ namespace SCADACore.Implementations
 {
     public class AnalogInputService : IAnalogInputService, IScanService
     {
-        private Dictionary<int, Thread> _threadScannerContainter = new Dictionary<int, Thread>();
+        private readonly Dictionary<int, Thread> _threadScannerContainer = new Dictionary<int, Thread>();
 
         // GOOD
         public IEnumerable<AnalogInput> GetAll()
@@ -33,7 +33,6 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 AnalogInput analogInput = db.AnalogInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-                if (analogInput == null) throw new IONotExistException(IOType.AnalogInput);
                 return analogInput;
             }
         }
@@ -52,10 +51,10 @@ namespace SCADACore.Implementations
         }
 
         // GOOD
-        public void StartScan(int ioAdress)
+        public void StartScan(int ioAddress)
         {
-            AnalogInput analogInput = GetForIOAddress(ioAdress);
-            ChangeScanStatus(ioAdress, true);
+            AnalogInput analogInput = GetForIOAddress(ioAddress);
+            ChangeScanStatus(ioAddress, true);
 
             IScanCallback proxy = OperationContext.Current.GetCallbackChannel<IScanCallback>();
 
@@ -64,23 +63,24 @@ namespace SCADACore.Implementations
                 while (true)
                 {
                     Thread.Sleep(analogInput.ScanTime);
-                    AnalogOutput analogOutput = GetAnalogOutputByAddress(ioAdress);
+                    AnalogOutput analogOutput = GetAnalogOutputByAddress(ioAddress);
 
                     var val = analogOutput.Value;
-                    proxy.AnalogScanDone(ioAdress, val);
+                    proxy.AnalogScanDone(ioAddress, val);
                 }
             });
-            _threadScannerContainter.Add(ioAdress, thread);
+
+            _threadScannerContainer.Add(ioAddress, thread);
             thread.Start();
         }
 
         // GOOD
-        public void EndScan(int ioAdress)
+        public void EndScan(int ioAddress)
         {
-            ChangeScanStatus(ioAdress, false);
-            Thread thread = _threadScannerContainter[ioAdress];
+            ChangeScanStatus(ioAddress, false);
+            Thread thread = _threadScannerContainer[ioAddress];
             thread.Abort();
-            _threadScannerContainter.Remove(ioAdress);
+            _threadScannerContainer.Remove(ioAddress);
         }
 
         // GOOD
@@ -105,6 +105,44 @@ namespace SCADACore.Implementations
                 existiongAnalogInput.OnScan = status;
                 dbContext.SaveChanges();
             }
+        }
+
+        public AnalogInput Create(AnalogInput input)
+        {
+            // TODO: Throw exceptions
+            if (GetByTagName(input.TagName) != null)
+            {
+                return null;
+            }
+            if (GetForIOAddress(input.IOAddress) != null)
+            {
+                return null;
+            }
+
+            using (DbIOContext db = new DbIOContext())
+            {
+                db.AnalogInputs.Add(input);
+                db.SaveChanges();
+            }
+            return input;
+        }
+
+        public AnalogInput GetByTagName(string tagName)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                return db.AnalogInputs.Where(input => input.TagName == tagName).FirstOrDefault();
+            }
+        }
+        public void EndAllScans()
+        {
+            foreach (KeyValuePair<int, Thread> kvp in _threadScannerContainer)
+            {
+                Thread thread = kvp.Value;
+                thread.Abort();
+                ChangeScanStatus(kvp.Key, false);
+            }
+            _threadScannerContainer.Clear();
         }
     }
 }

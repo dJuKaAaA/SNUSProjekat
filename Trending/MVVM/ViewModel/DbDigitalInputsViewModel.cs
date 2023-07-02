@@ -24,17 +24,9 @@ namespace Trending.MVVM.ViewModel
         private void LoadInputs()
         {
             Inputs = new ObservableCollection<CoreDigitalInputRef.DigitalInput>();
-            for (int i = 0; i < 10; ++i)
+            foreach (CoreDigitalInputRef.DigitalInput input in _digitalInputServiceClient.GetAll())
             {
-                Inputs.Add(new CoreDigitalInputRef.DigitalInput()
-                {
-                    TagName = "DigitalInputTag",
-                    IOAddress = 20,
-                    Description = "Some description",
-                    ScanTime = 500,
-                    OnScan = false,
-                    Value = true,
-                });
+                Inputs.Add(input);
             }
         }
     }

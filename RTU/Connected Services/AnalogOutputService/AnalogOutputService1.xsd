@@ -52,4 +52,32 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="output" nillable="true" type="q4:AnalogOutput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="CreateResult" nillable="true" type="q5:AnalogOutput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByTagName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByTagNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetByTagNameResult" nillable="true" type="q6:AnalogOutput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

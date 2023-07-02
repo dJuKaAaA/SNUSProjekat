@@ -67,9 +67,9 @@ namespace Trending.MVVM.ViewModel
 
         private readonly NavigationService _navigationService;
         private readonly CoreAnalogInputRef.AnalogInputServiceClient _analogInputServiceClient;
+        private readonly CoreDigitalInputRef.DigitalInputServiceClient _digitalInputServiceClient;
         private readonly CoreAnalogInputRef.ScanServiceClient _analogScanClient;
         private readonly CoreDigitalInputRef.ScanServiceClient _digitalScanClient;
-        public InputCallback InputCallback { get; }
 
         public ICommand LogOutCommand { get; }
 
@@ -80,16 +80,29 @@ namespace Trending.MVVM.ViewModel
 
             _navigationService = navigationService;
             _analogInputServiceClient = new AnalogInputServiceClient();
-            InputCallback = new InputCallback();
-            InputCallback.ValueChangeCompleted += OnValueChangeCompleted;
-            InputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
-            InstanceContext ic = new InstanceContext(InputCallback);
-            _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(ic);
+            _digitalInputServiceClient = new DigitalInputServiceClient();
+            InputCallback inputCallback = new InputCallback();
+            inputCallback.ValueChangeCompleted += OnValueChangeCompleted;
+            inputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
+            InstanceContext ic = new InstanceContext(inputCallback);
             _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(ic);
+            _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(ic);
+
+            _navigationService.NavigationCompleted += OnNavigationCompleted;
 
             LogOutCommand = new RelayCommand(OnLogOut, o => MainViewModel.SignedUser != null);
 
             LoadInputs();
+        }
+
+        private void OnNavigationCompleted(object sender, NavigationCompletedEventArgs e)
+        {
+            if (e.PreviousViewModel == GetType())
+            {
+                _analogScanClient.EndAllScans();
+                //_digitalScanClient.EndAllScans();
+                _navigationService.NavigationCompleted -= OnNavigationCompleted;
+            }
         }
 
         private void OnLogOut(object o)
@@ -101,45 +114,25 @@ namespace Trending.MVVM.ViewModel
         public void LoadInputs()
         {
             AnalogInputs = new ObservableCollection<AnalogInput>();
-            AnalogInputs.Add(_analogInputServiceClient.GetForIOAddress(20));
+            foreach (AnalogInput input in _analogInputServiceClient.GetAll())
+            {
+                if (input.OnScan)
+                {
+                    StartAnalogScan(input.IOAddress);
+                }
+                AnalogInputs.Add(input);
+            }
 
             DigitalInputs = new ObservableCollection<DigitalInput>();
+            foreach (DigitalInput input in _digitalInputServiceClient.GetAll())
+            {
+                if (input.OnScan)
+                {
+                    StartDigitalScan(input.IOAddress);
+                }
+                DigitalInputs.Add(input);
+            }
 
-            LoadDummyData();
-        }
-
-        private void LoadDummyData()
-        {
-            //for (int i = 0; i < 10; ++i)
-            //{
-            //    // TODO: if ScanOn is true => turn on scanning here
-            //    AnalogInputs.Add(new AnalogInput()
-            //    {
-            //        TagName = $"AnalogInputTag{i}",
-            //        IOAddress = i,
-            //        Description = "Some description",
-            //        ScanTime = 500,
-            //        OnScan = false,
-            //        Value = 100,
-            //        LowLimit = 0,
-            //        HighLimit = 1000,
-            //        Units = "cm"
-            //    });
-            //}
-
-            //for (int i = 0; i < 10; ++i)
-            //{
-            //    // TODO: if ScanOn is true => turn on scanning here
-            //    DigitalInputs.Add(new DigitalInput()
-            //    {
-            //        TagName = $"DigitalInputTag{i}",
-            //        IOAddress = 10 + i,
-            //        Description = "Some description",
-            //        ScanTime = 500,
-            //        OnScan = false,
-            //        Value = true,
-            //    });
-            //}
         }
 
         public void StartAnalogScan(int ioAddress)
@@ -185,37 +178,19 @@ namespace Trending.MVVM.ViewModel
         }
     }
 
-    public class InputCallback : ObservableObject, CoreAnalogInputRef.IScanServiceCallback
+    public class InputCallback : CoreAnalogInputRef.IScanServiceCallback
     {
 
         public EventHandler<ValueChangeEventArgs> ValueChangeCompleted;
         public EventHandler<BoolValueChangeEventArgs> BoolValueChangeCompleted;
 
-        private double _value;
-
-        public double Value
-        {
-            get { return _value; }
-            set { _value = value; OnPropertyChanged(); }
-        }
-
-        private bool _boolValue;
-
-        public bool BoolValue
-        {
-            get { return _boolValue; }
-            set { _boolValue = value; OnPropertyChanged(); }
-        }
-
         public void AnalogScanDone(int ioAddress, double value)
         {
-            Value = value;
             ValueChangeCompleted?.Invoke(this, new ValueChangeEventArgs(ioAddress, value));
         }
 
         public void DigitalScanDone(int ioAddress, bool value)
         {
-            BoolValue = value;
             BoolValueChangeCompleted?.Invoke(this, new BoolValueChangeEventArgs(ioAddress, value));
         }
 

@@ -27,24 +27,57 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="input" nillable="true" type="q3:DigitalInput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="CreateResult" nillable="true" type="q4:DigitalInput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByTagName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetByTagNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetByTagNameResult" nillable="true" type="q5:DigitalInput" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartScan">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ioAdress" type="xs:int" />
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EndScan">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ioAdress" type="xs:int" />
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EndAllScans">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="AnalogScanDone">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ioAdress" type="xs:int" />
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
         <xs:element minOccurs="0" name="value" type="xs:double" />
       </xs:sequence>
     </xs:complexType>
@@ -52,7 +85,7 @@
   <xs:element name="DigitalScanDone">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="ioAdress" type="xs:int" />
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
         <xs:element minOccurs="0" name="value" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>

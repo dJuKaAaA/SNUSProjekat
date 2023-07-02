@@ -181,6 +181,18 @@ namespace RTU.AnalogOutputService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogOutputService/SetNewValueResponse")]
         System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/Create", ReplyAction="http://tempuri.org/IAnalogOutputService/CreateResponse")]
+        RTU.AnalogOutputService.AnalogOutput Create(RTU.AnalogOutputService.AnalogOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/Create", ReplyAction="http://tempuri.org/IAnalogOutputService/CreateResponse")]
+        System.Threading.Tasks.Task<RTU.AnalogOutputService.AnalogOutput> CreateAsync(RTU.AnalogOutputService.AnalogOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/GetByTagName", ReplyAction="http://tempuri.org/IAnalogOutputService/GetByTagNameResponse")]
+        RTU.AnalogOutputService.AnalogOutput GetByTagName(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/GetByTagName", ReplyAction="http://tempuri.org/IAnalogOutputService/GetByTagNameResponse")]
+        System.Threading.Tasks.Task<RTU.AnalogOutputService.AnalogOutput> GetByTagNameAsync(string tagName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -240,6 +252,22 @@ namespace RTU.AnalogOutputService {
         
         public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue) {
             return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public RTU.AnalogOutputService.AnalogOutput Create(RTU.AnalogOutputService.AnalogOutput output) {
+            return base.Channel.Create(output);
+        }
+        
+        public System.Threading.Tasks.Task<RTU.AnalogOutputService.AnalogOutput> CreateAsync(RTU.AnalogOutputService.AnalogOutput output) {
+            return base.Channel.CreateAsync(output);
+        }
+        
+        public RTU.AnalogOutputService.AnalogOutput GetByTagName(string tagName) {
+            return base.Channel.GetByTagName(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<RTU.AnalogOutputService.AnalogOutput> GetByTagNameAsync(string tagName) {
+            return base.Channel.GetByTagNameAsync(tagName);
         }
     }
 }
