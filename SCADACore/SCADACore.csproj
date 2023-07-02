@@ -81,7 +81,7 @@
   <ItemGroup>
     <Compile Include="Context\DbIOContext.cs" />
     <Compile Include="Context\DbUserContext.cs" />
-    <Compile Include="Execptions\IOType.cs" />
+    <Compile Include="Models\IOType.cs" />
     <Compile Include="Faults\UserDbFault.cs" />
     <Compile Include="Execptions\IOAlreadyExistException.cs" />
     <Compile Include="Execptions\IONotExistException.cs" />

@@ -55,12 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\AnalogOutputService\Reference.cs">
+    <Compile Include="Connected Services\AnalogInputService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\DigitalOutputService\Reference.cs">
+    <Compile Include="Connected Services\DigitalInputService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -70,30 +70,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\AnalogOutputService\AnalogOutputService.wsdl" />
-    <None Include="Connected Services\AnalogOutputService\AnalogOutputService.xsd">
+    <None Include="Connected Services\AnalogInputService\AnalogInputService.wsdl" />
+    <None Include="Connected Services\AnalogInputService\AnalogInputService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AnalogOutputService\AnalogOutputService1.xsd">
+    <None Include="Connected Services\AnalogInputService\AnalogInputService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AnalogOutputService\AnalogOutputService2.xsd">
+    <None Include="Connected Services\AnalogInputService\AnalogInputService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\AnalogOutputService\RTU.AnalogOutputService.AnalogOutput.datasource">
+    <None Include="Connected Services\AnalogInputService\RTU.AnalogInputService.AnalogInput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\DigitalOutputService\DigitalOutputService.wsdl" />
-    <None Include="Connected Services\DigitalOutputService\DigitalOutputService.xsd">
+    <None Include="Connected Services\DigitalInputService\DigitalInputService.wsdl" />
+    <None Include="Connected Services\DigitalInputService\DigitalInputService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DigitalOutputService\DigitalOutputService1.xsd">
+    <None Include="Connected Services\DigitalInputService\DigitalInputService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DigitalOutputService\DigitalOutputService2.xsd">
+    <None Include="Connected Services\DigitalInputService\DigitalInputService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\DigitalOutputService\RTU.DigitalOutputService.DigitalOutput.datasource">
+    <None Include="Connected Services\DigitalInputService\RTU.DigitalInputService.DigitalInput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -102,35 +102,35 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\AnalogOutputService\" />
-    <WCFMetadataStorage Include="Connected Services\DigitalOutputService\" />
+    <WCFMetadataStorage Include="Connected Services\AnalogInputService\" />
+    <WCFMetadataStorage Include="Connected Services\DigitalInputService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnalogOutputService\AnalogOutputService.disco" />
+    <None Include="Connected Services\AnalogInputService\AnalogInputService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnalogOutputService\configuration91.svcinfo" />
+    <None Include="Connected Services\AnalogInputService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnalogOutputService\configuration.svcinfo" />
+    <None Include="Connected Services\AnalogInputService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\AnalogOutputService\Reference.svcmap">
+    <None Include="Connected Services\AnalogInputService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DigitalOutputService\DigitalOutputService.disco" />
+    <None Include="Connected Services\DigitalInputService\DigitalInputService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DigitalOutputService\configuration91.svcinfo" />
+    <None Include="Connected Services\DigitalInputService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DigitalOutputService\configuration.svcinfo" />
+    <None Include="Connected Services\DigitalInputService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\DigitalOutputService\Reference.svcmap">
+    <None Include="Connected Services\DigitalInputService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

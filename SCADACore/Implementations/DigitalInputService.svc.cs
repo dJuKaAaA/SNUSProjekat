@@ -126,5 +126,21 @@ namespace SCADACore.Implementations
             }
             _threadScannerContainer.Clear();
         }
+
+        public void SetNewValue(int ioAddress, bool newValue)
+        {
+            using (var db = new DbIOContext())
+            {
+                DigitalInput existingDigitalInput = db.DigitalInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                if (existingDigitalInput == null) throw new IONotExistException(IOType.AnalogInput);
+
+                existingDigitalInput.Value = newValue;
+                db.SaveChanges();
+            }
+        }
+
+        public void Save(DigitalInput digitalInput)
+        {
+        }
     }
 }

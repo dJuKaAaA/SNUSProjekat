@@ -1,6 +1,5 @@
-﻿using RTU.AnalogOutputService;
-using RTU.DigitalOutputService;
-
+﻿using RTU.AnalogInputService;
+using RTU.DigitalInputService;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,8 +12,8 @@ namespace RTU
 {
     public class Program
     {
-        private static AnalogOutputService.AnalogOutputServiceClient analogOutputServiceClient = new AnalogOutputService.AnalogOutputServiceClient();
-        private static DigitalOutputService.DigitalOutputServiceClient digitalOutputServiceClient = new DigitalOutputService.DigitalOutputServiceClient();
+        private static AnalogInputService.AnalogInputServiceClient analogInputServiceClient = new AnalogInputService.AnalogInputServiceClient();
+        private static DigitalInputService.DigitalInputServiceClient digitalInputServiceClient = new DigitalInputService.DigitalInputServiceClient();
 
         private const int secondsToUpdate = 10 * 1000;
 
@@ -22,38 +21,34 @@ namespace RTU
         {
             //GenerateTestData();
 
-            var analogOutputs = analogOutputServiceClient.GetAll();
-            var digitalOutputs = digitalOutputServiceClient.GetAll();
-            foreach (AnalogOutput analogOutput in analogOutputs)
+            while (true)
             {
-                Thread thread = new Thread(() =>
+                Thread.Sleep(secondsToUpdate);
+                var analogInputs = analogInputServiceClient.GetAll();
+                var digitalInputs = digitalInputServiceClient.GetAll();
+
+                foreach (AnalogInput analogInput in analogInputs)
                 {
-                    while (true)
+                    Thread thread = new Thread(() =>
                     {
-                        double newValue = GenerateRandomDouble(analogOutput.LowLimit, analogOutput.HighLimit);
-                        analogOutputServiceClient.SetNewValue(analogOutput.IOAddress, newValue);
-                        Thread.Sleep(secondsToUpdate);
-                        Console.WriteLine("AnalogOutput: " + analogOutput.IOAddress.ToString() + ", NewValue: " + newValue);
-                    }
-                });
-                thread.Start();
-            }
-            foreach (DigitalOutput digitalOutput in digitalOutputs)
-            {
-                Thread thread = new Thread(() =>
+                        double newValue = GenerateRandomDouble(analogInput.LowLimit, analogInput.HighLimit);
+                        analogInputServiceClient.SetNewValue(analogInput.IOAddress, newValue);
+                        Console.WriteLine("AnalogIntput: " + analogInput.IOAddress.ToString() + ", NewValue: " + newValue);
+                    });
+                    thread.Start();
+                }
+
+                foreach (DigitalInput digitalInput in digitalInputs)
                 {
-                    while (true)
+                    Thread thread = new Thread(() =>
                     {
                         bool newValue = GenerateRandomBool();
-                        digitalOutputServiceClient.SetNewValue(digitalOutput.IOAddress, newValue);
-                        Thread.Sleep(secondsToUpdate);
-                        Console.WriteLine("DigitalOutput: " + digitalOutput.IOAddress.ToString() + ", NewValue: " + newValue);
-                    }
-                });
-                thread.Start();
+                        digitalInputServiceClient.SetNewValue(digitalInput.IOAddress, newValue);
+                        Console.WriteLine("DigitalInput: " + digitalInput.IOAddress.ToString() + ", NewValue: " + newValue);
+                    });
+                    thread.Start();
+                }
             }
-
-            Console.ReadKey();
         }
 
         private static double GenerateRandomDouble(double minValue, double maxValue)
@@ -72,21 +67,21 @@ namespace RTU
 
         private static void GenerateTestData()
         {
-            AnalogOutput analogOutput1 = new AnalogOutput { Description = "Opis", LowLimit = 1.0, HighLimit = 100.0, Value = 50.0, IOAddress = 1, TagName = "Tag1", Units = "cm" };
-            AnalogOutput analogOutput2 = new AnalogOutput { Description = "Opis", LowLimit = 1.0, HighLimit = 50.0, Value = 25.0, IOAddress = 2, TagName = "Tag2", Units = "cm" };
+            AnalogInput analogOutput1 = new AnalogInput { Description = "Opis", LowLimit = 1.0, HighLimit = 100.0, Value = 50.0, IOAddress = 1, TagName = "Tag1", Units = "cm" };
+            AnalogInput analogOutput2 = new AnalogInput { Description = "Opis", LowLimit = 1.0, HighLimit = 50.0, Value = 25.0, IOAddress = 2, TagName = "Tag2", Units = "cm" };
 
-            DigitalOutput digitalOutput1 = new DigitalOutput { TagName = "Tag3", Description = "Opis", IOAddress = 3, Value = true };
+            DigitalInput digitalOutput1 = new DigitalInput { TagName = "Tag3", Description = "Opis", IOAddress = 3, Value = true };
 
-            DigitalOutput digitalOutput2 = new DigitalOutput { TagName = "Tag4", Description = "Opis", IOAddress = 4, Value = false };
+            DigitalInput digitalOutput2 = new DigitalInput { TagName = "Tag4", Description = "Opis", IOAddress = 4, Value = false };
 
-            Console.WriteLine("Adding AnalogOutput...");
+            Console.WriteLine("Adding AnalogInput...");
 
-            analogOutputServiceClient.Save(analogOutput1);
-            analogOutputServiceClient.Save(analogOutput2);
+            analogInputServiceClient.Save(analogOutput1);
+            analogInputServiceClient.Save(analogOutput2);
 
-            Console.WriteLine("Adding DigitalOutput...");
-            digitalOutputServiceClient.Save(digitalOutput1);
-            digitalOutputServiceClient.Save(digitalOutput2);
+            Console.WriteLine("Adding DigitalInput...");
+            //digitalInputServiceClient.Save(digitalOutput1);
+            //digitalInputServiceClient.Save(digitalOutput2);
 
             Console.WriteLine("Outputs saved!");
         }

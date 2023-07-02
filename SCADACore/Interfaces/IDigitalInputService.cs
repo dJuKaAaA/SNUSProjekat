@@ -22,5 +22,8 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         DigitalInput GetByTagName(string tagName);
+
+        [OperationContract]
+        void SetNewValue(int ioAddress, bool newValue);
     }
 }

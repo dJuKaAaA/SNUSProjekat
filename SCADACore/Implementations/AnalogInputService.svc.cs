@@ -134,6 +134,7 @@ namespace SCADACore.Implementations
                 return db.AnalogInputs.Where(input => input.TagName == tagName).FirstOrDefault();
             }
         }
+
         public void EndAllScans()
         {
             foreach (KeyValuePair<int, Thread> kvp in _threadScannerContainer)
@@ -143,6 +144,18 @@ namespace SCADACore.Implementations
                 ChangeScanStatus(kvp.Key, false);
             }
             _threadScannerContainer.Clear();
+        }
+
+        public void SetNewValue(int ioAddress, double newValue)
+        {
+            using (var db = new DbIOContext())
+            {
+                AnalogInput existingAnalogInput = db.AnalogInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                if (existingAnalogInput == null) throw new IONotExistException(IOType.AnalogInput);
+
+                existingAnalogInput.Value = newValue;
+                db.SaveChanges();
+            }
         }
     }
 }

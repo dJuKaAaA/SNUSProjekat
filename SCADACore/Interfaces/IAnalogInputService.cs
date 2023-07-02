@@ -25,5 +25,8 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         AnalogInput GetByTagName(string tagName);
+
+        [OperationContract]
+        void SetNewValue(int ioAddress, double newValue);
     }
 }
