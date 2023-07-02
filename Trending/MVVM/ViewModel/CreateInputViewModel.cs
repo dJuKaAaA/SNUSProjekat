@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Trending.Core;
+using Trending.CoreAnalogInputRef;
 
 namespace Trending.MVVM.ViewModel
 {
@@ -115,6 +116,39 @@ namespace Trending.MVVM.ViewModel
 
 		private void OnCreateInput(object o)
 		{
+			// TODO: Catch exceptions
+			if (DigitalTypeSelected)
+			{
+				CoreDigitalInputRef.DigitalInput input = new CoreDigitalInputRef.DigitalInput()
+				{
+					TagName = TagName,
+					Description = Description,
+					IOAddress = IOAddress,
+					ScanTime = ScanTime,
+					OnScan = false,
+					Value = false
+				};
+				_digitalInputServiceClient.Create(input);
+			}
+
+			if (AnalogTypeSelected)
+			{
+				AnalogInput input = new AnalogInput()
+				{
+					TagName = TagName,
+					Description = Description,
+					IOAddress = IOAddress,
+					ScanTime = ScanTime,
+					OnScan = false,
+					LowLimit = LowLimit,
+					HighLimit = HighLimit,
+					Units = Units,
+					Value = (HighLimit + LowLimit) / 2
+				};
+				_analogInputServiceClient.Create(input);
+			}
+
+			MessageBox.Show("Input created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
 		}
 

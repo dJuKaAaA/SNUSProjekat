@@ -45,6 +45,7 @@ namespace Trending.MVVM.View
                 if (analogInput != null)
                 {
                     _viewModel.StartAnalogScan(analogInput.IOAddress);
+                    MessageBox.Show($"Analog scan start, I/O address: {analogInput.IOAddress}", "Scan start", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -54,6 +55,7 @@ namespace Trending.MVVM.View
                         // Some error occurred
                         return;
                     }
+                    MessageBox.Show($"Digital scan start, I/O address: {digitalInput.IOAddress}", "Scan start", MessageBoxButton.OK, MessageBoxImage.Information);
                     _viewModel.StartDigitalScan(digitalInput.IOAddress);
                 }
             }
@@ -69,6 +71,7 @@ namespace Trending.MVVM.View
                 if (analogInput != null)
                 {
                     _viewModel.EndAnalogScan(analogInput.IOAddress);
+                    MessageBox.Show($"Analog scan end, I/O address: {analogInput.IOAddress}", "Scan end", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -79,6 +82,7 @@ namespace Trending.MVVM.View
                         return;
                     }
                     _viewModel.EndDigitalScan(digitalInput.IOAddress);
+                    MessageBox.Show($"Digital scan end, I/O address: {digitalInput.IOAddress}", "Scan end", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
 

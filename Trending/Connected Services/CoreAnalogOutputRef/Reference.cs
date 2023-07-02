@@ -175,6 +175,24 @@ namespace Trending.CoreAnalogOutputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/Save", ReplyAction="http://tempuri.org/IAnalogOutputService/SaveResponse")]
         System.Threading.Tasks.Task SaveAsync(Trending.CoreAnalogOutputRef.AnalogOutput analogOutput);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogOutputService/SetNewValueResponse")]
+        void SetNewValue(int ioAddress, double newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogOutputService/SetNewValueResponse")]
+        System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/Create", ReplyAction="http://tempuri.org/IAnalogOutputService/CreateResponse")]
+        Trending.CoreAnalogOutputRef.AnalogOutput Create(Trending.CoreAnalogOutputRef.AnalogOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/Create", ReplyAction="http://tempuri.org/IAnalogOutputService/CreateResponse")]
+        System.Threading.Tasks.Task<Trending.CoreAnalogOutputRef.AnalogOutput> CreateAsync(Trending.CoreAnalogOutputRef.AnalogOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/GetByTagName", ReplyAction="http://tempuri.org/IAnalogOutputService/GetByTagNameResponse")]
+        Trending.CoreAnalogOutputRef.AnalogOutput GetByTagName(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/GetByTagName", ReplyAction="http://tempuri.org/IAnalogOutputService/GetByTagNameResponse")]
+        System.Threading.Tasks.Task<Trending.CoreAnalogOutputRef.AnalogOutput> GetByTagNameAsync(string tagName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -226,6 +244,30 @@ namespace Trending.CoreAnalogOutputRef {
         
         public System.Threading.Tasks.Task SaveAsync(Trending.CoreAnalogOutputRef.AnalogOutput analogOutput) {
             return base.Channel.SaveAsync(analogOutput);
+        }
+        
+        public void SetNewValue(int ioAddress, double newValue) {
+            base.Channel.SetNewValue(ioAddress, newValue);
+        }
+        
+        public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue) {
+            return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public Trending.CoreAnalogOutputRef.AnalogOutput Create(Trending.CoreAnalogOutputRef.AnalogOutput output) {
+            return base.Channel.Create(output);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreAnalogOutputRef.AnalogOutput> CreateAsync(Trending.CoreAnalogOutputRef.AnalogOutput output) {
+            return base.Channel.CreateAsync(output);
+        }
+        
+        public Trending.CoreAnalogOutputRef.AnalogOutput GetByTagName(string tagName) {
+            return base.Channel.GetByTagName(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreAnalogOutputRef.AnalogOutput> GetByTagNameAsync(string tagName) {
+            return base.Channel.GetByTagNameAsync(tagName);
         }
     }
 }

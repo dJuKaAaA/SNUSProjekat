@@ -22,5 +22,12 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         void SetNewValue(int ioAddress, bool newValue);
+
+        [OperationContract]
+        DigitalOutput Create(DigitalOutput output);
+
+        [OperationContract]
+        DigitalOutput GetByTagName(string tagName);
+        
     }
 }

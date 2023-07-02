@@ -16,5 +16,11 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         DigitalInput GetForIOAddress(int ioAddress);
+
+        [OperationContract]
+        DigitalInput Create(DigitalInput input);
+
+        [OperationContract]
+        DigitalInput GetByTagName(string tagName);
     }
 }

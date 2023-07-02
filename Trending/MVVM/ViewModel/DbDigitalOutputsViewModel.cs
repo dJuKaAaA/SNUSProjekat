@@ -24,15 +24,9 @@ namespace Trending.MVVM.ViewModel
         private void LoadOutputs()
         {
             Outputs = new ObservableCollection<CoreDigitalOutputRef.DigitalOutput>();
-            for (int i = 0; i < 10; ++i)
+            foreach (CoreDigitalOutputRef.DigitalOutput output in _digitalOutputServiceClient.GetAll())
             {
-                Outputs.Add(new CoreDigitalOutputRef.DigitalOutput()
-                {
-                    TagName = "DigitalOutputTag",
-                    IOAddress = 20,
-                    Description = "Some description",
-                    Value = true,
-                });
+                Outputs.Add(output);
             }
         }
     }

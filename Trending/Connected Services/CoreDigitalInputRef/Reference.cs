@@ -153,6 +153,18 @@ namespace Trending.CoreDigitalInputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/GetForIOAddress", ReplyAction="http://tempuri.org/IDigitalInputService/GetForIOAddressResponse")]
         System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> GetForIOAddressAsync(int ioAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/Create", ReplyAction="http://tempuri.org/IDigitalInputService/CreateResponse")]
+        Trending.CoreDigitalInputRef.DigitalInput Create(Trending.CoreDigitalInputRef.DigitalInput input);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/Create", ReplyAction="http://tempuri.org/IDigitalInputService/CreateResponse")]
+        System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> CreateAsync(Trending.CoreDigitalInputRef.DigitalInput input);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalInputService/GetByTagNameResponse")]
+        Trending.CoreDigitalInputRef.DigitalInput GetByTagName(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalInputService/GetByTagNameResponse")]
+        System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> GetByTagNameAsync(string tagName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -197,6 +209,22 @@ namespace Trending.CoreDigitalInputRef {
         public System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> GetForIOAddressAsync(int ioAddress) {
             return base.Channel.GetForIOAddressAsync(ioAddress);
         }
+        
+        public Trending.CoreDigitalInputRef.DigitalInput Create(Trending.CoreDigitalInputRef.DigitalInput input) {
+            return base.Channel.Create(input);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> CreateAsync(Trending.CoreDigitalInputRef.DigitalInput input) {
+            return base.Channel.CreateAsync(input);
+        }
+        
+        public Trending.CoreDigitalInputRef.DigitalInput GetByTagName(string tagName) {
+            return base.Channel.GetByTagName(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> GetByTagNameAsync(string tagName) {
+            return base.Channel.GetByTagNameAsync(tagName);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -204,26 +232,32 @@ namespace Trending.CoreDigitalInputRef {
     public interface IScanService {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/StartScan")]
-        void StartScan(int ioAdress);
+        void StartScan(int ioAddress);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/StartScan")]
-        System.Threading.Tasks.Task StartScanAsync(int ioAdress);
+        System.Threading.Tasks.Task StartScanAsync(int ioAddress);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/EndScan")]
-        void EndScan(int ioAdress);
+        void EndScan(int ioAddress);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/EndScan")]
-        System.Threading.Tasks.Task EndScanAsync(int ioAdress);
+        System.Threading.Tasks.Task EndScanAsync(int ioAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/EndAllScans")]
+        void EndAllScans();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/EndAllScans")]
+        System.Threading.Tasks.Task EndAllScansAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IScanServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/AnalogScanDone")]
-        void AnalogScanDone(int ioAdress, double value);
+        void AnalogScanDone(int ioAddress, double value);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IScanService/DigitalScanDone")]
-        void DigitalScanDone(int ioAdress, bool value);
+        void DigitalScanDone(int ioAddress, bool value);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -254,20 +288,28 @@ namespace Trending.CoreDigitalInputRef {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public void StartScan(int ioAdress) {
-            base.Channel.StartScan(ioAdress);
+        public void StartScan(int ioAddress) {
+            base.Channel.StartScan(ioAddress);
         }
         
-        public System.Threading.Tasks.Task StartScanAsync(int ioAdress) {
-            return base.Channel.StartScanAsync(ioAdress);
+        public System.Threading.Tasks.Task StartScanAsync(int ioAddress) {
+            return base.Channel.StartScanAsync(ioAddress);
         }
         
-        public void EndScan(int ioAdress) {
-            base.Channel.EndScan(ioAdress);
+        public void EndScan(int ioAddress) {
+            base.Channel.EndScan(ioAddress);
         }
         
-        public System.Threading.Tasks.Task EndScanAsync(int ioAdress) {
-            return base.Channel.EndScanAsync(ioAdress);
+        public System.Threading.Tasks.Task EndScanAsync(int ioAddress) {
+            return base.Channel.EndScanAsync(ioAddress);
+        }
+        
+        public void EndAllScans() {
+            base.Channel.EndAllScans();
+        }
+        
+        public System.Threading.Tasks.Task EndAllScansAsync() {
+            return base.Channel.EndAllScansAsync();
         }
     }
 }

@@ -19,5 +19,11 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         void Save(AnalogInput analogInput);
+
+        [OperationContract]
+        AnalogInput Create(AnalogInput input);
+
+        [OperationContract]
+        AnalogInput GetByTagName(string tagName);
     }
 }

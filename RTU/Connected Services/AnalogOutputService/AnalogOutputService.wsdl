@@ -31,6 +31,18 @@
   <wsdl:message name="IAnalogOutputService_SetNewValue_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetNewValueResponse" />
   </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_GetByTagName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByTagName" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_GetByTagName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByTagNameResponse" />
+  </wsdl:message>
   <wsdl:portType name="IAnalogOutputService">
     <wsdl:operation name="GetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/GetAll" message="tns:IAnalogOutputService_GetAll_InputMessage" />
@@ -47,6 +59,14 @@
     <wsdl:operation name="SetNewValue">
       <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/SetNewValue" message="tns:IAnalogOutputService_SetNewValue_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/SetNewValueResponse" message="tns:IAnalogOutputService_SetNewValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/Create" message="tns:IAnalogOutputService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/CreateResponse" message="tns:IAnalogOutputService_Create_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByTagName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/GetByTagName" message="tns:IAnalogOutputService_GetByTagName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/GetByTagNameResponse" message="tns:IAnalogOutputService_GetByTagName_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAnalogOutputService" type="tns:IAnalogOutputService">
@@ -80,6 +100,24 @@
     </wsdl:operation>
     <wsdl:operation name="SetNewValue">
       <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/SetNewValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByTagName">
+      <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/GetByTagName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

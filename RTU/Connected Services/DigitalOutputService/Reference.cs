@@ -133,6 +133,18 @@ namespace RTU.DigitalOutputService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/SetNewValue", ReplyAction="http://tempuri.org/IDigitalOutputService/SetNewValueResponse")]
         System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/Create", ReplyAction="http://tempuri.org/IDigitalOutputService/CreateResponse")]
+        RTU.DigitalOutputService.DigitalOutput Create(RTU.DigitalOutputService.DigitalOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/Create", ReplyAction="http://tempuri.org/IDigitalOutputService/CreateResponse")]
+        System.Threading.Tasks.Task<RTU.DigitalOutputService.DigitalOutput> CreateAsync(RTU.DigitalOutputService.DigitalOutput output);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalOutputService/GetByTagNameResponse")]
+        RTU.DigitalOutputService.DigitalOutput GetByTagName(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalOutputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalOutputService/GetByTagNameResponse")]
+        System.Threading.Tasks.Task<RTU.DigitalOutputService.DigitalOutput> GetByTagNameAsync(string tagName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -192,6 +204,22 @@ namespace RTU.DigitalOutputService {
         
         public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue) {
             return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public RTU.DigitalOutputService.DigitalOutput Create(RTU.DigitalOutputService.DigitalOutput output) {
+            return base.Channel.Create(output);
+        }
+        
+        public System.Threading.Tasks.Task<RTU.DigitalOutputService.DigitalOutput> CreateAsync(RTU.DigitalOutputService.DigitalOutput output) {
+            return base.Channel.CreateAsync(output);
+        }
+        
+        public RTU.DigitalOutputService.DigitalOutput GetByTagName(string tagName) {
+            return base.Channel.GetByTagName(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<RTU.DigitalOutputService.DigitalOutput> GetByTagNameAsync(string tagName) {
+            return base.Channel.GetByTagNameAsync(tagName);
         }
     }
 }

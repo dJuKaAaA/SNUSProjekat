@@ -24,18 +24,9 @@ namespace Trending.MVVM.ViewModel
         private void LoadOutputs()
         {
             Outputs = new ObservableCollection<CoreAnalogOutputRef.AnalogOutput>();
-            for (int i = 0; i < 10; ++i)
+            foreach (CoreAnalogOutputRef.AnalogOutput output in _analogOutputServiceClient.GetAll())
             {
-                Outputs.Add(new CoreAnalogOutputRef.AnalogOutput()
-                {
-                    TagName = "AnalogOutputTag",
-                    IOAddress = 20,
-                    Description = "Some description",
-                    Value = 100,
-                    LowLimit = 0,
-                    HighLimit = 1000,
-                    Units = "cm"
-                });
+                Outputs.Add(output);
             }
         }
     }
