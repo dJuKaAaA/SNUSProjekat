@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="5a2c24b2-9781-4e4c-bf8b-3d2512165758" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="ad7ca64d-956f-4b3b-bb34-5bb5640cc033" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:49980/Implementations/DigitalOutputService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DigitalOutputService.xsd" MetadataType="Schema" ID="deecb7c5-532e-4ae1-bde2-c4dd0012cebc" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?xsd=xsd2" />
-    <MetadataFile FileName="DigitalOutputService1.xsd" MetadataType="Schema" ID="d8945969-1d19-42b9-aa98-88afb48cccf3" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?xsd=xsd1" />
-    <MetadataFile FileName="DigitalOutputService.wsdl" MetadataType="Wsdl" ID="3f1f25fe-48a8-4767-b32d-b98cd0e49104" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?wsdl" />
-    <MetadataFile FileName="DigitalOutputService2.xsd" MetadataType="Schema" ID="3483bbe9-6613-447a-901d-7b3c67d4a605" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?xsd=xsd0" />
-    <MetadataFile FileName="DigitalOutputService.disco" MetadataType="Disco" ID="4fdc7793-93f6-41e8-b8dc-f0ae18fdc673" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?disco" />
+    <MetadataFile FileName="DigitalOutputService.xsd" MetadataType="Schema" ID="a9d4f6f5-d9dd-4f91-b58f-be35dddf58c6" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DigitalOutputService1.xsd" MetadataType="Schema" ID="5f23d38c-8015-4d50-b3de-5e0ee1c9a9be" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DigitalOutputService.wsdl" MetadataType="Wsdl" ID="149d6a73-c5c0-43cc-af83-c4bee8a979bd" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?wsdl" />
+    <MetadataFile FileName="DigitalOutputService2.xsd" MetadataType="Schema" ID="2c1735f0-362b-4d03-9d6f-712d237dd9e8" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DigitalOutputService.disco" MetadataType="Disco" ID="2484c6aa-43a2-4b63-aca7-72943c677e39" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalOutputService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

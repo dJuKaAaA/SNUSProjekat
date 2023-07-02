@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="2db8132a-6862-4466-8e94-3df29a0ab841" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="9a49aa4a-a1d2-4208-9747-6b958f6ec0f3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:49980/Implementations/DigitalInputService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="DigitalInputService.disco" MetadataType="Disco" ID="b5e5d5a3-fa92-41e0-a935-6e94fbcf52b9" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?disco" />
-    <MetadataFile FileName="DigitalInputService.xsd" MetadataType="Schema" ID="f555a9fe-7a40-4b97-9dee-49a23fed702e" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?xsd=xsd1" />
-    <MetadataFile FileName="DigitalInputService1.xsd" MetadataType="Schema" ID="60bafd0d-66b8-46fd-a010-42d3e5241c0d" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?xsd=xsd0" />
-    <MetadataFile FileName="DigitalInputService2.xsd" MetadataType="Schema" ID="46ddef41-dbbe-4005-9239-1f858ac5a80d" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?xsd=xsd2" />
-    <MetadataFile FileName="DigitalInputService.wsdl" MetadataType="Wsdl" ID="5fa80e0d-6936-4ccf-b8fd-babcd865d316" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?wsdl" />
+    <MetadataFile FileName="DigitalInputService.disco" MetadataType="Disco" ID="456229b9-2b85-402c-8505-780fc6e09363" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?disco" />
+    <MetadataFile FileName="DigitalInputService.xsd" MetadataType="Schema" ID="837a2eec-51cb-49e9-b17b-6ba9677176e0" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?xsd=xsd1" />
+    <MetadataFile FileName="DigitalInputService1.xsd" MetadataType="Schema" ID="78b43fe5-2781-4647-9863-da150ab4f588" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?xsd=xsd0" />
+    <MetadataFile FileName="DigitalInputService2.xsd" MetadataType="Schema" ID="7eac3176-f56d-442c-acf3-a7fb707465cd" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?xsd=xsd2" />
+    <MetadataFile FileName="DigitalInputService.wsdl" MetadataType="Wsdl" ID="959f6d27-1a7c-4507-b9f3-02309a138cda" SourceId="1" SourceUrl="http://localhost:49980/Implementations/DigitalInputService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

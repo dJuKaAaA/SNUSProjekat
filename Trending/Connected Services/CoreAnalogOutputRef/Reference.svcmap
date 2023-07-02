@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="1faab2e9-2ff8-457f-a1f3-a3a029fbb157" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="6a024cc0-77b5-451b-964e-4436f950e166" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:49980/Implementations/AnalogOutputService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AnalogOutputService.disco" MetadataType="Disco" ID="ff80785e-f758-4aea-994f-c9c6c8259048" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?disco" />
-    <MetadataFile FileName="AnalogOutputService.xsd" MetadataType="Schema" ID="2d07792d-0586-44db-b5b8-c5c9ec5e9c6b" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AnalogOutputService1.xsd" MetadataType="Schema" ID="1cc6d06a-ad66-42d8-a914-097c52ad1208" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd0" />
-    <MetadataFile FileName="AnalogOutputService2.xsd" MetadataType="Schema" ID="99d82a82-c6a0-4e5a-a357-98700d1d375c" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd2" />
-    <MetadataFile FileName="AnalogOutputService.wsdl" MetadataType="Wsdl" ID="52c4d9f9-dc71-462c-b417-38502d1769b1" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?wsdl" />
+    <MetadataFile FileName="AnalogOutputService.disco" MetadataType="Disco" ID="803d9622-6f56-4c74-bfcb-ea96d6ac672c" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?disco" />
+    <MetadataFile FileName="AnalogOutputService.xsd" MetadataType="Schema" ID="ccfdd7c5-b722-490a-8f3c-7a327e64d31a" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AnalogOutputService1.xsd" MetadataType="Schema" ID="879cf8aa-5c2a-4def-95cf-0bbf4dd913dc" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AnalogOutputService2.xsd" MetadataType="Schema" ID="9f936911-a099-4416-9cc6-4c66e17a15a2" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AnalogOutputService.wsdl" MetadataType="Wsdl" ID="da030e94-d1f8-4599-85bd-7364ffc7d404" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogOutputService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

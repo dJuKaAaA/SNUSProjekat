@@ -1,5 +1,6 @@
 ﻿using SCADACore.Context;
 using SCADACore.Faults;
+using SCADACore.Execptions;
 using SCADACore.Interfaces;
 using SCADACore.Models;
 using System;

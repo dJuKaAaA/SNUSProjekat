@@ -16,5 +16,11 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         DigitalOutput GetForIOAddress(int ioAddress);
+
+        [OperationContract]
+        void Save(DigitalOutput digitalOutput);
+
+        [OperationContract]
+        void SetNewValue(int ioAddress, bool newValue);
     }
 }

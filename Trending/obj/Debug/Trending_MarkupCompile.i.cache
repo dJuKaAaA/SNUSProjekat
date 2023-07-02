@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\obj\Debug\
+C:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\obj\Debug\
 Trending
 none
 false
 DEBUG;TRACE
-C:\Users\ivanvm\source\repos\SCADASnusProjekat\Trending\App.xaml
+C:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\App.xaml
 12-1602745147
 
 38585149798
-2027810811
+20-2126397982
 Core\BindablePasswordBox.xaml;MainWindow.xaml;MVVM\View\CreateInputView.xaml;MVVM\View\CreateOutputView.xaml;MVVM\View\CreateUserView.xaml;MVVM\View\DbAnalogInputsView.xaml;MVVM\View\DbAnalogOutputsView.xaml;MVVM\View\DbDigitalInputsView.xaml;MVVM\View\DbDigitalOutputsView.xaml;MVVM\View\DbUsersView.xaml;MVVM\View\MonitorInputsView.xaml;MVVM\View\LogInView.xaml;
 
 False

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="AnalogOutputService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:49980/Implementations/AnalogOutputService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAnalogOutputService_GetAll_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAll" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_GetAll_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_GetForIOAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetForIOAddress" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_GetForIOAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetForIOAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_Save_InputMessage">
+    <wsdl:part name="parameters" element="tns:Save" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_Save_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_SetNewValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewValue" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogOutputService_SetNewValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewValueResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAnalogOutputService">
+    <wsdl:operation name="GetAll">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/GetAll" message="tns:IAnalogOutputService_GetAll_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/GetAllResponse" message="tns:IAnalogOutputService_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetForIOAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/GetForIOAddress" message="tns:IAnalogOutputService_GetForIOAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/GetForIOAddressResponse" message="tns:IAnalogOutputService_GetForIOAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/Save" message="tns:IAnalogOutputService_Save_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/SaveResponse" message="tns:IAnalogOutputService_Save_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNewValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogOutputService/SetNewValue" message="tns:IAnalogOutputService_SetNewValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogOutputService/SetNewValueResponse" message="tns:IAnalogOutputService_SetNewValue_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAnalogOutputService" type="tns:IAnalogOutputService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAll">
+      <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetForIOAddress">
+      <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/GetForIOAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Save">
+      <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/Save" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewValue">
+      <soap:operation soapAction="http://tempuri.org/IAnalogOutputService/SetNewValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AnalogOutputService">
+    <wsdl:port name="BasicHttpBinding_IAnalogOutputService" binding="tns:BasicHttpBinding_IAnalogOutputService">
+      <soap:address location="http://localhost:49980/Implementations/AnalogOutputService.svc/AnalogOutput" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
