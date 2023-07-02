@@ -23,12 +23,17 @@ namespace RTU
 
             while (true)
             {
-                Thread.Sleep(secondsToUpdate);
                 var analogInputs = analogInputServiceClient.GetAll();
                 var digitalInputs = digitalInputServiceClient.GetAll();
+                Thread.Sleep(secondsToUpdate);
 
                 foreach (AnalogInput analogInput in analogInputs)
                 {
+                    if (analogInput.Driver != AnalogInputService.DriverType.RealTime)
+                    {
+                        continue;
+                    }
+
                     Thread thread = new Thread(() =>
                     {
                         double newValue = GenerateRandomDouble(analogInput.LowLimit, analogInput.HighLimit);
@@ -40,6 +45,11 @@ namespace RTU
 
                 foreach (DigitalInput digitalInput in digitalInputs)
                 {
+                    if (digitalInput.Driver != DigitalInputService.DriverType.RealTime)
+                    {
+                        continue;
+                    }
+
                     Thread thread = new Thread(() =>
                     {
                         bool newValue = GenerateRandomBool();
@@ -76,12 +86,12 @@ namespace RTU
 
             Console.WriteLine("Adding AnalogInput...");
 
-            analogInputServiceClient.Save(analogOutput1);
-            analogInputServiceClient.Save(analogOutput2);
+            analogInputServiceClient.Create(analogOutput1);
+            analogInputServiceClient.Create(analogOutput2);
 
             Console.WriteLine("Adding DigitalInput...");
-            //digitalInputServiceClient.Save(digitalOutput1);
-            //digitalInputServiceClient.Save(digitalOutput2);
+            digitalInputServiceClient.Create(digitalOutput1);
+            digitalInputServiceClient.Create(digitalOutput2);
 
             Console.WriteLine("Outputs saved!");
         }

@@ -21,6 +21,9 @@ namespace SCADACore.Models
         public int IOAddress { get; set; }
 
         [DataMember]
+        public DriverType Driver { get; set; }
+
+        [DataMember]
         public int ScanTime { get; set; }  // in milliseconds
 
         [DataMember]
@@ -37,6 +40,9 @@ namespace SCADACore.Models
 
         [DataMember]
         public string Units { get; set; }
+
+        [DataMember]
+        public virtual List<TagAlarm> Alarms { get; set; }
 
         public override string ToString()
         {

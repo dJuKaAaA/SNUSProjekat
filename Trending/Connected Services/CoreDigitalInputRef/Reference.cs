@@ -26,6 +26,9 @@ namespace Trending.CoreDigitalInputRef {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreDigitalInputRef.DriverType DriverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IOAddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -59,6 +62,19 @@ namespace Trending.CoreDigitalInputRef {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreDigitalInputRef.DriverType Driver {
+            get {
+                return this.DriverField;
+            }
+            set {
+                if ((this.DriverField.Equals(value) != true)) {
+                    this.DriverField = value;
+                    this.RaisePropertyChanged("Driver");
                 }
             }
         }
@@ -138,6 +154,23 @@ namespace Trending.CoreDigitalInputRef {
         }
     }
     
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DriverType", Namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models")]
+    public enum DriverType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RealTime = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Sine = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cosine = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ramp = 3,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CoreDigitalInputRef.IDigitalInputService")]
     public interface IDigitalInputService {
@@ -165,6 +198,12 @@ namespace Trending.CoreDigitalInputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/GetByTagName", ReplyAction="http://tempuri.org/IDigitalInputService/GetByTagNameResponse")]
         System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> GetByTagNameAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/SetNewValue", ReplyAction="http://tempuri.org/IDigitalInputService/SetNewValueResponse")]
+        void SetNewValue(int ioAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/SetNewValue", ReplyAction="http://tempuri.org/IDigitalInputService/SetNewValueResponse")]
+        System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -224,6 +263,14 @@ namespace Trending.CoreDigitalInputRef {
         
         public System.Threading.Tasks.Task<Trending.CoreDigitalInputRef.DigitalInput> GetByTagNameAsync(string tagName) {
             return base.Channel.GetByTagNameAsync(tagName);
+        }
+        
+        public void SetNewValue(int ioAddress, bool newValue) {
+            base.Channel.SetNewValue(ioAddress, newValue);
+        }
+        
+        public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue) {
+            return base.Channel.SetNewValueAsync(ioAddress, newValue);
         }
     }
     

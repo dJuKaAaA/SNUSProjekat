@@ -11,11 +11,13 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using SCADACore.Execptions;
+using SCADACore.Helper;
 
 namespace SCADACore.Implementations
 {
     public class DigitalInputService : IDigitalInputService, IScanService
     {
+        private readonly IOAddressChecker _addressChecker = new IOAddressChecker();
         private readonly Dictionary<int, Thread> _threadScannerContainer = new Dictionary<int, Thread>();
 
         public IEnumerable<DigitalInput> GetAll()
@@ -47,9 +49,9 @@ namespace SCADACore.Implementations
                 while (true)
                 {
                     Thread.Sleep(digitalInput.ScanTime);
-                    DigitalOutput analogOutput = GetDigitalOutputByAddress(ioAddress);
+                    digitalInput = GetForIOAddress(ioAddress);
 
-                    var val = analogOutput.Value;
+                    var val = digitalInput.Value;
                     proxy.DigitalScanDone(ioAddress, val);
                 }
             });
@@ -95,7 +97,7 @@ namespace SCADACore.Implementations
             {
                 return null;
             }
-            if (GetForIOAddress(input.IOAddress) != null)
+            if (_addressChecker.IsAddressTaken(input.IOAddress))
             {
                 return null;
             }
@@ -129,12 +131,24 @@ namespace SCADACore.Implementations
 
         public void SetNewValue(int ioAddress, bool newValue)
         {
+            DigitalInput existingDigitalInput = null;
             using (var db = new DbIOContext())
             {
-                DigitalInput existingDigitalInput = db.DigitalInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                existingDigitalInput = db.DigitalInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingDigitalInput == null) throw new IONotExistException(IOType.AnalogInput);
 
                 existingDigitalInput.Value = newValue;
+                db.SaveChanges();
+            }
+            using (var db = new DbTagReportContext())
+            {
+                db.TagReports.Add(new TagReport()
+                {
+                    TagName = existingDigitalInput.TagName,
+                    Timestamp = DateTime.Now.Second,
+                    Value = Convert.ToInt32(existingDigitalInput.Value),
+                    TagType = IOType.DigitalInput
+                });
                 db.SaveChanges();
             }
         }

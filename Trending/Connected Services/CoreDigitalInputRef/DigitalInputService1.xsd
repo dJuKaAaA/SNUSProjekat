@@ -55,6 +55,19 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetNewValue">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
+        <xs:element minOccurs="0" name="newValue" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetNewValueResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartScan">
     <xs:complexType>
       <xs:sequence>

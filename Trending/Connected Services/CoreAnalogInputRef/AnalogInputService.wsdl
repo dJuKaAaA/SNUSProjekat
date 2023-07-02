@@ -255,6 +255,12 @@
   <wsdl:message name="IAnalogInputService_GetByTagName_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetByTagNameResponse" />
   </wsdl:message>
+  <wsdl:message name="IAnalogInputService_SetNewValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewValue" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogInputService_SetNewValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetNewValueResponse" />
+  </wsdl:message>
   <wsdl:message name="IScanService_StartScan_InputMessage">
     <wsdl:part name="parameters" element="tns:StartScan" />
   </wsdl:message>
@@ -290,6 +296,10 @@
     <wsdl:operation name="GetByTagName">
       <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/GetByTagName" message="tns:IAnalogInputService_GetByTagName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/GetByTagNameResponse" message="tns:IAnalogInputService_GetByTagName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetNewValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/SetNewValue" message="tns:IAnalogInputService_SetNewValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/SetNewValueResponse" message="tns:IAnalogInputService_SetNewValue_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IScanService">
@@ -349,6 +359,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetByTagName">
       <soap:operation soapAction="http://tempuri.org/IAnalogInputService/GetByTagName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetNewValue">
+      <soap:operation soapAction="http://tempuri.org/IAnalogInputService/SetNewValue" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

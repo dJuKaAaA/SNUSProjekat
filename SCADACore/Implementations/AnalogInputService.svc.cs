@@ -10,11 +10,13 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading;
 using SCADACore.Execptions;
+using SCADACore.Helper;
 
 namespace SCADACore.Implementations
 {
     public class AnalogInputService : IAnalogInputService, IScanService
     {
+        private readonly IOAddressChecker _addressChecker = new IOAddressChecker();
         private readonly Dictionary<int, Thread> _threadScannerContainer = new Dictionary<int, Thread>();
 
         // GOOD
@@ -63,9 +65,9 @@ namespace SCADACore.Implementations
                 while (true)
                 {
                     Thread.Sleep(analogInput.ScanTime);
-                    AnalogOutput analogOutput = GetAnalogOutputByAddress(ioAddress);
+                    analogInput = GetForIOAddress(ioAddress);
 
-                    var val = analogOutput.Value;
+                    var val = analogInput.Value;
                     proxy.AnalogScanDone(ioAddress, val);
                 }
             });
@@ -114,7 +116,7 @@ namespace SCADACore.Implementations
             {
                 return null;
             }
-            if (GetForIOAddress(input.IOAddress) != null)
+            if (_addressChecker.IsAddressTaken(input.IOAddress))
             {
                 return null;
             }
@@ -148,12 +150,24 @@ namespace SCADACore.Implementations
 
         public void SetNewValue(int ioAddress, double newValue)
         {
+            AnalogInput existingAnalogInput = null;
             using (var db = new DbIOContext())
             {
-                AnalogInput existingAnalogInput = db.AnalogInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                existingAnalogInput = db.AnalogInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingAnalogInput == null) throw new IONotExistException(IOType.AnalogInput);
 
                 existingAnalogInput.Value = newValue;
+                db.SaveChanges();
+            }
+            using (var db = new DbTagReportContext())
+            {
+                db.TagReports.Add(new TagReport()
+                {
+                    TagName = existingAnalogInput.TagName,
+                    Timestamp = DateTime.Now.Second,
+                    Value = existingAnalogInput.Value,
+                    TagType = IOType.AnalogInput
+                });
                 db.SaveChanges();
             }
         }

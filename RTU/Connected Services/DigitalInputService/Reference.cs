@@ -26,6 +26,9 @@ namespace RTU.DigitalInputService {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private RTU.DigitalInputService.DriverType DriverField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IOAddressField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -59,6 +62,19 @@ namespace RTU.DigitalInputService {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public RTU.DigitalInputService.DriverType Driver {
+            get {
+                return this.DriverField;
+            }
+            set {
+                if ((this.DriverField.Equals(value) != true)) {
+                    this.DriverField = value;
+                    this.RaisePropertyChanged("Driver");
                 }
             }
         }
@@ -136,6 +152,23 @@ namespace RTU.DigitalInputService {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DriverType", Namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models")]
+    public enum DriverType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RealTime = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Sine = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cosine = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ramp = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]

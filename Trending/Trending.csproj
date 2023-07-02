@@ -104,6 +104,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\CoreSimDriverRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\CoreUserRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -273,6 +278,16 @@
     <None Include="Connected Services\CoreDigitalOutputRef\Trending.CoreDigitalOutputRef.DigitalOutput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\CoreSimDriverRef\SimDriver.wsdl" />
+    <None Include="Connected Services\CoreSimDriverRef\SimDriver.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreSimDriverRef\SimDriver1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreSimDriverRef\SimDriver2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\CoreUserRef\Trending.CoreUserRef.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -309,6 +324,7 @@
     <WCFMetadataStorage Include="Connected Services\CoreAnalogOutputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreDigitalInputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreDigitalOutputRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreSimDriverRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreUserRef\" />
   </ItemGroup>
   <ItemGroup>
@@ -382,6 +398,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CoreUserRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreSimDriverRef\SimDriver.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreSimDriverRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreSimDriverRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreSimDriverRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
