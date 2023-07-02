@@ -94,9 +94,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\CoreDigitalInputRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CoreDigitalOutputRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\CoreUserRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Core\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Core\NavigationCompletedEventArgs.cs" />
     <Compile Include="Core\NavigationService.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
@@ -117,7 +133,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MVVM\View\InputsView.xaml">
+    <Page Include="MVVM\View\DbAnalogInputsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\DbAnalogOutputsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\DbDigitalInputsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\DbDigitalOutputsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\DbUsersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\MonitorInputsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -130,7 +166,12 @@
     <Compile Include="MVVM\ViewModel\CreateInputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateOutputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateUserViewModel.cs" />
-    <Compile Include="MVVM\ViewModel\InputsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbAnalogInputsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbAnalogOutputsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbDigitalInputsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbDigitalOutputsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbUsersViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\MonitorInputsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\LogInViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MainViewModel.cs" />
     <Compile Include="MVVM\View\CreateInputView.xaml.cs">
@@ -142,8 +183,23 @@
     <Compile Include="MVVM\View\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MVVM\View\InputsView.xaml.cs">
-      <DependentUpon>InputsView.xaml</DependentUpon>
+    <Compile Include="MVVM\View\DbAnalogInputsView.xaml.cs">
+      <DependentUpon>DbAnalogInputsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DbAnalogOutputsView.xaml.cs">
+      <DependentUpon>DbAnalogOutputsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DbDigitalInputsView.xaml.cs">
+      <DependentUpon>DbDigitalInputsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DbDigitalOutputsView.xaml.cs">
+      <DependentUpon>DbDigitalOutputsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DbUsersView.xaml.cs">
+      <DependentUpon>DbUsersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\MonitorInputsView.xaml.cs">
+      <DependentUpon>MonitorInputsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\LogInView.xaml.cs">
       <DependentUpon>LogInView.xaml</DependentUpon>
@@ -191,6 +247,48 @@
     <None Include="Connected Services\CoreAnalogOutputRef\Trending.CoreAnalogOutputRef.AnalogOutput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\CoreDigitalInputRef\DigitalInputService.wsdl" />
+    <None Include="Connected Services\CoreDigitalInputRef\DigitalInputService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreDigitalInputRef\DigitalInputService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreDigitalInputRef\DigitalInputService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreDigitalInputRef\Trending.CoreDigitalInputRef.DigitalInput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CoreDigitalOutputRef\DigitalOutputService.wsdl" />
+    <None Include="Connected Services\CoreDigitalOutputRef\DigitalOutputService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreDigitalOutputRef\DigitalOutputService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreDigitalOutputRef\DigitalOutputService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreDigitalOutputRef\Trending.CoreDigitalOutputRef.DigitalOutput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CoreUserRef\Trending.CoreUserRef.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CoreUserRef\UserService.wsdl" />
+    <None Include="Connected Services\CoreUserRef\UserService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreUserRef\UserService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreUserRef\UserService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreUserRef\UserService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -209,6 +307,9 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CoreAnalogInputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreAnalogOutputRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreDigitalInputRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreDigitalOutputRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreUserRef\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CoreAnalogInputRef\AnalogInputService.disco" />
@@ -236,6 +337,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CoreAnalogOutputRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalInputRef\DigitalInputService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalInputRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalInputRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalInputRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalOutputRef\DigitalOutputService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalOutputRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalOutputRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreDigitalOutputRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\UserService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreUserRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

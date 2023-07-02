@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Trending.MVVM.View
 {
     /// <summary>
-    /// Interaction logic for InputsView.xaml
+    /// Interaction logic for DbDigitalInputsView.xaml
     /// </summary>
-    public partial class InputsView : UserControl
+    public partial class DbDigitalInputsView : UserControl
     {
-        public InputsView()
+        public DbDigitalInputsView()
         {
             InitializeComponent();
         }

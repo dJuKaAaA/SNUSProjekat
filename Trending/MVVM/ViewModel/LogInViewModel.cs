@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using Trending.Core;
 
@@ -27,6 +28,8 @@ namespace Trending.MVVM.ViewModel
             set { _password = value; OnPropertyChanged(); }
         }
 
+        private readonly CoreUserRef.UserServiceClient _userServiceClient;
+
         private readonly NavigationService _navigationService;
 
         public ICommand LogInCommand { get; }
@@ -36,12 +39,31 @@ namespace Trending.MVVM.ViewModel
         {
             _navigationService = navigationService;
 
+            _userServiceClient = new CoreUserRef.UserServiceClient();
+
             LogInCommand = new RelayCommand(OnLogIn, CanLogIn);
         }
 
         private void OnLogIn(object o)
         {
-            _navigationService.NavigateTo<InputsViewModel>();
+            CoreUserRef.User user = _userServiceClient.LogIn(Username, Password);
+            if (user != null)
+            {
+                MainViewModel.SignedUser = user;
+                switch (MainViewModel.SignedUser.Role)
+                {
+                    case CoreUserRef.Role.Admin:
+                        _navigationService.NavigateTo<DbAnalogInputsViewModel>();
+                        break;
+                    case CoreUserRef.Role.Standard:
+                        _navigationService.NavigateTo<MonitorInputsViewModel>();
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid credentials", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private bool CanLogIn(object o)

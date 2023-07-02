@@ -21,8 +21,12 @@ namespace SCADACore.Models
         public int Id { get; set; }
 
         [DataMember]
-        public Role Role { get; set; }
+        public string Name { get; set; }
+        [DataMember]
+        public string Surname { get; set; }
 
+        [DataMember]
+        public Role Role { get; set; }
         [DataMember]
         public string Username { get; set; }
 

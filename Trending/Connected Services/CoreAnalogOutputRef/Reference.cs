@@ -175,12 +175,6 @@ namespace Trending.CoreAnalogOutputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/Save", ReplyAction="http://tempuri.org/IAnalogOutputService/SaveResponse")]
         System.Threading.Tasks.Task SaveAsync(Trending.CoreAnalogOutputRef.AnalogOutput analogOutput);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogOutputService/SetNewValueResponse")]
-        void SetNewValue(int ioAddress, double newValue);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogOutputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogOutputService/SetNewValueResponse")]
-        System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -232,14 +226,6 @@ namespace Trending.CoreAnalogOutputRef {
         
         public System.Threading.Tasks.Task SaveAsync(Trending.CoreAnalogOutputRef.AnalogOutput analogOutput) {
             return base.Channel.SaveAsync(analogOutput);
-        }
-        
-        public void SetNewValue(int ioAddress, double newValue) {
-            base.Channel.SetNewValue(ioAddress, newValue);
-        }
-        
-        public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue) {
-            return base.Channel.SetNewValueAsync(ioAddress, newValue);
         }
     }
 }
