@@ -15,16 +15,17 @@ namespace RTU
         private static AnalogInputService.AnalogInputServiceClient analogInputServiceClient = new AnalogInputService.AnalogInputServiceClient();
         private static DigitalInputService.DigitalInputServiceClient digitalInputServiceClient = new DigitalInputService.DigitalInputServiceClient();
 
-        private const int secondsToUpdate = 10 * 1000;
+        private const int secondsToUpdate = 3 * 1000;
 
         private static void Main(string[] args)
         {
             //GenerateTestData();
 
+            Console.WriteLine("RTU running...");
             while (true)
             {
-                var analogInputs = analogInputServiceClient.GetAll();
-                var digitalInputs = digitalInputServiceClient.GetAll();
+                IEnumerable<DigitalInput> digitalInputs = digitalInputServiceClient.GetAll();
+                IEnumerable<AnalogInput> analogInputs = analogInputServiceClient.GetAll();
                 Thread.Sleep(secondsToUpdate);
 
                 foreach (AnalogInput analogInput in analogInputs)

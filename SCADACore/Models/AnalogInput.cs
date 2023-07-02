@@ -42,7 +42,7 @@ namespace SCADACore.Models
         public string Units { get; set; }
 
         [DataMember]
-        public virtual List<TagAlarm> Alarms { get; set; }
+        public List<TagAlarm> Alarms { get; set; }
 
         public override string ToString()
         {

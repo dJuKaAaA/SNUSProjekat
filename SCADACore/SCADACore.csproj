@@ -89,15 +89,6 @@
     <Compile Include="Implementations\SimDriver.svc.cs">
       <DependentUpon>SimDriver.svc</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202307021539250_InitialCreate.cs" />
-    <Compile Include="Migrations\202307021539250_InitialCreate.designer.cs">
-      <DependentUpon>202307021539250_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202307022130088_Mig1.cs" />
-    <Compile Include="Migrations\202307022130088_Mig1.designer.cs">
-      <DependentUpon>202307022130088_Mig1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DriverType.cs" />
     <Compile Include="Models\IOType.cs" />
     <Compile Include="Faults\UserDbFault.cs" />
@@ -144,14 +135,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202307021539250_InitialCreate.resx">
-      <DependentUpon>202307021539250_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202307022130088_Mig1.resx">
-      <DependentUpon>202307022130088_Mig1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

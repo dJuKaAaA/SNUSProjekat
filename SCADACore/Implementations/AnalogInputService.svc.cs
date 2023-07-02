@@ -24,8 +24,7 @@ namespace SCADACore.Implementations
         {
             using (DbIOContext db = new DbIOContext())
             {
-                List<AnalogInput> analogInputs = db.AnalogInputs.ToList();
-                return analogInputs;
+                return db.AnalogInputs.ToList();
             }
         }
 
