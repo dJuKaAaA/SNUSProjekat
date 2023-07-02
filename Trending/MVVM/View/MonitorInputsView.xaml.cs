@@ -52,9 +52,9 @@ namespace Trending.MVVM.View
                     if (digitalInput == null)
                     {
                         // Some error occurred
-                        _viewModel.StartAnalogScan(digitalInput.IOAddress);
                         return;
                     }
+                    _viewModel.StartDigitalScan(digitalInput.IOAddress);
                 }
             }
         }
@@ -76,9 +76,9 @@ namespace Trending.MVVM.View
                     if (digitalInput == null)
                     {
                         // Some error occurred
-                        _viewModel.EndAnalogScan(digitalInput.IOAddress);
                         return;
                     }
+                    _viewModel.EndDigitalScan(digitalInput.IOAddress);
                 }
             }
 

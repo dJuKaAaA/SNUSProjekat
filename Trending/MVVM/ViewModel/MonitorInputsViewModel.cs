@@ -68,6 +68,7 @@ namespace Trending.MVVM.ViewModel
         private readonly NavigationService _navigationService;
         private readonly CoreAnalogInputRef.AnalogInputServiceClient _analogInputServiceClient;
         private readonly CoreAnalogInputRef.ScanServiceClient _analogScanClient;
+        private readonly CoreDigitalInputRef.ScanServiceClient _digitalScanClient;
         public InputCallback InputCallback { get; }
 
         public ICommand LogOutCommand { get; }
@@ -84,6 +85,7 @@ namespace Trending.MVVM.ViewModel
             InputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
             InstanceContext ic = new InstanceContext(InputCallback);
             _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(ic);
+            _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(ic);
 
             LogOutCommand = new RelayCommand(OnLogOut, o => MainViewModel.SignedUser != null);
 
@@ -148,6 +150,15 @@ namespace Trending.MVVM.ViewModel
         public void EndAnalogScan(int ioAddress)
         {
             _analogScanClient.EndScan(ioAddress);
+        }
+        public void StartDigitalScan(int ioAddress)
+        {
+            _digitalScanClient.StartScan(ioAddress);
+        }
+
+        public void EndDigitalScan(int ioAddress)
+        {
+            _digitalScanClient.EndScan(ioAddress);
         }
 
         private void OnValueChangeCompleted(object sender, ValueChangeEventArgs e)

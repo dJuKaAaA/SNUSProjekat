@@ -28,7 +28,7 @@
                 <DataGridTextColumn Header="Scan Time"
                                     Binding="{Binding ScanTime}"/>
                 <DataGridCheckBoxColumn Header="Scan On"
-                                        Binding="{Binding ScanOn}"/>
+                                        Binding="{Binding OnScan}"/>
                 <DataGridTextColumn Header="Value"
                                     Binding="{Binding Value}"/>
                 <DataGridTextColumn Header="Low Limit"
