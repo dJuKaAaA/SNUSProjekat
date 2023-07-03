@@ -180,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MVVM\Model\ObservableAnalogInput.cs" />
+    <Compile Include="MVVM\Model\ObservableDigitalInput.cs" />
     <Compile Include="MVVM\ViewModel\CreateInputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateOutputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateUserViewModel.cs" />

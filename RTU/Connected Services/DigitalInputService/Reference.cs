@@ -204,6 +204,18 @@ namespace RTU.DigitalInputService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/SetNewValue", ReplyAction="http://tempuri.org/IDigitalInputService/SetNewValueResponse")]
         System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/SetDriverType", ReplyAction="http://tempuri.org/IDigitalInputService/SetDriverTypeResponse")]
+        void SetDriverType(int ioAddress, RTU.DigitalInputService.DriverType driverType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/SetDriverType", ReplyAction="http://tempuri.org/IDigitalInputService/SetDriverTypeResponse")]
+        System.Threading.Tasks.Task SetDriverTypeAsync(int ioAddress, RTU.DigitalInputService.DriverType driverType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/ChangeScanStatus", ReplyAction="http://tempuri.org/IDigitalInputService/ChangeScanStatusResponse")]
+        void ChangeScanStatus(int ioAddress, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDigitalInputService/ChangeScanStatus", ReplyAction="http://tempuri.org/IDigitalInputService/ChangeScanStatusResponse")]
+        System.Threading.Tasks.Task ChangeScanStatusAsync(int ioAddress, bool status);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -271,6 +283,22 @@ namespace RTU.DigitalInputService {
         
         public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, bool newValue) {
             return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public void SetDriverType(int ioAddress, RTU.DigitalInputService.DriverType driverType) {
+            base.Channel.SetDriverType(ioAddress, driverType);
+        }
+        
+        public System.Threading.Tasks.Task SetDriverTypeAsync(int ioAddress, RTU.DigitalInputService.DriverType driverType) {
+            return base.Channel.SetDriverTypeAsync(ioAddress, driverType);
+        }
+        
+        public void ChangeScanStatus(int ioAddress, bool status) {
+            base.Channel.ChangeScanStatus(ioAddress, status);
+        }
+        
+        public System.Threading.Tasks.Task ChangeScanStatusAsync(int ioAddress, bool status) {
+            return base.Channel.ChangeScanStatusAsync(ioAddress, status);
         }
     }
     

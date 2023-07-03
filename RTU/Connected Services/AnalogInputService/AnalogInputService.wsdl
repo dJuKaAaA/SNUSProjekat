@@ -267,6 +267,18 @@
   <wsdl:message name="IAnalogInputService_GetTagAlarms_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetTagAlarmsResponse" />
   </wsdl:message>
+  <wsdl:message name="IAnalogInputService_SetDriverType_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDriverType" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogInputService_SetDriverType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDriverTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogInputService_ChangeScanStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeScanStatus" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogInputService_ChangeScanStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeScanStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IScanService_StartScan_InputMessage">
     <wsdl:part name="parameters" element="tns:StartScan" />
   </wsdl:message>
@@ -310,6 +322,14 @@
     <wsdl:operation name="GetTagAlarms">
       <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/GetTagAlarms" message="tns:IAnalogInputService_GetTagAlarms_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse" message="tns:IAnalogInputService_GetTagAlarms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDriverType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/SetDriverType" message="tns:IAnalogInputService_SetDriverType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/SetDriverTypeResponse" message="tns:IAnalogInputService_SetDriverType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeScanStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/ChangeScanStatus" message="tns:IAnalogInputService_ChangeScanStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/ChangeScanStatusResponse" message="tns:IAnalogInputService_ChangeScanStatus_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IScanService">
@@ -387,6 +407,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetTagAlarms">
       <soap:operation soapAction="http://tempuri.org/IAnalogInputService/GetTagAlarms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetDriverType">
+      <soap:operation soapAction="http://tempuri.org/IAnalogInputService/SetDriverType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeScanStatus">
+      <soap:operation soapAction="http://tempuri.org/IAnalogInputService/ChangeScanStatus" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

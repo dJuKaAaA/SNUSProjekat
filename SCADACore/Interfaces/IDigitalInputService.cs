@@ -25,5 +25,11 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         void SetNewValue(int ioAddress, bool newValue);
+
+        [OperationContract]
+        void SetDriverType(int ioAddress, DriverType driverType);
+
+        [OperationContract]
+        void ChangeScanStatus(int ioAddress, bool status);
     }
 }

@@ -182,6 +182,7 @@ namespace Trending.MVVM.ViewModel
 					TagName = TagName,
 					Description = Description,
 					IOAddress = IOAddress,
+					DriverType = CoreDigitalInputRef.DriverType.RealTime,
 					ScanTime = ScanTime,
 					OnScan = false,
 					Value = false
@@ -202,6 +203,7 @@ namespace Trending.MVVM.ViewModel
 					Description = Description,
 					IOAddress = IOAddress,
 					ScanTime = ScanTime,
+					DriverType = CoreAnalogInputRef.DriverType.RealTime,
 					Alarms = alarms,
 					OnScan = false,
 					LowLimit = LowLimit,

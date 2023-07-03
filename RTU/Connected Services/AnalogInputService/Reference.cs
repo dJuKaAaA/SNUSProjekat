@@ -430,6 +430,18 @@ namespace RTU.AnalogInputService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/GetTagAlarms", ReplyAction="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse")]
         System.Threading.Tasks.Task<RTU.AnalogInputService.TagAlarm[]> GetTagAlarmsAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetDriverType", ReplyAction="http://tempuri.org/IAnalogInputService/SetDriverTypeResponse")]
+        void SetDriverType(int ioAddress, RTU.AnalogInputService.DriverType driverType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetDriverType", ReplyAction="http://tempuri.org/IAnalogInputService/SetDriverTypeResponse")]
+        System.Threading.Tasks.Task SetDriverTypeAsync(int ioAddress, RTU.AnalogInputService.DriverType driverType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/ChangeScanStatus", ReplyAction="http://tempuri.org/IAnalogInputService/ChangeScanStatusResponse")]
+        void ChangeScanStatus(int ioAddress, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/ChangeScanStatus", ReplyAction="http://tempuri.org/IAnalogInputService/ChangeScanStatusResponse")]
+        System.Threading.Tasks.Task ChangeScanStatusAsync(int ioAddress, bool status);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -513,6 +525,22 @@ namespace RTU.AnalogInputService {
         
         public System.Threading.Tasks.Task<RTU.AnalogInputService.TagAlarm[]> GetTagAlarmsAsync(string tagName) {
             return base.Channel.GetTagAlarmsAsync(tagName);
+        }
+        
+        public void SetDriverType(int ioAddress, RTU.AnalogInputService.DriverType driverType) {
+            base.Channel.SetDriverType(ioAddress, driverType);
+        }
+        
+        public System.Threading.Tasks.Task SetDriverTypeAsync(int ioAddress, RTU.AnalogInputService.DriverType driverType) {
+            return base.Channel.SetDriverTypeAsync(ioAddress, driverType);
+        }
+        
+        public void ChangeScanStatus(int ioAddress, bool status) {
+            base.Channel.ChangeScanStatus(ioAddress, status);
+        }
+        
+        public System.Threading.Tasks.Task ChangeScanStatusAsync(int ioAddress, bool status) {
+            return base.Channel.ChangeScanStatusAsync(ioAddress, status);
         }
     }
     

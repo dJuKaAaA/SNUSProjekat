@@ -78,7 +78,7 @@ namespace SCADACore.Implementations
             }
         }
 
-        private void ChangeScanStatus(int ioAddress, bool status)
+        public void ChangeScanStatus(int ioAddress, bool status)
         {
             using (var dbContext = new DbIOContext())
             {
@@ -133,7 +133,7 @@ namespace SCADACore.Implementations
         {
             using (var db = new DbIOContext())
             {
-                DigitalInput existingDigitalInput = db.DigitalInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                DigitalInput existingDigitalInput = db.DigitalInputs.FirstOrDefault(input => input.IOAddress == ioAddress);
                 if (existingDigitalInput == null) throw new IONotExistException(IOType.AnalogInput);
 
                 existingDigitalInput.Value = newValue;
@@ -152,6 +152,19 @@ namespace SCADACore.Implementations
 
         public void Save(DigitalInput digitalInput)
         {
+        }
+
+        public void SetDriverType(int ioAddress, DriverType driverType)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                DigitalInput digitalInput = db.DigitalInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
+                if (digitalInput == null) throw new IONotExistException(IOType.AnalogInput);
+
+                digitalInput.DriverType = driverType;
+
+                db.SaveChanges();
+            }
         }
     }
 }

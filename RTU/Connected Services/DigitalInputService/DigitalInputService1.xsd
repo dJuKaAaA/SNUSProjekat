@@ -68,6 +68,32 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="SetDriverType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="driverType" type="q6:DriverType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDriverTypeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeScanStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
+        <xs:element minOccurs="0" name="status" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeScanStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartScan">
     <xs:complexType>
       <xs:sequence>

@@ -97,7 +97,7 @@ namespace SCADACore.Implementations
         }
 
         // GOOD
-        private void ChangeScanStatus(int ioAddress, bool status)
+        public void ChangeScanStatus(int ioAddress, bool status)
         {
             using (var dbContext = new DbIOContext())
             {
@@ -181,6 +181,18 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 return db.TagAlarms.Where(alarm => alarm.InputTagName == tagName).ToList();
+            }
+        }
+        public void SetDriverType(int ioAddress, DriverType driverType)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                AnalogInput analogInput = db.AnalogInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
+                if (analogInput == null) throw new IONotExistException(IOType.AnalogInput);
+
+                analogInput.DriverType = driverType;
+
+                db.SaveChanges();
             }
         }
     }
