@@ -75,18 +75,13 @@ namespace SCADACore.Implementations
 
         public void SetNewValue(int ioAddress, bool newValue)
         {
-            DigitalOutput existingDigitalOutput = null;
             using (var db = new DbIOContext())
             {
-                existingDigitalOutput = db.DigitalOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                DigitalOutput existingDigitalOutput = db.DigitalOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingDigitalOutput == null) throw new IONotExistException(IOType.DigitalOutput);
 
                 existingDigitalOutput.Value = newValue;
-                db.SaveChanges();
-            }
 
-            using (var db = new DbTagReportContext())
-            {
                 db.TagReports.Add(new TagReport()
                 {
                     TagName = existingDigitalOutput.TagName,
@@ -94,6 +89,7 @@ namespace SCADACore.Implementations
                     Value = Convert.ToInt32(existingDigitalOutput.Value),
                     TagType = IOType.DigitalOutput
                 });
+
                 db.SaveChanges();
             }
         }

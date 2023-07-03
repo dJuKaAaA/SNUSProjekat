@@ -37,7 +37,7 @@ namespace RTU
 
                     Thread thread = new Thread(() =>
                     {
-                        double newValue = GenerateRandomDouble(analogInput.LowLimit, analogInput.HighLimit);
+                        double newValue = GenerateRandomDouble();
                         analogInputServiceClient.SetNewValue(analogInput.IOAddress, newValue);
                         Console.WriteLine("AnalogIntput: " + analogInput.IOAddress.ToString() + ", NewValue: " + newValue);
                     });
@@ -62,10 +62,10 @@ namespace RTU
             }
         }
 
-        private static double GenerateRandomDouble(double minValue, double maxValue)
+        private static double GenerateRandomDouble()
         {
             Random random = new Random();
-            double randomNumber = random.NextDouble() * (maxValue - minValue) + minValue;
+            double randomNumber = random.NextDouble() * random.Next(-1000, 1000);
             return randomNumber;
         }
 

@@ -74,17 +74,13 @@ namespace SCADACore.Implementations
 
         public void SetNewValue(int ioAddress, double newValue)
         {
-            AnalogOutput existingAnalogOutput = null;
             using (var db = new DbIOContext())
             {
-                existingAnalogOutput = db.AnalogOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                AnalogOutput existingAnalogOutput = db.AnalogOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingAnalogOutput == null) throw new IONotExistException(IOType.AnalogOutput);
 
                 existingAnalogOutput.Value = newValue;
-                db.SaveChanges();
-            }
-            using (var db = new DbTagReportContext())
-            {
+
                 db.TagReports.Add(new TagReport()
                 {
                     TagName = existingAnalogOutput.TagName,
@@ -92,6 +88,7 @@ namespace SCADACore.Implementations
                     Value = existingAnalogOutput.Value,
                     TagType = IOType.AnalogOutput
                 });
+
                 db.SaveChanges();
             }
         }

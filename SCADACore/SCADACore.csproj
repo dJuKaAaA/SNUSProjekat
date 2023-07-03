@@ -80,9 +80,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\DbAlarmContext.cs" />
     <Compile Include="Context\DbIOContext.cs" />
-    <Compile Include="Context\DbTagReportContext.cs" />
     <Compile Include="Context\DbUserContext.cs" />
     <Compile Include="Helper\IOAddressChecker.cs" />
     <Compile Include="Interfaces\ISimDriver.cs" />

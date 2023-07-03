@@ -123,6 +123,10 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 db.AnalogInputs.Add(input);
+                foreach (TagAlarm alarm in input.Alarms)
+                {
+                    db.TagAlarms.Add(alarm);
+                }
                 db.SaveChanges();
             }
             return input;
@@ -149,17 +153,13 @@ namespace SCADACore.Implementations
 
         public void SetNewValue(int ioAddress, double newValue)
         {
-            AnalogInput existingAnalogInput = null;
             using (var db = new DbIOContext())
             {
-                existingAnalogInput = db.AnalogInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
+                AnalogInput existingAnalogInput = db.AnalogInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingAnalogInput == null) throw new IONotExistException(IOType.AnalogInput);
 
                 existingAnalogInput.Value = newValue;
-                db.SaveChanges();
-            }
-            using (var db = new DbTagReportContext())
-            {
+
                 db.TagReports.Add(new TagReport()
                 {
                     TagName = existingAnalogInput.TagName,
@@ -167,6 +167,7 @@ namespace SCADACore.Implementations
                     Value = existingAnalogInput.Value,
                     TagType = IOType.AnalogInput
                 });
+
                 db.SaveChanges();
             }
         }
