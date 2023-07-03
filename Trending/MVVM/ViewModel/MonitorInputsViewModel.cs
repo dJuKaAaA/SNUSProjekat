@@ -11,12 +11,13 @@ using Trending.Core;
 using Trending.CoreAnalogInputRef;
 using Trending.CoreDigitalInputRef;
 using Trending.CoreAnalogOutputRef;
+using Trending.MVVM.Model;
 
 namespace Trending.MVVM.ViewModel
 {
     public class MonitorInputsViewModel : ViewModelBase
     {
-        public ObservableCollection<AnalogInput> AnalogInputs { get; set; }
+        public ObservableCollection<ObservableAnalogInput> AnalogInputs { get; set; }
         public ObservableCollection<DigitalInput> DigitalInputs { get; set; }
 
 		private bool _digitalTypeSelected;
@@ -113,19 +114,44 @@ namespace Trending.MVVM.ViewModel
 
         public void LoadInputs()
         {
-            AnalogInputs = new ObservableCollection<AnalogInput>();
+            AnalogInputs = new ObservableCollection<ObservableAnalogInput>();
             foreach (AnalogInput input in _analogInputServiceClient.GetAll())
             {
                 if (input.OnScan)
                 {
                     StartAnalogScan(input.IOAddress);
                 }
+
+                ObservableAnalogInput observableInput = new ObservableAnalogInput() { AnalogInput = input };
+
                 input.Alarms = _analogInputServiceClient.GetTagAlarms(input.TagName);
                 foreach (TagAlarm alarm in input.Alarms)
                 {
                     alarm.AnalogInput = input;
+
+                    AlarmWarning warning = new AlarmWarning()
+                    {
+                        Alarm = alarm,
+                        WarningMessage = string.Empty,
+                    };
+                    switch (alarm.Type)
+                    {
+                        case AlarmType.Low:
+                            if (alarm.Limit > alarm.AnalogInput.Value)
+                            {
+                                warning.WarningMessage = "CAUTION";
+                            }
+                            break;
+                        case AlarmType.High:
+                            if (alarm.Limit < alarm.AnalogInput.Value)
+                            {
+                                warning.WarningMessage = "CAUTION";
+                            }
+                            break;
+                    }
+                    observableInput.Warnings.Add(warning);
                 }
-                AnalogInputs.Add(input);
+                AnalogInputs.Add(observableInput);
             }
 
             DigitalInputs = new ObservableCollection<DigitalInput>();
@@ -170,12 +196,27 @@ namespace Trending.MVVM.ViewModel
 
         private void UpdateAnalogValue(int ioAddress, double value)
         {
-            AnalogInput analogInput = AnalogInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-            analogInput.Value = value;
-            OnPropertyChanged(nameof(analogInput.Value));
-            foreach (TagAlarm alarm in analogInput.Alarms)
+            ObservableAnalogInput analogInput = AnalogInputs.Where(input => input.AnalogInput.IOAddress == ioAddress).FirstOrDefault();
+            analogInput.AnalogInput.Value = value;
+            OnPropertyChanged(nameof(analogInput.AnalogInput.Value));
+            foreach (AlarmWarning warning in analogInput.Warnings)
             {
-                OnPropertyChanged(nameof(alarm));
+                warning.WarningMessage = string.Empty;
+                switch (warning.Alarm.Type)
+                {
+                    case AlarmType.Low:
+                        if (warning.Alarm.Limit > warning.Alarm.AnalogInput.Value)
+                        {
+                            warning.WarningMessage = "CAUTION";
+                        }
+                        break;
+                    case AlarmType.High:
+                        if (warning.Alarm.Limit < warning.Alarm.AnalogInput.Value)
+                        {
+                            warning.WarningMessage = "CAUTION";
+                        }
+                        break;
+                }
             }
         }
 

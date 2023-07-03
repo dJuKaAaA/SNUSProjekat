@@ -125,6 +125,7 @@
     </Compile>
     <Compile Include="Core\NavigationCompletedEventArgs.cs" />
     <Compile Include="Core\NavigationService.cs" />
+    <Compile Include="Core\ObservableDictionary.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelBase.cs" />
@@ -178,6 +179,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MVVM\Model\ObservableAnalogInput.cs" />
     <Compile Include="MVVM\ViewModel\CreateInputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateOutputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateUserViewModel.cs" />
@@ -346,9 +348,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MVVM\Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
