@@ -261,6 +261,12 @@
   <wsdl:message name="IAnalogInputService_SetNewValue_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetNewValueResponse" />
   </wsdl:message>
+  <wsdl:message name="IAnalogInputService_GetTagAlarms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagAlarms" />
+  </wsdl:message>
+  <wsdl:message name="IAnalogInputService_GetTagAlarms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagAlarmsResponse" />
+  </wsdl:message>
   <wsdl:message name="IScanService_StartScan_InputMessage">
     <wsdl:part name="parameters" element="tns:StartScan" />
   </wsdl:message>
@@ -300,6 +306,10 @@
     <wsdl:operation name="SetNewValue">
       <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/SetNewValue" message="tns:IAnalogInputService_SetNewValue_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/SetNewValueResponse" message="tns:IAnalogInputService_SetNewValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagAlarms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAnalogInputService/GetTagAlarms" message="tns:IAnalogInputService_GetTagAlarms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse" message="tns:IAnalogInputService_GetTagAlarms_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IScanService">
@@ -368,6 +378,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetNewValue">
       <soap:operation soapAction="http://tempuri.org/IAnalogInputService/SetNewValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagAlarms">
+      <soap:operation soapAction="http://tempuri.org/IAnalogInputService/GetTagAlarms" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

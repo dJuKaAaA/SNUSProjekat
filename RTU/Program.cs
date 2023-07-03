@@ -30,7 +30,7 @@ namespace RTU
 
                 foreach (AnalogInput analogInput in analogInputs)
                 {
-                    if (analogInput.Driver != AnalogInputService.DriverType.RealTime)
+                    if (analogInput.DriverType != AnalogInputService.DriverType.RealTime)
                     {
                         continue;
                     }
@@ -46,7 +46,7 @@ namespace RTU
 
                 foreach (DigitalInput digitalInput in digitalInputs)
                 {
-                    if (digitalInput.Driver != DigitalInputService.DriverType.RealTime)
+                    if (digitalInput.DriverType != DigitalInputService.DriverType.RealTime)
                     {
                         continue;
                     }
@@ -65,7 +65,8 @@ namespace RTU
         private static double GenerateRandomDouble()
         {
             Random random = new Random();
-            double randomNumber = random.NextDouble() * random.Next(-1000, 1000);
+            //double randomNumber = random.NextDouble() * random.Next(-1000, 1000);
+            double randomNumber = random.NextDouble() * random.Next(0, 1000);
             return randomNumber;
         }
 

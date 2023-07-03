@@ -29,7 +29,7 @@ namespace Trending.CoreAnalogInputRef {
         private string DescriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Trending.CoreAnalogInputRef.DriverType DriverField;
+        private Trending.CoreAnalogInputRef.DriverType DriverTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double HighLimitField;
@@ -92,14 +92,14 @@ namespace Trending.CoreAnalogInputRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Trending.CoreAnalogInputRef.DriverType Driver {
+        public Trending.CoreAnalogInputRef.DriverType DriverType {
             get {
-                return this.DriverField;
+                return this.DriverTypeField;
             }
             set {
-                if ((this.DriverField.Equals(value) != true)) {
-                    this.DriverField = value;
-                    this.RaisePropertyChanged("Driver");
+                if ((this.DriverTypeField.Equals(value) != true)) {
+                    this.DriverTypeField = value;
+                    this.RaisePropertyChanged("DriverType");
                 }
             }
         }
@@ -228,6 +228,12 @@ namespace Trending.CoreAnalogInputRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AlarmNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreAnalogInputRef.AnalogInput AnalogInputField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -246,6 +252,32 @@ namespace Trending.CoreAnalogInputRef {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AlarmName {
+            get {
+                return this.AlarmNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlarmNameField, value) != true)) {
+                    this.AlarmNameField = value;
+                    this.RaisePropertyChanged("AlarmName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreAnalogInputRef.AnalogInput AnalogInput {
+            get {
+                return this.AnalogInputField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnalogInputField, value) != true)) {
+                    this.AnalogInputField = value;
+                    this.RaisePropertyChanged("AnalogInput");
+                }
             }
         }
         
@@ -392,6 +424,12 @@ namespace Trending.CoreAnalogInputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogInputService/SetNewValueResponse")]
         System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/GetTagAlarms", ReplyAction="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse")]
+        Trending.CoreAnalogInputRef.TagAlarm[] GetTagAlarms(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/GetTagAlarms", ReplyAction="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse")]
+        System.Threading.Tasks.Task<Trending.CoreAnalogInputRef.TagAlarm[]> GetTagAlarmsAsync(string tagName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -467,6 +505,14 @@ namespace Trending.CoreAnalogInputRef {
         
         public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue) {
             return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public Trending.CoreAnalogInputRef.TagAlarm[] GetTagAlarms(string tagName) {
+            return base.Channel.GetTagAlarms(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreAnalogInputRef.TagAlarm[]> GetTagAlarmsAsync(string tagName) {
+            return base.Channel.GetTagAlarmsAsync(tagName);
         }
     }
     

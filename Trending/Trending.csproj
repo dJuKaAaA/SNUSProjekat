@@ -109,11 +109,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\CoreTagReportRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\CoreUserRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Core\AlarmValueConverter.cs" />
     <Compile Include="Core\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
@@ -154,6 +160,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MVVM\View\DbTagReportsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MVVM\View\DbUsersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +185,7 @@
     <Compile Include="MVVM\ViewModel\DbAnalogOutputsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DbDigitalInputsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DbDigitalOutputsViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbTagReportsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DbUsersViewModel.cs" />
     <Compile Include="MVVM\ViewModel\MonitorInputsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\LogInViewModel.cs" />
@@ -199,6 +210,9 @@
     </Compile>
     <Compile Include="MVVM\View\DbDigitalOutputsView.xaml.cs">
       <DependentUpon>DbDigitalOutputsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DbTagReportsView.xaml.cs">
+      <DependentUpon>DbTagReportsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\DbUsersView.xaml.cs">
       <DependentUpon>DbUsersView.xaml</DependentUpon>
@@ -237,6 +251,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\CoreAnalogInputRef\Trending.CoreAnalogInputRef.AnalogInput.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CoreAnalogInputRef\Trending.CoreAnalogInputRef.TagAlarm.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\CoreAnalogOutputRef\AnalogOutputService.wsdl" />
@@ -288,6 +305,22 @@
     <None Include="Connected Services\CoreSimDriverRef\SimDriver2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\CoreTagReportRef\TagReportService.wsdl" />
+    <None Include="Connected Services\CoreTagReportRef\TagReportService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreTagReportRef\TagReportService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreTagReportRef\TagReportService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreTagReportRef\TagReportService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreTagReportRef\Trending.CoreTagReportRef.TagReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\CoreUserRef\Trending.CoreUserRef.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -325,6 +358,7 @@
     <WCFMetadataStorage Include="Connected Services\CoreDigitalInputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreDigitalOutputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreSimDriverRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreTagReportRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreUserRef\" />
   </ItemGroup>
   <ItemGroup>
@@ -413,6 +447,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CoreSimDriverRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreTagReportRef\TagReportService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreTagReportRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreTagReportRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreTagReportRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

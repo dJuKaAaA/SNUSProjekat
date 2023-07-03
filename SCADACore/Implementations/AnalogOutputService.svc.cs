@@ -79,6 +79,9 @@ namespace SCADACore.Implementations
                 AnalogOutput existingAnalogOutput = db.AnalogOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingAnalogOutput == null) throw new IONotExistException(IOType.AnalogOutput);
 
+                if (newValue < existingAnalogOutput.LowLimit) newValue = existingAnalogOutput.LowLimit;
+                if (newValue > existingAnalogOutput.HighLimit) newValue = existingAnalogOutput.HighLimit;
+
                 existingAnalogOutput.Value = newValue;
 
                 db.TagReports.Add(new TagReport()

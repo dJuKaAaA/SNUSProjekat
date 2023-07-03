@@ -42,6 +42,7 @@ namespace Trending
             services.AddTransient<DbDigitalInputsViewModel>();
             services.AddTransient<DbDigitalOutputsViewModel>();
             services.AddTransient<DbUsersViewModel>();
+            services.AddTransient<DbTagReportsViewModel>();
 
             services.AddSingleton<NavigationService>();
 

@@ -24,6 +24,8 @@
   <xs:element name="ArrayOfTagAlarm" nillable="true" type="tns:ArrayOfTagAlarm" />
   <xs:complexType name="TagAlarm">
     <xs:sequence>
+      <xs:element minOccurs="0" name="AlarmName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnalogInput" nillable="true" type="tns:AnalogInput" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Limit" type="xs:double" />
       <xs:element minOccurs="0" name="Priority" type="tns:PriorityType" />
@@ -31,6 +33,31 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TagAlarm" nillable="true" type="tns:TagAlarm" />
+  <xs:complexType name="AnalogInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alarms" nillable="true" type="tns:ArrayOfTagAlarm" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverType" type="tns:DriverType" />
+      <xs:element minOccurs="0" name="HighLimit" type="xs:double" />
+      <xs:element minOccurs="0" name="IOAddress" type="xs:int" />
+      <xs:element minOccurs="0" name="LowLimit" type="xs:double" />
+      <xs:element minOccurs="0" name="OnScan" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ScanTime" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Units" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnalogInput" nillable="true" type="tns:AnalogInput" />
+  <xs:simpleType name="DriverType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RealTime" />
+      <xs:enumeration value="Sine" />
+      <xs:enumeration value="Cosine" />
+      <xs:enumeration value="Ramp" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DriverType" nillable="true" type="tns:DriverType" />
   <xs:simpleType name="PriorityType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="High" />

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Trending.MVVM.View"
+             xmlns:local="clr-namespace:Trending.MVVM.View" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -50,63 +50,177 @@
         <ScrollViewer HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Auto"
                       Grid.Row="1">
-            <WrapPanel HorizontalAlignment="Center">
-                <StackPanel Margin="20 10"
-                            Width="200">
-                    <TextBlock Text="Tag Name (ID)"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             Text="{Binding TagName, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Margin="20 10"
-                            Width="200">
-                    <TextBlock Text="Description"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             VerticalAlignment="Center"
-                             TextWrapping="Wrap"
-                             Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Margin="20 10"
-                            Width="200">
-                    <TextBlock Text="I/O Address"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             Text="{Binding IOAddress, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Margin="20 10"
-                            Width="200">
-                    <TextBlock Text="Scan Time (in milliseconds)"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             Text="{Binding ScanTime, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Margin="20 10"
-                            Width="200"
-                            Visibility="{Binding AnalogAttributesVisibility}">
-                    <TextBlock Text="Low Limit"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             Text="{Binding LowLimit, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Margin="20 10"
-                            Width="200"
-                            Visibility="{Binding AnalogAttributesVisibility}">
-                    <TextBlock Text="High Limit"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             Text="{Binding HighLimit, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
-                <StackPanel Margin="20 10"
-                            Width="200"
-                            Visibility="{Binding AnalogAttributesVisibility}">
-                    <TextBlock Text="Units"
-                               FontSize="16"/>
-                    <TextBox FontSize="18"
-                             Text="{Binding Units, UpdateSourceTrigger=PropertyChanged}"/>
-                </StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            </WrapPanel>
+                <WrapPanel HorizontalAlignment="Center"
+                           Grid.Row="0">
+                    <StackPanel Margin="20 10"
+                                Width="200">
+                        <TextBlock Text="Tag Name (ID)"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 Text="{Binding TagName, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="20 10"
+                                Width="200">
+                        <TextBlock Text="Description"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 VerticalAlignment="Center"
+                                 Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="20 10"
+                                Width="200">
+                        <TextBlock Text="I/O Address"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 Text="{Binding IOAddress, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="20 10"
+                                Width="200">
+                        <TextBlock Text="Scan Time (in milliseconds)"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 Text="{Binding ScanTime, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="20 10"
+                                Width="200"
+                                Visibility="{Binding AnalogAttributesVisibility}">
+                        <TextBlock Text="Low Limit"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 Text="{Binding LowLimit, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="20 10"
+                                Width="200"
+                                Visibility="{Binding AnalogAttributesVisibility}">
+                        <TextBlock Text="High Limit"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 Text="{Binding HighLimit, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Margin="20 10"
+                                Width="200"
+                                Visibility="{Binding AnalogAttributesVisibility}">
+                        <TextBlock Text="Units"
+                                   FontSize="16"/>
+                        <TextBox FontSize="18"
+                                 Text="{Binding Units, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </WrapPanel>
+
+                <Border Grid.Row="1"
+                        BorderThickness="2"
+                        BorderBrush="Gray"
+                        Padding="10"
+                        Visibility="{Binding AnalogAttributesVisibility}"
+                        Margin="20">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0"
+                                   HorizontalAlignment="Center"
+                                   FontSize="18"
+                                   Text="Add Alarm"
+                                   FontWeight="SemiBold"
+                                   FontStyle="Italic"
+                                   Margin="0 0 0 10"/>
+
+                        <WrapPanel Grid.Row="1"
+                                   HorizontalAlignment="Center">
+
+                            <StackPanel Margin="20 0">
+                                <TextBlock Text="Alarm Name"
+                                           FontSize="16"/>
+                                <TextBox Width="200"
+                                         FontSize="18"
+                                         Text="{Binding AlarmName, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            <StackPanel Margin="20 0">
+                                <TextBlock Text="Type"
+                                           FontSize="16"/>
+                                <ComboBox Width="200"
+                                         FontSize="18"
+                                          ItemsSource="{Binding AlarmTypes}"
+                                          SelectedItem="{Binding SelectedAlarmType}"/>
+                            </StackPanel>
+                            <StackPanel Margin="20 0">
+                                <TextBlock Text="Priority"
+                                           FontSize="16"/>
+                                <ComboBox Width="200"
+                                         FontSize="18"
+                                          ItemsSource="{Binding PriorityTypes}"
+                                          SelectedItem="{Binding SelectedPriorityType}"/>
+                            </StackPanel>
+                            <StackPanel Margin="20 0">
+                                <TextBlock Text="Limit"
+                                           FontSize="16"/>
+                                <TextBox Width="200"
+                                         FontSize="18"
+                                         Text="{Binding AlarmLimit, UpdateSourceTrigger=PropertyChanged}"/>
+                            </StackPanel>
+                            
+                        </WrapPanel>
+
+                        <Button Grid.Row="2"
+                                FontSize="16"
+                                Padding="30 10"
+                                Content="Add"
+                                Command="{Binding AddAlarmCommand}"
+                                HorizontalAlignment="Center"
+                                Margin="0 5 0 10"/>
+
+                        <ListView Grid.Row="3"
+                                  ItemsSource="{Binding Alarms}"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  SelectedItem="{Binding SelectedAlarm}">
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel HorizontalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListViewItem">
+                                                <Grid>
+                                                    <Border BorderThickness="2"
+                                                            BorderBrush="Gray"
+                                                            x:Name="CUSTOM_PART_Border"
+                                                            Padding="10"
+                                                            Margin="10">
+                                                        <WrapPanel>
+                                                            <TextBlock Text="Alarm:"
+                                                                       Margin="5 0"
+                                                                       FontSize="16"/>
+                                                            <TextBlock Text="{Binding AlarmName}"
+                                                                       FontWeight="SemiBold"
+                                                                       FontSize="16"
+                                                                       Margin="5 0"/>
+                                                        </WrapPanel>
+                                                    </Border>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
+
+                    </Grid>
+                </Border>
+            </Grid>
         </ScrollViewer>
 
         <Button Grid.Row="2"

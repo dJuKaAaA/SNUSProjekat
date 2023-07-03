@@ -21,7 +21,7 @@ namespace SCADACore.Models
         public int IOAddress { get; set; }
 
         [DataMember]
-        public DriverType Driver { get; set; }
+        public DriverType DriverType { get; set; }
 
         [DataMember]
         public int ScanTime { get; set; }  // in milliseconds

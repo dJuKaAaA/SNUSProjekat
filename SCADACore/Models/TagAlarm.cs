@@ -15,6 +15,9 @@ namespace SCADACore.Models
         [DataMember]
         public int Id { get; set; }
 
+        [DataMember] 
+        public string AlarmName { get; set; }
+
         [DataMember]
         public AlarmType Type { get; set; }
 
@@ -23,6 +26,13 @@ namespace SCADACore.Models
 
         [DataMember]
         public double Limit { get; set; }
+
+        [ForeignKey("AnalogInput")]
+        public string InputTagName { get; set; }
+
+        [DataMember]
+        public AnalogInput AnalogInput { get; set; }
+
     }
 
     public enum AlarmType

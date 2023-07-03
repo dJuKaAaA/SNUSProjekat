@@ -80,6 +80,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTagAlarms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagAlarmsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetTagAlarmsResult" nillable="true" type="q7:ArrayOfTagAlarm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartScan">
     <xs:complexType>
       <xs:sequence>

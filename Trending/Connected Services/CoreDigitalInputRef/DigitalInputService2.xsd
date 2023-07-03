@@ -8,9 +8,8 @@
   <xs:element name="ArrayOfDigitalInput" nillable="true" type="tns:ArrayOfDigitalInput" />
   <xs:complexType name="DigitalInput">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Alarms" nillable="true" type="tns:ArrayOfTagAlarm" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Driver" type="tns:DriverType" />
+      <xs:element minOccurs="0" name="DriverType" type="tns:DriverType" />
       <xs:element minOccurs="0" name="IOAddress" type="xs:int" />
       <xs:element minOccurs="0" name="OnScan" type="xs:boolean" />
       <xs:element minOccurs="0" name="ScanTime" type="xs:int" />
@@ -19,36 +18,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DigitalInput" nillable="true" type="tns:DigitalInput" />
-  <xs:complexType name="ArrayOfTagAlarm">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TagAlarm" nillable="true" type="tns:TagAlarm" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfTagAlarm" nillable="true" type="tns:ArrayOfTagAlarm" />
-  <xs:complexType name="TagAlarm">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Limit" type="xs:double" />
-      <xs:element minOccurs="0" name="Priority" type="tns:PriorityType" />
-      <xs:element minOccurs="0" name="Type" type="tns:AlarmType" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="TagAlarm" nillable="true" type="tns:TagAlarm" />
-  <xs:simpleType name="PriorityType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="High" />
-      <xs:enumeration value="Medium" />
-      <xs:enumeration value="Low" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="PriorityType" nillable="true" type="tns:PriorityType" />
-  <xs:simpleType name="AlarmType">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="Low" />
-      <xs:enumeration value="High" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="AlarmType" nillable="true" type="tns:AlarmType" />
   <xs:simpleType name="DriverType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="RealTime" />

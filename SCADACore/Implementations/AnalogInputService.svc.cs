@@ -24,7 +24,8 @@ namespace SCADACore.Implementations
         {
             using (DbIOContext db = new DbIOContext())
             {
-                return db.AnalogInputs.ToList();
+                List<AnalogInput> inputs = db.AnalogInputs.ToList();
+                return inputs;
             }
         }
 
@@ -158,6 +159,9 @@ namespace SCADACore.Implementations
                 AnalogInput existingAnalogInput = db.AnalogInputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingAnalogInput == null) throw new IONotExistException(IOType.AnalogInput);
 
+                if (newValue < existingAnalogInput.LowLimit) newValue = existingAnalogInput.LowLimit;
+                if (newValue > existingAnalogInput.HighLimit) newValue = existingAnalogInput.HighLimit;
+
                 existingAnalogInput.Value = newValue;
 
                 db.TagReports.Add(new TagReport()
@@ -169,6 +173,14 @@ namespace SCADACore.Implementations
                 });
 
                 db.SaveChanges();
+            }
+        }
+
+        public IEnumerable<TagAlarm> GetTagAlarms(string tagName)
+        {
+            using (DbIOContext db = new DbIOContext())
+            {
+                return db.TagAlarms.Where(alarm => alarm.InputTagName == tagName).ToList();
             }
         }
     }

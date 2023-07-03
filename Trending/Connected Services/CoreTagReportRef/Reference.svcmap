@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="773971f7-26b2-414e-a28d-a4aa9af13608" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49980/Implementations/TagReportService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TagReportService.wsdl" MetadataType="Wsdl" ID="f09ed031-a479-403f-a013-f21236521f0e" SourceId="1" SourceUrl="http://localhost:49980/Implementations/TagReportService.svc?wsdl" />
+    <MetadataFile FileName="TagReportService.xsd" MetadataType="Schema" ID="1f61012d-be5d-43f8-8707-bd23ea84929f" SourceId="1" SourceUrl="http://localhost:49980/Implementations/TagReportService.svc?xsd=xsd0" />
+    <MetadataFile FileName="TagReportService1.xsd" MetadataType="Schema" ID="840fbd51-6802-4859-b7fa-bea266f94033" SourceId="1" SourceUrl="http://localhost:49980/Implementations/TagReportService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TagReportService.disco" MetadataType="Disco" ID="7e4e3c79-1f43-425a-988a-663b92675961" SourceId="1" SourceUrl="http://localhost:49980/Implementations/TagReportService.svc?disco" />
+    <MetadataFile FileName="TagReportService2.xsd" MetadataType="Schema" ID="39c66576-d12a-4281-b8b7-4a4345b9aa11" SourceId="1" SourceUrl="http://localhost:49980/Implementations/TagReportService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TagReportService3.xsd" MetadataType="Schema" ID="f16c0b6e-9064-47ad-899a-c01fb8b70691" SourceId="1" SourceUrl="http://localhost:49980/Implementations/TagReportService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

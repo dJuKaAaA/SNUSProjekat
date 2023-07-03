@@ -120,6 +120,11 @@ namespace Trending.MVVM.ViewModel
                 {
                     StartAnalogScan(input.IOAddress);
                 }
+                input.Alarms = _analogInputServiceClient.GetTagAlarms(input.TagName);
+                foreach (TagAlarm alarm in input.Alarms)
+                {
+                    alarm.AnalogInput = input;
+                }
                 AnalogInputs.Add(input);
             }
 
@@ -168,6 +173,10 @@ namespace Trending.MVVM.ViewModel
             AnalogInput analogInput = AnalogInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
             analogInput.Value = value;
             OnPropertyChanged(nameof(analogInput.Value));
+            foreach (TagAlarm alarm in analogInput.Alarms)
+            {
+                OnPropertyChanged(nameof(alarm));
+            }
         }
 
         private void UpdateDigitalValue(int ioAddress, bool value)

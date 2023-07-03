@@ -28,5 +28,8 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         void SetNewValue(int ioAddress, double newValue);
+
+        [OperationContract]
+        IEnumerable<TagAlarm> GetTagAlarms(string tagName);
     }
 }
