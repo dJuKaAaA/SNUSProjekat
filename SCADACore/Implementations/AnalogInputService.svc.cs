@@ -124,10 +124,6 @@ namespace SCADACore.Implementations
             using (DbIOContext db = new DbIOContext())
             {
                 db.AnalogInputs.Add(input);
-                foreach (TagAlarm alarm in input.Alarms)
-                {
-                    db.TagAlarms.Add(alarm);
-                }
                 db.SaveChanges();
             }
             return input;

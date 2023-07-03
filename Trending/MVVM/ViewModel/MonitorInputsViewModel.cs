@@ -113,13 +113,11 @@ namespace Trending.MVVM.ViewModel
                 }
 
                 CoreAnalogInputRef.DriverType previousDriverType = analogInput.AnalogInput.DriverType;
-                MessageBox.Show($"{previousDriverType}");
                 _analogInputServiceClient.SetDriverType(analogInput.AnalogInput.IOAddress, analogInput.SelectedSimDriver);
                 analogInput.AnalogInput.DriverType = analogInput.SelectedSimDriver;
 
                 if (analogInput.AnalogInput.OnScan)
                 {
-                    MessageBox.Show($"{previousDriverType}");
                     if (previousDriverType == CoreAnalogInputRef.DriverType.RealTime)
                     {
                         _analogScanClient.EndScan(analogInput.AnalogInput.IOAddress);
@@ -275,6 +273,7 @@ namespace Trending.MVVM.ViewModel
 
                         var val = _simDriverClient.GenerateValue(driver);
                         UpdateAnalogValue(ioAddress, val);
+                        _analogInputServiceClient.SetNewValue(ioAddress, val);
                     }
                 });
 
@@ -331,7 +330,9 @@ namespace Trending.MVVM.ViewModel
                         }
 
                         var val = _simDriverClient.GenerateValue(driver);
-                        UpdateAnalogValue(ioAddress, val);
+                        bool boolVal = val > 0;
+                        UpdateDigitalValue(ioAddress, boolVal);
+                        _digitalInputServiceClient.SetNewValue(ioAddress, boolVal);
                     }
                 });
 
