@@ -41,7 +41,7 @@ namespace Trending.MVVM.View
             {
                 string tagName = checkBox.Tag as string;
 
-                AnalogInput analogInput = _viewModel.AnalogInputs.Where(input => input.TagName == tagName).FirstOrDefault();
+                AnalogInput analogInput = _viewModel.AnalogInputs.Where(input => input.AnalogInput.TagName == tagName).FirstOrDefault()?.AnalogInput;
                 if (analogInput != null)
                 {
                     _viewModel.StartAnalogScan(analogInput.IOAddress);
@@ -49,7 +49,7 @@ namespace Trending.MVVM.View
                 }
                 else
                 {
-                    DigitalInput digitalInput = _viewModel.DigitalInputs.Where(input => input.TagName == tagName).FirstOrDefault();
+                    DigitalInput digitalInput = _viewModel.DigitalInputs.Where(input => input.DigitalInput.TagName == tagName).FirstOrDefault()?.DigitalInput;
                     if (digitalInput == null)
                     {
                         // Some error occurred
@@ -67,7 +67,7 @@ namespace Trending.MVVM.View
             {
                 string tagName = checkBox.Tag as string;
 
-                AnalogInput analogInput = _viewModel.AnalogInputs.Where(input => input.TagName == tagName).FirstOrDefault();
+                AnalogInput analogInput = _viewModel.AnalogInputs.Where(input => input.AnalogInput.TagName == tagName).FirstOrDefault()?.AnalogInput;
                 if (analogInput != null)
                 {
                     _viewModel.EndAnalogScan(analogInput.IOAddress);
@@ -75,7 +75,7 @@ namespace Trending.MVVM.View
                 }
                 else
                 {
-                    DigitalInput digitalInput = _viewModel.DigitalInputs.Where(input => input.TagName == tagName).FirstOrDefault();
+                    DigitalInput digitalInput = _viewModel.DigitalInputs.Where(input => input.DigitalInput.TagName == tagName).FirstOrDefault()?.DigitalInput;
                     if (digitalInput == null)
                     {
                         // Some error occurred

@@ -193,3 +193,7 @@ C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\Trendi
 C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\Trending.csproj.CopyComplete
 C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\Trending.exe
 C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\Trending.pdb
+C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\MVVM\View\DbTagReportsView.g.cs
+C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\MVVM\View\DbTagReportsView.baml
+C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\MVVM\View\DbAlarmReportsView.g.cs
+C:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\obj\Debug\MVVM\View\DbAlarmReportsView.baml

@@ -8,11 +8,13 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using SCADACore.Execptions;
+using SCADACore.Helper;
 
 namespace SCADACore.Implementations
 {
     public class AnalogOutputService : IAnalogOutputService
     {
+        private readonly IOAddressChecker _addressChecker = new IOAddressChecker();
         public AnalogOutput Create(AnalogOutput output)
         {
             // TODO: Throw exceptions
@@ -20,7 +22,7 @@ namespace SCADACore.Implementations
             {
                 return null;
             }
-            if (GetForIOAddress(output.IOAddress) != null)
+            if (_addressChecker.IsAddressTaken(output.IOAddress))
             {
                 return null;
             }
@@ -77,7 +79,19 @@ namespace SCADACore.Implementations
                 AnalogOutput existingAnalogOutput = db.AnalogOutputs.FirstOrDefault(output => output.IOAddress == ioAddress);
                 if (existingAnalogOutput == null) throw new IONotExistException(IOType.AnalogOutput);
 
+                if (newValue < existingAnalogOutput.LowLimit) newValue = existingAnalogOutput.LowLimit;
+                if (newValue > existingAnalogOutput.HighLimit) newValue = existingAnalogOutput.HighLimit;
+
                 existingAnalogOutput.Value = newValue;
+
+                db.TagReports.Add(new TagReport()
+                {
+                    TagName = existingAnalogOutput.TagName,
+                    Timestamp = DateTime.Now.Second,
+                    Value = existingAnalogOutput.Value,
+                    TagType = IOType.AnalogOutput
+                });
+
                 db.SaveChanges();
             }
         }

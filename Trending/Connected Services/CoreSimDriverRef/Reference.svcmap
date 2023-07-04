@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="4c0fda4f-fd55-4ed2-9072-9fe11c607465" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49980/Implementations/SimDriver.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SimDriver.xsd" MetadataType="Schema" ID="884277f4-4711-4a9d-909a-04e7c68a0d18" SourceId="1" SourceUrl="http://localhost:49980/Implementations/SimDriver.svc?xsd=xsd2" />
+    <MetadataFile FileName="SimDriver1.xsd" MetadataType="Schema" ID="9a1913d9-e6c0-432c-9f06-471bc4e70320" SourceId="1" SourceUrl="http://localhost:49980/Implementations/SimDriver.svc?xsd=xsd0" />
+    <MetadataFile FileName="SimDriver.disco" MetadataType="Disco" ID="84232e8b-c4c5-4d87-86ad-16186b679969" SourceId="1" SourceUrl="http://localhost:49980/Implementations/SimDriver.svc?disco" />
+    <MetadataFile FileName="SimDriver2.xsd" MetadataType="Schema" ID="3ea7ea76-a56c-40ec-ad85-f00f5ba1f4ea" SourceId="1" SourceUrl="http://localhost:49980/Implementations/SimDriver.svc?xsd=xsd1" />
+    <MetadataFile FileName="SimDriver.wsdl" MetadataType="Wsdl" ID="28964483-2c4f-4f10-934d-b8e3388bccb2" SourceId="1" SourceUrl="http://localhost:49980/Implementations/SimDriver.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

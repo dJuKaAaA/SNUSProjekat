@@ -9,6 +9,7 @@
   <xs:complexType name="DigitalInput">
     <xs:sequence>
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverType" type="tns:DriverType" />
       <xs:element minOccurs="0" name="IOAddress" type="xs:int" />
       <xs:element minOccurs="0" name="OnScan" type="xs:boolean" />
       <xs:element minOccurs="0" name="ScanTime" type="xs:int" />
@@ -17,4 +18,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="DigitalInput" nillable="true" type="tns:DigitalInput" />
+  <xs:simpleType name="DriverType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RealTime" />
+      <xs:enumeration value="Sine" />
+      <xs:enumeration value="Cosine" />
+      <xs:enumeration value="Ramp" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DriverType" nillable="true" type="tns:DriverType" />
 </xs:schema>

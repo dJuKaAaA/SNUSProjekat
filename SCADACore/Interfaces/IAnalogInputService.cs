@@ -28,5 +28,15 @@ namespace SCADACore.Interfaces
 
         [OperationContract]
         void SetNewValue(int ioAddress, double newValue);
+
+        [OperationContract]
+        IEnumerable<TagAlarm> GetTagAlarms(string tagName);
+
+        [OperationContract]
+        void SetDriverType(int ioAddress, DriverType driverType);
+
+        [OperationContract]
+        void ChangeScanStatus(int ioAddress, bool status);
+
     }
 }

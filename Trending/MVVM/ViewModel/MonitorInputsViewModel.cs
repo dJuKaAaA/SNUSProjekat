@@ -11,13 +11,19 @@ using Trending.Core;
 using Trending.CoreAnalogInputRef;
 using Trending.CoreDigitalInputRef;
 using Trending.CoreAnalogOutputRef;
+using Trending.MVVM.Model;
+using Trending.CoreSimDriverRef;
+using System.Threading;
 
 namespace Trending.MVVM.ViewModel
 {
     public class MonitorInputsViewModel : ViewModelBase
     {
-        public ObservableCollection<AnalogInput> AnalogInputs { get; set; }
-        public ObservableCollection<DigitalInput> DigitalInputs { get; set; }
+        private readonly Dictionary<int, Thread> _analogSimDriverThreads = new Dictionary<int, Thread>();
+        private readonly Dictionary<int, Thread> _digitalSimDriverThreads = new Dictionary<int, Thread>();
+
+        public ObservableCollection<ObservableAnalogInput> AnalogInputs { get; set; }
+        public ObservableCollection<ObservableDigitalInput> DigitalInputs { get; set; }
 
 		private bool _digitalTypeSelected;
 
@@ -70,6 +76,8 @@ namespace Trending.MVVM.ViewModel
         private readonly CoreDigitalInputRef.DigitalInputServiceClient _digitalInputServiceClient;
         private readonly CoreAnalogInputRef.ScanServiceClient _analogScanClient;
         private readonly CoreDigitalInputRef.ScanServiceClient _digitalScanClient;
+        private readonly SimDriverClient _simDriverClient;
+        private readonly CoreReportServiceRef.ReportServiceClient _reportServiceClient;
 
         public ICommand LogOutCommand { get; }
 
@@ -81,12 +89,21 @@ namespace Trending.MVVM.ViewModel
             _navigationService = navigationService;
             _analogInputServiceClient = new AnalogInputServiceClient();
             _digitalInputServiceClient = new DigitalInputServiceClient();
-            InputCallback inputCallback = new InputCallback();
-            inputCallback.ValueChangeCompleted += OnValueChangeCompleted;
-            inputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
-            InstanceContext ic = new InstanceContext(inputCallback);
-            _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(ic);
-            _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(ic);
+
+            // analog scan client
+            AnalogInputCallback analogInputCallback = new AnalogInputCallback();
+            analogInputCallback.ValueChangeCompleted += OnValueChangeCompleted;
+            InstanceContext analogInstanceContext = new InstanceContext(analogInputCallback);
+            _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(analogInstanceContext);
+
+            // digital scan client
+            DigitalInputCallback digitalInputCallback = new DigitalInputCallback();
+            digitalInputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
+            InstanceContext digitalInstanceContext = new InstanceContext(digitalInputCallback);
+            _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(digitalInstanceContext);
+
+            _simDriverClient = new SimDriverClient();
+            _reportServiceClient = new CoreReportServiceRef.ReportServiceClient();
 
             _navigationService.NavigationCompleted += OnNavigationCompleted;
 
@@ -95,12 +112,81 @@ namespace Trending.MVVM.ViewModel
             LoadInputs();
         }
 
+        private void OnValueChanged(object sender, EventArgs e)
+        {
+            if (sender is ObservableAnalogInput analogInput)
+            {
+                if (analogInput.AnalogInput.DriverType == analogInput.SelectedSimDriver)
+                {
+                    return;
+                }
+
+                CoreAnalogInputRef.DriverType previousDriverType = analogInput.AnalogInput.DriverType;
+                _analogInputServiceClient.SetDriverType(analogInput.AnalogInput.IOAddress, analogInput.SelectedSimDriver);
+                analogInput.AnalogInput.DriverType = analogInput.SelectedSimDriver;
+
+                if (analogInput.AnalogInput.OnScan)
+                {
+                    if (previousDriverType == CoreAnalogInputRef.DriverType.RealTime)
+                    {
+                        _analogScanClient.EndScan(analogInput.AnalogInput.IOAddress);
+                    }
+                    else
+                    {
+                        Thread thread = _analogSimDriverThreads[analogInput.AnalogInput.IOAddress];
+                        thread.Abort();
+                        _analogSimDriverThreads.Remove(analogInput.AnalogInput.IOAddress);
+                    }
+                    StartAnalogScan(analogInput.AnalogInput.IOAddress);
+                }
+            }
+            if (sender is ObservableDigitalInput digitalInput)
+            {
+                if (digitalInput.DigitalInput.DriverType == digitalInput.SelectedSimDriver)
+                {
+                    return;
+                }
+
+                CoreDigitalInputRef.DriverType previousDriverType = digitalInput.DigitalInput.DriverType;
+                _digitalInputServiceClient.SetDriverType(digitalInput.DigitalInput.IOAddress, digitalInput.SelectedSimDriver);
+                digitalInput.DigitalInput.DriverType = digitalInput.SelectedSimDriver;
+
+                if (digitalInput.DigitalInput.OnScan)
+                {
+                    if (previousDriverType == CoreDigitalInputRef.DriverType.RealTime)
+                    {
+                        _digitalScanClient.EndScan(digitalInput.DigitalInput.IOAddress);
+                    }
+                    else
+                    {
+                        Thread thread = _digitalSimDriverThreads[digitalInput.DigitalInput.IOAddress];
+                        thread.Abort();
+                        _digitalSimDriverThreads.Remove(digitalInput.DigitalInput.IOAddress);
+                    }
+                    StartDigitalScan(digitalInput.DigitalInput.IOAddress);
+                }
+            }
+        }
+
         private void OnNavigationCompleted(object sender, NavigationCompletedEventArgs e)
         {
             if (e.PreviousViewModel == GetType())
             {
                 _analogScanClient.EndAllScans();
-                //_digitalScanClient.EndAllScans();
+                _digitalScanClient.EndAllScans();
+
+                foreach (KeyValuePair<int, Thread> kvp in _analogSimDriverThreads)
+                {
+                    kvp.Value.Abort();
+                }
+                _analogSimDriverThreads.Clear();
+
+                foreach (KeyValuePair<int, Thread> kvp in _digitalSimDriverThreads)
+                {
+                    kvp.Value.Abort();
+                }
+                _digitalSimDriverThreads.Clear();
+
                 _navigationService.NavigationCompleted -= OnNavigationCompleted;
             }
         }
@@ -113,45 +199,183 @@ namespace Trending.MVVM.ViewModel
 
         public void LoadInputs()
         {
-            AnalogInputs = new ObservableCollection<AnalogInput>();
+            AnalogInputs = new ObservableCollection<ObservableAnalogInput>();
             foreach (AnalogInput input in _analogInputServiceClient.GetAll())
             {
+
+                ObservableAnalogInput observableInput = new ObservableAnalogInput() { AnalogInput = input };
+                observableInput.InitSimDriverValue();
+
+                input.Alarms = _analogInputServiceClient.GetTagAlarms(input.TagName);
+                foreach (TagAlarm alarm in input.Alarms)
+                {
+                    alarm.AnalogInput = input;
+
+                    AlarmWarning warning = new AlarmWarning()
+                    {
+                        Alarm = alarm,
+                        WarningMessage = string.Empty,
+                    };
+                    switch (alarm.Type)
+                    {
+                        case AlarmType.Low:
+                            if (alarm.Limit > alarm.AnalogInput.Value)
+                            {
+                                warning.WarningMessage = "CAUTION";
+                            }
+                            break;
+                        case AlarmType.High:
+                            if (alarm.Limit < alarm.AnalogInput.Value)
+                            {
+                                warning.WarningMessage = "CAUTION";
+                            }
+                            break;
+                    }
+                    observableInput.ValueChanged += OnValueChanged;
+                    observableInput.Warnings.Add(warning);
+                }
+                AnalogInputs.Add(observableInput);
+
                 if (input.OnScan)
                 {
                     StartAnalogScan(input.IOAddress);
                 }
-                AnalogInputs.Add(input);
             }
 
-            DigitalInputs = new ObservableCollection<DigitalInput>();
+            DigitalInputs = new ObservableCollection<ObservableDigitalInput>();
             foreach (DigitalInput input in _digitalInputServiceClient.GetAll())
             {
+                ObservableDigitalInput observableInput = new ObservableDigitalInput()
+                {
+                    DigitalInput = input,
+                };
+                observableInput.InitSimDriverValue();
+
+                observableInput.ValueChanged += OnValueChanged;
+                DigitalInputs.Add(observableInput);
+
                 if (input.OnScan)
                 {
                     StartDigitalScan(input.IOAddress);
                 }
-                DigitalInputs.Add(input);
             }
 
         }
 
         public void StartAnalogScan(int ioAddress)
         {
-            _analogScanClient.StartScan(ioAddress);
+            ObservableAnalogInput input = AnalogInputs.First(oi => oi.AnalogInput.IOAddress == ioAddress);
+            if (input.SelectedSimDriver == CoreAnalogInputRef.DriverType.RealTime)
+            {
+                _analogScanClient.StartScan(ioAddress);
+            }
+            else
+            {
+                _analogInputServiceClient.ChangeScanStatus(ioAddress, true);
+
+                Thread thread = new Thread(() =>
+                {
+                    while (true)
+                    {
+                        Thread.Sleep(input.AnalogInput.ScanTime);
+                        CoreSimDriverRef.DriverType driver = CoreSimDriverRef.DriverType.Sine;
+
+                        switch (input.AnalogInput.DriverType)
+                        {
+                            case CoreAnalogInputRef.DriverType.Sine:
+                                driver = CoreSimDriverRef.DriverType.Sine;
+                                break;
+                            case CoreAnalogInputRef.DriverType.Cosine:
+                                driver = CoreSimDriverRef.DriverType.Cosine;
+                                break;
+                            case CoreAnalogInputRef.DriverType.Ramp:
+                                driver = CoreSimDriverRef.DriverType.Ramp;
+                                break;
+                        }
+
+                        var val = _simDriverClient.GenerateValue(driver);
+                        UpdateAnalogValue(ioAddress, val);
+                        _analogInputServiceClient.SetNewValue(ioAddress, val);
+                    }
+                });
+
+                _analogSimDriverThreads[input.AnalogInput.IOAddress] = thread;
+                thread.Start();
+            }
         }
 
         public void EndAnalogScan(int ioAddress)
         {
-            _analogScanClient.EndScan(ioAddress);
+            ObservableAnalogInput input = AnalogInputs.First(oi => oi.AnalogInput.IOAddress == ioAddress);
+            if (input.SelectedSimDriver == CoreAnalogInputRef.DriverType.RealTime)
+            {
+                _analogScanClient.EndScan(ioAddress);
+            }
+            else
+            {
+                _analogInputServiceClient.ChangeScanStatus(ioAddress, false);
+                Thread thread = _analogSimDriverThreads[ioAddress];
+                thread.Abort();
+                _analogSimDriverThreads.Remove(ioAddress);
+            }
         }
         public void StartDigitalScan(int ioAddress)
         {
-            _digitalScanClient.StartScan(ioAddress);
+            ObservableDigitalInput input = DigitalInputs.First(oi => oi.DigitalInput.IOAddress == ioAddress);
+            if (input.SelectedSimDriver == CoreDigitalInputRef.DriverType.RealTime)
+            {
+                _digitalScanClient.StartScan(ioAddress);
+            }
+            else
+            {
+                _digitalInputServiceClient.ChangeScanStatus(ioAddress, true);
+
+                Thread thread = new Thread(() =>
+                {
+                    while (true)
+                    {
+                        Thread.Sleep(input.DigitalInput.ScanTime);
+                        CoreSimDriverRef.DriverType driver = CoreSimDriverRef.DriverType.Sine;
+
+                        switch (input.DigitalInput.DriverType)
+                        {
+                            case CoreDigitalInputRef.DriverType.Sine:
+                                driver = CoreSimDriverRef.DriverType.Sine;
+                                break;
+                            case CoreDigitalInputRef.DriverType.Cosine:
+                                driver = CoreSimDriverRef.DriverType.Cosine;
+                                break;
+                            case CoreDigitalInputRef.DriverType.Ramp:
+                                driver = CoreSimDriverRef.DriverType.Ramp;
+                                break;
+                        }
+
+                        var val = _simDriverClient.GenerateValue(driver);
+                        bool boolVal = val > 0;
+                        UpdateDigitalValue(ioAddress, boolVal);
+                        _digitalInputServiceClient.SetNewValue(ioAddress, boolVal);
+                    }
+                });
+
+                _digitalSimDriverThreads[input.DigitalInput.IOAddress] = thread;
+                thread.Start();
+            }
         }
 
         public void EndDigitalScan(int ioAddress)
         {
-            _digitalScanClient.EndScan(ioAddress);
+            ObservableDigitalInput input = DigitalInputs.First(oi => oi.DigitalInput.IOAddress == ioAddress);
+            if (input.SelectedSimDriver == CoreDigitalInputRef.DriverType.RealTime)
+            {
+                _digitalScanClient.EndScan(ioAddress);
+            }
+            else
+            {
+                _digitalInputServiceClient.ChangeScanStatus(ioAddress, false);
+                Thread thread = _digitalSimDriverThreads[ioAddress];
+                thread.Abort();
+                _digitalSimDriverThreads.Remove(ioAddress);
+            }
         }
 
         private void OnValueChangeCompleted(object sender, ValueChangeEventArgs e)
@@ -165,28 +389,73 @@ namespace Trending.MVVM.ViewModel
 
         private void UpdateAnalogValue(int ioAddress, double value)
         {
-            AnalogInput analogInput = AnalogInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-            analogInput.Value = value;
-            OnPropertyChanged(nameof(analogInput.Value));
+            ObservableAnalogInput analogInput = AnalogInputs.Where(input => input.AnalogInput.IOAddress == ioAddress).FirstOrDefault();
+            analogInput.AnalogInput.Value = value;
+            OnPropertyChanged(nameof(analogInput.AnalogInput.Value));
+            foreach (AlarmWarning warning in analogInput.Warnings)
+            {
+                warning.WarningMessage = string.Empty;
+                switch (warning.Alarm.Type)
+                {
+                    case AlarmType.Low:
+                        if (warning.Alarm.Limit > warning.Alarm.AnalogInput.Value)
+                        {
+                            warning.WarningMessage = "CAUTION";
+                        }
+                        _reportServiceClient.CreateAlarmReport(new CoreReportServiceRef.AlarmReport()
+                        {
+                            AlarmId = warning.Alarm.Id,
+                            Timestamp = DateTime.Now.Second
+                        });
+                        break;
+                    case AlarmType.High:
+                        if (warning.Alarm.Limit < warning.Alarm.AnalogInput.Value)
+                        {
+                            warning.WarningMessage = "CAUTION";
+                        }
+                        _reportServiceClient.CreateAlarmReport(new CoreReportServiceRef.AlarmReport()
+                        {
+                            AlarmId = warning.Alarm.Id,
+                            Timestamp = DateTime.Now.Second
+                        });
+                        break;
+                }
+            }
         }
 
         private void UpdateDigitalValue(int ioAddress, bool value)
         {
-            DigitalInput digitalInput = DigitalInputs.Where(input => input.IOAddress == ioAddress).FirstOrDefault();
-            digitalInput.Value = value;
-            OnPropertyChanged(nameof(digitalInput.Value));
+            ObservableDigitalInput digitalInput = DigitalInputs.Where(input => input.DigitalInput.IOAddress == ioAddress).FirstOrDefault();
+            digitalInput.DigitalInput.Value = value;
+            OnPropertyChanged(nameof(digitalInput.DigitalInput.Value));
         }
     }
 
-    public class InputCallback : CoreAnalogInputRef.IScanServiceCallback
+    public class AnalogInputCallback : CoreAnalogInputRef.IScanServiceCallback
     {
 
         public EventHandler<ValueChangeEventArgs> ValueChangeCompleted;
-        public EventHandler<BoolValueChangeEventArgs> BoolValueChangeCompleted;
 
         public void AnalogScanDone(int ioAddress, double value)
         {
             ValueChangeCompleted?.Invoke(this, new ValueChangeEventArgs(ioAddress, value));
+        }
+
+        public void DigitalScanDone(int ioAddress, bool value)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public class DigitalInputCallback : CoreDigitalInputRef.IScanServiceCallback
+    {
+
+        public EventHandler<BoolValueChangeEventArgs> BoolValueChangeCompleted;
+
+        public void AnalogScanDone(int ioAddress, double value)
+        {
+            throw new NotImplementedException();
         }
 
         public void DigitalScanDone(int ioAddress, bool value)

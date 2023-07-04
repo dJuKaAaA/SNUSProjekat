@@ -4,12 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Trending.MVVM.View"
+             Background="White"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
         <DataGrid ItemsSource="{Binding Outputs}"
                   IsReadOnly="True"
+                  Grid.Row="0"
+                  SelectedItem="{Binding SelectedOutput}"
                   AutoGenerateColumns="False">
 
             <DataGrid.CellStyle>
@@ -30,5 +37,20 @@
             </DataGrid.Columns>
 
         </DataGrid>
+
+        <WrapPanel HorizontalAlignment="Center"
+                   Grid.Row="1">
+            <StackPanel Margin="20"
+                        VerticalAlignment="Center">
+                <CheckBox IsChecked="{Binding NewValue}"
+                          Content="New Value"/>
+            </StackPanel>
+            <Button Margin="20"
+                    Padding="30 10"
+                    VerticalAlignment="Center"
+                    Command="{Binding UpdateValueCommand}"
+                    HorizontalAlignment="Center"
+                    Content="Update"/>
+        </WrapPanel>
     </Grid>
 </UserControl>

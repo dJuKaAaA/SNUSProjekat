@@ -64,7 +64,6 @@
                                FontSize="16"/>
                     <TextBox FontSize="18"
                              VerticalAlignment="Center"
-                             TextWrapping="Wrap"
                              Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Margin="20 10"
