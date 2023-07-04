@@ -65,8 +65,8 @@ namespace RTU
         private static double GenerateRandomDouble()
         {
             Random random = new Random();
-            //double randomNumber = random.NextDouble() * random.Next(-1000, 1000);
-            double randomNumber = random.NextDouble() * random.Next(0, 1000);
+            double randomNumber = random.NextDouble() * random.Next(-1000, 1000);
+            //double randomNumber = random.NextDouble() * random.Next(0, 1000);
             return randomNumber;
         }
 

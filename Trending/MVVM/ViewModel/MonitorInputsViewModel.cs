@@ -88,12 +88,19 @@ namespace Trending.MVVM.ViewModel
             _navigationService = navigationService;
             _analogInputServiceClient = new AnalogInputServiceClient();
             _digitalInputServiceClient = new DigitalInputServiceClient();
-            InputCallback inputCallback = new InputCallback();
-            inputCallback.ValueChangeCompleted += OnValueChangeCompleted;
-            inputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
-            InstanceContext ic = new InstanceContext(inputCallback);
-            _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(ic);
-            _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(ic);
+
+            // analog scan client
+            AnalogInputCallback analogInputCallback = new AnalogInputCallback();
+            analogInputCallback.ValueChangeCompleted += OnValueChangeCompleted;
+            InstanceContext analogInstanceContext = new InstanceContext(analogInputCallback);
+            _analogScanClient = new CoreAnalogInputRef.ScanServiceClient(analogInstanceContext);
+
+            // digital scan client
+            DigitalInputCallback digitalInputCallback = new DigitalInputCallback();
+            digitalInputCallback.BoolValueChangeCompleted += OnBoolValueChangeCompleted;
+            InstanceContext digitalInstanceContext = new InstanceContext(digitalInputCallback);
+            _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(digitalInstanceContext);
+
             _simDriverClient = new SimDriverClient();
 
             _navigationService.NavigationCompleted += OnNavigationCompleted;
@@ -150,11 +157,11 @@ namespace Trending.MVVM.ViewModel
                     }
                     else
                     {
-                        Thread thread = _analogSimDriverThreads[digitalInput.DigitalInput.IOAddress];
+                        Thread thread = _digitalSimDriverThreads[digitalInput.DigitalInput.IOAddress];
                         thread.Abort();
-                        _analogSimDriverThreads.Remove(digitalInput.DigitalInput.IOAddress);
+                        _digitalSimDriverThreads.Remove(digitalInput.DigitalInput.IOAddress);
                     }
-                    StartAnalogScan(digitalInput.DigitalInput.IOAddress);
+                    StartDigitalScan(digitalInput.DigitalInput.IOAddress);
                 }
             }
         }
@@ -164,7 +171,20 @@ namespace Trending.MVVM.ViewModel
             if (e.PreviousViewModel == GetType())
             {
                 _analogScanClient.EndAllScans();
-                //_digitalScanClient.EndAllScans();
+                _digitalScanClient.EndAllScans();
+
+                foreach (KeyValuePair<int, Thread> kvp in _analogSimDriverThreads)
+                {
+                    kvp.Value.Abort();
+                }
+                _analogSimDriverThreads.Clear();
+
+                foreach (KeyValuePair<int, Thread> kvp in _digitalSimDriverThreads)
+                {
+                    kvp.Value.Abort();
+                }
+                _digitalSimDriverThreads.Clear();
+
                 _navigationService.NavigationCompleted -= OnNavigationCompleted;
             }
         }
@@ -299,7 +319,6 @@ namespace Trending.MVVM.ViewModel
         }
         public void StartDigitalScan(int ioAddress)
         {
-            _digitalScanClient.StartScan(ioAddress);
             ObservableDigitalInput input = DigitalInputs.First(oi => oi.DigitalInput.IOAddress == ioAddress);
             if (input.SelectedSimDriver == CoreDigitalInputRef.DriverType.RealTime)
             {
@@ -400,15 +419,31 @@ namespace Trending.MVVM.ViewModel
         }
     }
 
-    public class InputCallback : CoreAnalogInputRef.IScanServiceCallback
+    public class AnalogInputCallback : CoreAnalogInputRef.IScanServiceCallback
     {
 
         public EventHandler<ValueChangeEventArgs> ValueChangeCompleted;
-        public EventHandler<BoolValueChangeEventArgs> BoolValueChangeCompleted;
 
         public void AnalogScanDone(int ioAddress, double value)
         {
             ValueChangeCompleted?.Invoke(this, new ValueChangeEventArgs(ioAddress, value));
+        }
+
+        public void DigitalScanDone(int ioAddress, bool value)
+        {
+            throw new NotImplementedException();
+        }
+
+    }
+
+    public class DigitalInputCallback : CoreDigitalInputRef.IScanServiceCallback
+    {
+
+        public EventHandler<BoolValueChangeEventArgs> BoolValueChangeCompleted;
+
+        public void AnalogScanDone(int ioAddress, double value)
+        {
+            throw new NotImplementedException();
         }
 
         public void DigitalScanDone(int ioAddress, bool value)

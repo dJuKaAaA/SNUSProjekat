@@ -22,9 +22,9 @@ namespace Trending.MVVM.ViewModel
             set { _newValue = value; OnPropertyChanged(); }
         }
 
-        private CoreAnalogOutputRef.AnalogOutput _selectedOutput;
+        private CoreDigitalOutputRef.DigitalOutput _selectedOutput;
 
-        public CoreAnalogOutputRef.AnalogOutput SelectedOutput
+        public CoreDigitalOutputRef.DigitalOutput SelectedOutput
         {
             get { return _selectedOutput; }
             set { _selectedOutput = value; OnPropertyChanged(); }

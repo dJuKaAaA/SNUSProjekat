@@ -23,9 +23,6 @@ namespace SCADACore.Models
         [DataMember]
         public bool Value { get; set; }
 
-        [DataMember]
-        public virtual List<TagAlarm> Alarms { get; set; }
-
         public override string ToString()
         {
             return $"TagName: {TagName}, Description: {Description}, IOAddress: {IOAddress}, Value: {Value}";

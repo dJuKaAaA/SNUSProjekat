@@ -119,13 +119,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Core\AlarmValueConverter.cs" />
     <Compile Include="Core\BindablePasswordBox.xaml.cs">
       <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Core\NavigationCompletedEventArgs.cs" />
     <Compile Include="Core\NavigationService.cs" />
-    <Compile Include="Core\ObservableDictionary.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Core\ViewModelBase.cs" />

@@ -104,7 +104,12 @@
     <Compile Include="Migrations\202307031024134_beeee.designer.cs">
       <DependentUpon>202307031024134_beeee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202307041038016_miggy.cs" />
+    <Compile Include="Migrations\202307041038016_miggy.designer.cs">
+      <DependentUpon>202307041038016_miggy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AlarmReport.cs" />
     <Compile Include="Models\DriverType.cs" />
     <Compile Include="Models\IOType.cs" />
     <Compile Include="Faults\UserDbFault.cs" />
@@ -161,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307031024134_beeee.resx">
       <DependentUpon>202307031024134_beeee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307041038016_miggy.resx">
+      <DependentUpon>202307041038016_miggy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
