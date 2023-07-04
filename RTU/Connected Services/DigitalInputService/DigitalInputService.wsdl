@@ -255,6 +255,18 @@
   <wsdl:message name="IDigitalInputService_SetNewValue_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetNewValueResponse" />
   </wsdl:message>
+  <wsdl:message name="IDigitalInputService_SetDriverType_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDriverType" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalInputService_SetDriverType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDriverTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalInputService_ChangeScanStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeScanStatus" />
+  </wsdl:message>
+  <wsdl:message name="IDigitalInputService_ChangeScanStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeScanStatusResponse" />
+  </wsdl:message>
   <wsdl:message name="IScanService_StartScan_InputMessage">
     <wsdl:part name="parameters" element="tns:StartScan" />
   </wsdl:message>
@@ -290,6 +302,14 @@
     <wsdl:operation name="SetNewValue">
       <wsdl:input wsaw:Action="http://tempuri.org/IDigitalInputService/SetNewValue" message="tns:IDigitalInputService_SetNewValue_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDigitalInputService/SetNewValueResponse" message="tns:IDigitalInputService_SetNewValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDriverType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDigitalInputService/SetDriverType" message="tns:IDigitalInputService_SetDriverType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDigitalInputService/SetDriverTypeResponse" message="tns:IDigitalInputService_SetDriverType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeScanStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDigitalInputService/ChangeScanStatus" message="tns:IDigitalInputService_ChangeScanStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDigitalInputService/ChangeScanStatusResponse" message="tns:IDigitalInputService_ChangeScanStatus_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IScanService">
@@ -356,6 +376,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="SetDriverType">
+      <soap:operation soapAction="http://tempuri.org/IDigitalInputService/SetDriverType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeScanStatus">
+      <soap:operation soapAction="http://tempuri.org/IDigitalInputService/ChangeScanStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WSDualHttpBinding_IScanService" type="tns:IScanService">
     <wsp:PolicyReference URI="#WSDualHttpBinding_IScanService_policy" />
@@ -405,7 +443,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:49980/Implementations/DigitalInputService.svc/DigitalInput-Scan</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-TTNFD2L\ivanm</Upn>
+          <Upn>DESKTOP-GI9D7GB\ivanvm</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

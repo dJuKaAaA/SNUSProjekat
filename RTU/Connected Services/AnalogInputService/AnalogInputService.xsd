@@ -80,6 +80,46 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetTagAlarms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagAlarmsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetTagAlarmsResult" nillable="true" type="q7:ArrayOfTagAlarm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDriverType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="driverType" type="q8:DriverType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDriverTypeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeScanStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ioAddress" type="xs:int" />
+        <xs:element minOccurs="0" name="status" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeScanStatusResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="StartScan">
     <xs:complexType>
       <xs:sequence>

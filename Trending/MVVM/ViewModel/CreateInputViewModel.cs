@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,50 @@ namespace Trending.MVVM.ViewModel
 {
     public class CreateInputViewModel : ViewModelBase
     {
+		public ObservableCollection<TagAlarm> Alarms { get; set; }
+		public ObservableCollection<AlarmType> AlarmTypes { get; set; }
+		public ObservableCollection<PriorityType> PriorityTypes { get; set; }
+
+		private CoreAnalogInputRef.TagAlarm _selectedAlarm;
+
+		public CoreAnalogInputRef.TagAlarm SelectedAlarm
+		{
+			get { return _selectedAlarm; }
+			set { _selectedAlarm = value; OnPropertyChanged(); }
+		}
+
+		private AlarmType _selectedAlarmType;
+
+		public AlarmType SelectedAlarmType
+		{
+			get { return _selectedAlarmType; }
+			set { _selectedAlarmType = value; OnPropertyChanged(); }
+		}
+
+		private PriorityType _selectedPriorityType;
+
+		public PriorityType SelectedPriorityType
+		{
+			get { return _selectedPriorityType; }
+			set { _selectedPriorityType = value; OnPropertyChanged(); }
+		}
+
+		private double _alarmLimit;
+
+		public double AlarmLimit
+		{
+			get { return _alarmLimit; }
+			set { _alarmLimit = value; OnPropertyChanged(); }
+		}
+
+		private string _alarmName;
+
+		public string AlarmName
+		{
+			get { return _alarmName; }
+			set { _alarmName = value; OnPropertyChanged(); }
+		}
+
 		private bool _digitalTypeSelected;
 
 		public bool DigitalTypeSelected
@@ -20,7 +65,7 @@ namespace Trending.MVVM.ViewModel
 			set 
 			{
 				_digitalTypeSelected = value; 
-				OnPropertyChanged(); 
+				OnPropertyChanged();
 
 				AnalogAttributesVisibility = _digitalTypeSelected ?
 					Visibility.Collapsed : Visibility.Visible;
@@ -103,15 +148,28 @@ namespace Trending.MVVM.ViewModel
 		private readonly CoreDigitalInputRef.DigitalInputServiceClient _digitalInputServiceClient;
 
 		public ICommand CreateInputCommand { get; }
+		public ICommand AddAlarmCommand { get; }
 
 		public CreateInputViewModel()
         {
+			Alarms = new ObservableCollection<TagAlarm>();
+			AlarmTypes = new ObservableCollection<AlarmType>()
+			{
+				AlarmType.Low, AlarmType.High
+			};
+			SelectedAlarmType = AlarmTypes[0];
+			PriorityTypes = new ObservableCollection<PriorityType>()
+			{
+				PriorityType.Low, PriorityType.Medium, PriorityType.High
+			};
+			SelectedPriorityType = PriorityTypes[0];
 			DigitalTypeSelected = true;
 
 			_analogInputServiceClient = new CoreAnalogInputRef.AnalogInputServiceClient();
 			_digitalInputServiceClient = new CoreDigitalInputRef.DigitalInputServiceClient();
 
 			CreateInputCommand = new RelayCommand(OnCreateInput, CanCreateInput);
+			AddAlarmCommand = new RelayCommand(o => Alarms.Add(new TagAlarm() { AlarmName = AlarmName, Type = SelectedAlarmType, Priority = SelectedPriorityType, Limit = AlarmLimit }), o => true);
         }
 
 		private void OnCreateInput(object o)
@@ -124,6 +182,7 @@ namespace Trending.MVVM.ViewModel
 					TagName = TagName,
 					Description = Description,
 					IOAddress = IOAddress,
+					DriverType = CoreDigitalInputRef.DriverType.RealTime,
 					ScanTime = ScanTime,
 					OnScan = false,
 					Value = false
@@ -133,12 +192,19 @@ namespace Trending.MVVM.ViewModel
 
 			if (AnalogTypeSelected)
 			{
+				TagAlarm[] alarms = new TagAlarm[Alarms.Count];
+				for (int i = 0; i < alarms.Length; ++i)
+				{
+					alarms[i] = Alarms[i];
+				}
 				AnalogInput input = new AnalogInput()
 				{
 					TagName = TagName,
 					Description = Description,
 					IOAddress = IOAddress,
 					ScanTime = ScanTime,
+					DriverType = CoreAnalogInputRef.DriverType.RealTime,
+					Alarms = alarms,
 					OnScan = false,
 					LowLimit = LowLimit,
 					HighLimit = HighLimit,
@@ -149,7 +215,6 @@ namespace Trending.MVVM.ViewModel
 			}
 
 			MessageBox.Show("Input created successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-
 		}
 
 		private bool CanCreateInput(object o)

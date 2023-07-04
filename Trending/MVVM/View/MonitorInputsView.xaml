@@ -4,9 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Trending.MVVM.View"
-             mc:Ignorable="d" 
+             xmlns:core="clr-namespace:Trending.Core"
+             mc:Ignorable="d"
+             xmlns:analoginput="clr-namespace:Trending.CoreAnalogInputRef"
              Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
 
         <Grid.RowDefinitions>
@@ -75,18 +78,30 @@
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
                                         <WrapPanel Grid.Row="0"
                                                    Margin="5"
                                                    HorizontalAlignment="Left">
-                                            <CheckBox IsChecked="{Binding OnScan}"
+                                            <CheckBox IsChecked="{Binding AnalogInput.OnScan}"
                                                       Margin="10 0"
-                                                      Tag="{Binding TagName}"
+                                                      Tag="{Binding AnalogInput.TagName}"
                                                       Checked="CheckBox_Checked"
                                                       Unchecked="CheckBox_Unchecked"
                                                       FontWeight="SemiBold"
+                                                      VerticalAlignment="Center"
                                                       Content="Is Scanning?"/>
+
+                                            <TextBlock Margin="40 0 5 0"
+                                                       Text="Driver: "
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"/>
+                                            <ComboBox Width="200"
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      ItemsSource="{Binding SimDrivers}"
+                                                      SelectedItem="{Binding SelectedSimDriver}"/>
                                         </WrapPanel>
 
                                         <WrapPanel Orientation="Horizontal"
@@ -95,49 +110,49 @@
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Tag Name"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding TagName}"
+                                                <TextBlock Text="{Binding AnalogInput.TagName}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Description"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding Description}"
+                                                <TextBlock Text="{Binding AnalogInput.Description}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="I/O Address"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding IOAddress}"
+                                                <TextBlock Text="{Binding AnalogInput.IOAddress}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Scan Time (milliseconds)"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding ScanTime}"
+                                                <TextBlock Text="{Binding AnalogInput.ScanTime}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Low Limit"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding LowLimit}"
+                                                <TextBlock Text="{Binding AnalogInput.LowLimit}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="High Limit"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding HighLimit}"
+                                                <TextBlock Text="{Binding AnalogInput.HighLimit}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Units"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding Units}"
+                                                <TextBlock Text="{Binding AnalogInput.Units}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
@@ -148,14 +163,105 @@
                                                 Grid.Row="2"
                                                 BorderThickness="2"
                                                 BorderBrush="Gray">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Row="0"
+                                                           HorizontalAlignment="Center"
+                                                           Text="Alarms"
+                                                           FontSize="22"
+                                                           FontWeight="SemiBold"
+                                                           FontStyle="Italic"
+                                                           Margin="0 0 0 20"/>
+
+                                                <ListView Background="Transparent"
+                                                          BorderThickness="0"
+                                                          ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                                          ScrollViewer.CanContentScroll="False"
+                                                          ItemsSource="{Binding Warnings}"
+                                                          Grid.Row="1">
+                                                    <ListView.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel HorizontalAlignment="Center"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ListView.ItemsPanel>
+                                                    <ListView.ItemContainerStyle>
+                                                        <Style TargetType="ListViewItem">
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="ListViewItem">
+                                                                        <Border BorderThickness="1"
+                                                                                BorderBrush="Gray"
+                                                                                Padding="5"
+                                                                                Margin="15">
+                                                                            <Grid>
+                                                                                <StackPanel Margin="10 0"
+                                                                                            HorizontalAlignment="Center">
+                                                                                    <TextBlock Text="{Binding Alarm.AlarmName}"
+                                                                                               HorizontalAlignment="Center"
+                                                                                               Margin="0 2"
+                                                                                               FontSize="18"/>
+                                                                                    <WrapPanel Margin="0 2"
+                                                                                               HorizontalAlignment="Center">
+                                                                                        <TextBlock Text="Limit: "
+                                                                                                   Margin="0 0 5 0"
+                                                                                                   VerticalAlignment="Center"
+                                                                                                   FontSize="16"/>
+                                                                                        <TextBlock Text="{Binding Alarm.Limit}"
+                                                                                                   HorizontalAlignment="Center"
+                                                                                                   FontWeight="SemiBold"
+                                                                                                   FontSize="20"/>
+                                                                                    </WrapPanel>
+
+                                                                                    <TextBlock FontWeight="Bold"
+                                                                                               FontSize="24"
+                                                                                               Margin="0 2"
+                                                                                               x:Name="CUSTOM_PART_Warning"
+                                                                                               HorizontalAlignment="Center"
+                                                                                               Text="{Binding WarningMessage}"/>
+                                                                                </StackPanel>
+                                                                            </Grid>
+                                                                        </Border>
+                                                                        <ControlTemplate.Triggers>
+                                                                            <DataTrigger Binding="{Binding Alarm.Priority}" Value="{x:Static analoginput:PriorityType.High}">
+                                                                                <Setter TargetName="CUSTOM_PART_Warning" Property="Foreground" Value="Red"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Alarm.Priority}" Value="{x:Static analoginput:PriorityType.Medium}">
+                                                                                <Setter TargetName="CUSTOM_PART_Warning" Property="Foreground" Value="DarkGoldenrod"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Alarm.Priority}" Value="{x:Static analoginput:PriorityType.Low}">
+                                                                                <Setter TargetName="CUSTOM_PART_Warning" Property="Foreground" Value="Gold"/>
+                                                                            </DataTrigger>
+                                                                        </ControlTemplate.Triggers>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </ListView.ItemContainerStyle>
+                                                </ListView>
+                                            </Grid>
+                                        </Border>
+
+                                        <Border Margin="20"
+                                                Padding="10"
+                                                Grid.Row="3"
+                                                BorderThickness="2"
+                                                BorderBrush="Gray">
                                             <StackPanel HorizontalAlignment="Center">
                                                 <TextBlock Text="Value"
+                                                           FontWeight="SemiBold"
+                                                           FontStyle="Italic"
+                                                           Margin="0 0 0 10"
                                                            HorizontalAlignment="Center"
-                                                           FontSize="18"/>
-                                                <TextBlock Text="{Binding Value}"
+                                                           FontSize="22"/>
+                                                <TextBlock Text="{Binding AnalogInput.Value}"
                                                            HorizontalAlignment="Center"
-                                                           FontSize="26"
-                                                           FontWeight="SemiBold"/>
+                                                           FontSize="30"
+                                                           FontWeight="Bold"/>
 
                                             </StackPanel>
                                         </Border>
@@ -195,13 +301,23 @@
                                         <WrapPanel Grid.Row="0"
                                                    Margin="5"
                                                    HorizontalAlignment="Left">
-                                            <CheckBox IsChecked="{Binding OnScan}"
+                                            <CheckBox IsChecked="{Binding DigitalInput.OnScan}"
                                                       Margin="10 0"
-                                                      Tag="{Binding TagName}"
+                                                      Tag="{Binding DigitalInput.TagName}"
                                                       Checked="CheckBox_Checked"
                                                       Unchecked="CheckBox_Unchecked"
                                                       FontWeight="SemiBold"
                                                       Content="Is Scanning?"/>
+
+                                            <TextBlock Margin="40 0 5 0"
+                                                       Text="Driver: "
+                                                       VerticalAlignment="Center"
+                                                       FontSize="14"/>
+                                            <ComboBox Width="200"
+                                                      FontSize="16"
+                                                      VerticalAlignment="Center"
+                                                      ItemsSource="{Binding SimDrivers}"
+                                                      SelectedItem="{Binding SelectedSimDriver}"/>
                                         </WrapPanel>
 
                                         <WrapPanel Orientation="Horizontal"
@@ -210,28 +326,28 @@
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Tag Name"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding TagName}"
+                                                <TextBlock Text="{Binding DigitalInput.TagName}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Description"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding Description}"
+                                                <TextBlock Text="{Binding DigitalInput.Description}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="I/O Address"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding IOAddress}"
+                                                <TextBlock Text="{Binding DigitalInput.IOAddress}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
                                             <StackPanel Margin="20">
                                                 <TextBlock Text="Scan Time (milliseconds)"
                                                            FontSize="16"/>
-                                                <TextBlock Text="{Binding ScanTime}"
+                                                <TextBlock Text="{Binding DigitalInput.ScanTime}"
                                                            FontWeight="SemiBold"
                                                            FontSize="24"/>
                                             </StackPanel>
@@ -244,14 +360,19 @@
                                                 BorderBrush="Gray">
                                             <StackPanel HorizontalAlignment="Center">
                                                 <TextBlock Text="Value"
+                                                           FontWeight="SemiBold"
+                                                           FontStyle="Italic"
+                                                           Margin="0 0 0 10"
                                                            HorizontalAlignment="Center"
-                                                           FontSize="18"/>
-                                                <CheckBox IsChecked="{Binding Value}"
+                                                           FontSize="22"/>
+                                                <CheckBox IsChecked="{Binding DigitalInput.Value}"
                                                           IsEnabled="False"
                                                           HorizontalAlignment="Center"
                                                           FontWeight="SemiBold"/>
+
                                             </StackPanel>
                                         </Border>
+
                                     </Grid>
                                 </Border>
                                 

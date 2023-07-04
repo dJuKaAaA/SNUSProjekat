@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="6fe0d3cf-0aa3-42a2-a714-90095f773090" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="3b54b570-bb3b-41ce-b657-815ca9a933f3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:49980/Implementations/AnalogInputService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="AnalogInputService.xsd" MetadataType="Schema" ID="372399c2-b512-48ad-9ef2-75c19f4c9d21" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?xsd=xsd0" />
-    <MetadataFile FileName="AnalogInputService.wsdl" MetadataType="Wsdl" ID="5aa48f7f-7f28-4dce-a9cd-56491b1e738f" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?wsdl" />
-    <MetadataFile FileName="AnalogInputService1.xsd" MetadataType="Schema" ID="1578ed4d-de5f-4691-ba80-d1c4be564e3d" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?xsd=xsd1" />
-    <MetadataFile FileName="AnalogInputService2.xsd" MetadataType="Schema" ID="d54e21ea-35b6-4ff2-ab65-30302287d1a5" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?xsd=xsd2" />
-    <MetadataFile FileName="AnalogInputService.disco" MetadataType="Disco" ID="8eafcc6e-6315-4bd7-b748-e04a0f9aadac" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?disco" />
+    <MetadataFile FileName="AnalogInputService.xsd" MetadataType="Schema" ID="b8d92874-2c98-4c1e-b0ba-0fe2a6030085" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AnalogInputService.wsdl" MetadataType="Wsdl" ID="081e634e-3890-400e-b3e7-e070a294c451" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?wsdl" />
+    <MetadataFile FileName="AnalogInputService1.xsd" MetadataType="Schema" ID="8329723c-ea43-4795-8d1d-582199c95b3e" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AnalogInputService2.xsd" MetadataType="Schema" ID="c7d2a0d2-2661-4f1c-8017-78530d52a7dc" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AnalogInputService.disco" MetadataType="Disco" ID="680148da-e11f-4e68-ab68-a61df820eea0" SourceId="1" SourceUrl="http://localhost:49980/Implementations/AnalogInputService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

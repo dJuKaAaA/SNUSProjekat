@@ -1,15 +1,17 @@
-﻿C:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\Core\BindablePasswordBox.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MainWindow.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\CreateInputView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\CreateOutputView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\CreateUserView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\DbAnalogInputsView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\DbAnalogOutputsView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\DbDigitalInputsView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\DbDigitalOutputsView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\DbUsersView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\MonitorInputsView.xaml;;
-FC:\Users\ivanm\OneDrive\Desktop\DJUKA\SNUSProjekat\Trending\MVVM\View\LogInView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\Core\BindablePasswordBox.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MainWindow.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\CreateInputView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\CreateOutputView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\CreateUserView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbAnalogInputsView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbAnalogOutputsView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbDigitalInputsView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbDigitalOutputsView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbUsersView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\MonitorInputsView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\LogInView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbTagReportsView.xaml;;
+FC:\Users\ivanvm\Desktop\SCADASNUSProjekat\SNUSProjekat\Trending\MVVM\View\DbAlarmReportsView.xaml;;
 

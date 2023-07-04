@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SCADACore.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SCADACore.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49980/Implementations/ReportService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SCADACore.Execptions" />
+  <xs:complexType name="ArrayOfTagReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TagReport" nillable="true" type="tns:TagReport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTagReport" nillable="true" type="tns:ArrayOfTagReport" />
+  <xs:complexType name="TagReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SCADACore.Execptions" minOccurs="0" name="TagType" type="q1:IOType" />
+      <xs:element minOccurs="0" name="Timestamp" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TagReport" nillable="true" type="tns:TagReport" />
+  <xs:complexType name="ArrayOfAlarmReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AlarmReport" nillable="true" type="tns:AlarmReport" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAlarmReport" nillable="true" type="tns:ArrayOfAlarmReport" />
+  <xs:complexType name="AlarmReport">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlarmId" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="TagAlarm" nillable="true" type="tns:TagAlarm" />
+      <xs:element minOccurs="0" name="Timestamp" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlarmReport" nillable="true" type="tns:AlarmReport" />
+  <xs:complexType name="TagAlarm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AlarmName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AnalogInput" nillable="true" type="tns:AnalogInput" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Limit" type="xs:double" />
+      <xs:element minOccurs="0" name="Priority" type="tns:PriorityType" />
+      <xs:element minOccurs="0" name="Type" type="tns:AlarmType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TagAlarm" nillable="true" type="tns:TagAlarm" />
+  <xs:complexType name="AnalogInput">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Alarms" nillable="true" type="tns:ArrayOfTagAlarm" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DriverType" type="tns:DriverType" />
+      <xs:element minOccurs="0" name="HighLimit" type="xs:double" />
+      <xs:element minOccurs="0" name="IOAddress" type="xs:int" />
+      <xs:element minOccurs="0" name="LowLimit" type="xs:double" />
+      <xs:element minOccurs="0" name="OnScan" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ScanTime" type="xs:int" />
+      <xs:element minOccurs="0" name="TagName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Units" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnalogInput" nillable="true" type="tns:AnalogInput" />
+  <xs:complexType name="ArrayOfTagAlarm">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TagAlarm" nillable="true" type="tns:TagAlarm" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTagAlarm" nillable="true" type="tns:ArrayOfTagAlarm" />
+  <xs:simpleType name="DriverType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RealTime" />
+      <xs:enumeration value="Sine" />
+      <xs:enumeration value="Cosine" />
+      <xs:enumeration value="Ramp" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DriverType" nillable="true" type="tns:DriverType" />
+  <xs:simpleType name="PriorityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="High" />
+      <xs:enumeration value="Medium" />
+      <xs:enumeration value="Low" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PriorityType" nillable="true" type="tns:PriorityType" />
+  <xs:simpleType name="AlarmType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Low" />
+      <xs:enumeration value="High" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AlarmType" nillable="true" type="tns:AlarmType" />
+</xs:schema>

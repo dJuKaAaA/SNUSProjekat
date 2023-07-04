@@ -23,7 +23,13 @@ namespace Trending.CoreAnalogInputRef {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreAnalogInputRef.TagAlarm[] AlarmsField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreAnalogInputRef.DriverType DriverTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private double HighLimitField;
@@ -60,6 +66,19 @@ namespace Trending.CoreAnalogInputRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreAnalogInputRef.TagAlarm[] Alarms {
+            get {
+                return this.AlarmsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlarmsField, value) != true)) {
+                    this.AlarmsField = value;
+                    this.RaisePropertyChanged("Alarms");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Description {
             get {
                 return this.DescriptionField;
@@ -68,6 +87,19 @@ namespace Trending.CoreAnalogInputRef {
                 if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
                     this.DescriptionField = value;
                     this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreAnalogInputRef.DriverType DriverType {
+            get {
+                return this.DriverTypeField;
+            }
+            set {
+                if ((this.DriverTypeField.Equals(value) != true)) {
+                    this.DriverTypeField = value;
+                    this.RaisePropertyChanged("DriverType");
                 }
             }
         }
@@ -186,6 +218,173 @@ namespace Trending.CoreAnalogInputRef {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TagAlarm", Namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models")]
+    [System.SerializableAttribute()]
+    public partial class TagAlarm : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AlarmNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreAnalogInputRef.AnalogInput AnalogInputField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double LimitField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreAnalogInputRef.PriorityType PriorityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Trending.CoreAnalogInputRef.AlarmType TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AlarmName {
+            get {
+                return this.AlarmNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AlarmNameField, value) != true)) {
+                    this.AlarmNameField = value;
+                    this.RaisePropertyChanged("AlarmName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreAnalogInputRef.AnalogInput AnalogInput {
+            get {
+                return this.AnalogInputField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnalogInputField, value) != true)) {
+                    this.AnalogInputField = value;
+                    this.RaisePropertyChanged("AnalogInput");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Limit {
+            get {
+                return this.LimitField;
+            }
+            set {
+                if ((this.LimitField.Equals(value) != true)) {
+                    this.LimitField = value;
+                    this.RaisePropertyChanged("Limit");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreAnalogInputRef.PriorityType Priority {
+            get {
+                return this.PriorityField;
+            }
+            set {
+                if ((this.PriorityField.Equals(value) != true)) {
+                    this.PriorityField = value;
+                    this.RaisePropertyChanged("Priority");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Trending.CoreAnalogInputRef.AlarmType Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DriverType", Namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models")]
+    public enum DriverType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RealTime = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Sine = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Cosine = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Ramp = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PriorityType", Namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models")]
+    public enum PriorityType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        High = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Medium = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Low = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AlarmType", Namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models")]
+    public enum AlarmType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Low = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        High = 1,
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CoreAnalogInputRef.IAnalogInputService")]
     public interface IAnalogInputService {
@@ -219,6 +418,30 @@ namespace Trending.CoreAnalogInputRef {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/GetByTagName", ReplyAction="http://tempuri.org/IAnalogInputService/GetByTagNameResponse")]
         System.Threading.Tasks.Task<Trending.CoreAnalogInputRef.AnalogInput> GetByTagNameAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogInputService/SetNewValueResponse")]
+        void SetNewValue(int ioAddress, double newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetNewValue", ReplyAction="http://tempuri.org/IAnalogInputService/SetNewValueResponse")]
+        System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/GetTagAlarms", ReplyAction="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse")]
+        Trending.CoreAnalogInputRef.TagAlarm[] GetTagAlarms(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/GetTagAlarms", ReplyAction="http://tempuri.org/IAnalogInputService/GetTagAlarmsResponse")]
+        System.Threading.Tasks.Task<Trending.CoreAnalogInputRef.TagAlarm[]> GetTagAlarmsAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetDriverType", ReplyAction="http://tempuri.org/IAnalogInputService/SetDriverTypeResponse")]
+        void SetDriverType(int ioAddress, Trending.CoreAnalogInputRef.DriverType driverType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/SetDriverType", ReplyAction="http://tempuri.org/IAnalogInputService/SetDriverTypeResponse")]
+        System.Threading.Tasks.Task SetDriverTypeAsync(int ioAddress, Trending.CoreAnalogInputRef.DriverType driverType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/ChangeScanStatus", ReplyAction="http://tempuri.org/IAnalogInputService/ChangeScanStatusResponse")]
+        void ChangeScanStatus(int ioAddress, bool status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAnalogInputService/ChangeScanStatus", ReplyAction="http://tempuri.org/IAnalogInputService/ChangeScanStatusResponse")]
+        System.Threading.Tasks.Task ChangeScanStatusAsync(int ioAddress, bool status);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -286,6 +509,38 @@ namespace Trending.CoreAnalogInputRef {
         
         public System.Threading.Tasks.Task<Trending.CoreAnalogInputRef.AnalogInput> GetByTagNameAsync(string tagName) {
             return base.Channel.GetByTagNameAsync(tagName);
+        }
+        
+        public void SetNewValue(int ioAddress, double newValue) {
+            base.Channel.SetNewValue(ioAddress, newValue);
+        }
+        
+        public System.Threading.Tasks.Task SetNewValueAsync(int ioAddress, double newValue) {
+            return base.Channel.SetNewValueAsync(ioAddress, newValue);
+        }
+        
+        public Trending.CoreAnalogInputRef.TagAlarm[] GetTagAlarms(string tagName) {
+            return base.Channel.GetTagAlarms(tagName);
+        }
+        
+        public System.Threading.Tasks.Task<Trending.CoreAnalogInputRef.TagAlarm[]> GetTagAlarmsAsync(string tagName) {
+            return base.Channel.GetTagAlarmsAsync(tagName);
+        }
+        
+        public void SetDriverType(int ioAddress, Trending.CoreAnalogInputRef.DriverType driverType) {
+            base.Channel.SetDriverType(ioAddress, driverType);
+        }
+        
+        public System.Threading.Tasks.Task SetDriverTypeAsync(int ioAddress, Trending.CoreAnalogInputRef.DriverType driverType) {
+            return base.Channel.SetDriverTypeAsync(ioAddress, driverType);
+        }
+        
+        public void ChangeScanStatus(int ioAddress, bool status) {
+            base.Channel.ChangeScanStatus(ioAddress, status);
+        }
+        
+        public System.Threading.Tasks.Task ChangeScanStatusAsync(int ioAddress, bool status) {
+            return base.Channel.ChangeScanStatusAsync(ioAddress, status);
         }
     }
     

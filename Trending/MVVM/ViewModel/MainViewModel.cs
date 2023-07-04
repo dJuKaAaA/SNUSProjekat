@@ -31,6 +31,8 @@ namespace Trending.MVVM.ViewModel
         public ICommand NavigateToDbDigitalInputsViewCommand { get; }
         public ICommand NavigateToDbDigitalOutputsViewCommand { get; }
         public ICommand NavigateToDbUsersViewCommand { get; }
+        public ICommand NavigateToDbTagReportsViewCommand { get; }
+        public ICommand NavigateToDbAlarmReportsViewCommand { get; }
         public ICommand LogOutCommand { get; }
 
         public MainViewModel(
@@ -50,6 +52,8 @@ namespace Trending.MVVM.ViewModel
             NavigateToDbDigitalInputsViewCommand = new RelayCommand(o => NavigationService.NavigateTo<DbDigitalInputsViewModel>(), o => SignedUser?.Role == CoreUserRef.Role.Admin);
             NavigateToDbDigitalOutputsViewCommand = new RelayCommand(o => NavigationService.NavigateTo<DbDigitalOutputsViewModel>(), o => SignedUser?.Role == CoreUserRef.Role.Admin);
             NavigateToDbUsersViewCommand = new RelayCommand(o => NavigationService.NavigateTo<DbUsersViewModel>(), o => SignedUser?.Role == CoreUserRef.Role.Admin);
+            NavigateToDbTagReportsViewCommand = new RelayCommand(o => NavigationService.NavigateTo<DbTagReportsViewModel>(), o => SignedUser?.Role == CoreUserRef.Role.Admin);
+            NavigateToDbAlarmReportsViewCommand = new RelayCommand(o => NavigationService.NavigateTo<DbAlarmReportsViewModel>(), o => SignedUser?.Role == CoreUserRef.Role.Admin);
             LogOutCommand = new RelayCommand(OnLogOut, o => SignedUser?.Role == CoreUserRef.Role.Admin);
         }
 

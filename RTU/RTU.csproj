@@ -83,6 +83,9 @@
     <None Include="Connected Services\AnalogInputService\RTU.AnalogInputService.AnalogInput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\AnalogInputService\RTU.AnalogInputService.TagAlarm.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\DigitalInputService\DigitalInputService.wsdl" />
     <None Include="Connected Services\DigitalInputService\DigitalInputService.xsd">
       <SubType>Designer</SubType>

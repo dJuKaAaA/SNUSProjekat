@@ -8,11 +8,14 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using SCADACore.Execptions;
+using SCADACore.Helper;
 
 namespace SCADACore.Implementations
 {
     public class DigitalOutputService : IDigitalOutputService
     {
+        private readonly IOAddressChecker _addressChecker = new IOAddressChecker();
+
         public DigitalOutput Create(DigitalOutput output)
         {
             // TODO: Throw exceptions
@@ -20,7 +23,7 @@ namespace SCADACore.Implementations
             {
                 return null;
             }
-            if (GetForIOAddress(output.IOAddress) != null)
+            if (_addressChecker.IsAddressTaken(output.IOAddress))
             {
                 return null;
             }
@@ -78,6 +81,15 @@ namespace SCADACore.Implementations
                 if (existingDigitalOutput == null) throw new IONotExistException(IOType.DigitalOutput);
 
                 existingDigitalOutput.Value = newValue;
+
+                db.TagReports.Add(new TagReport()
+                {
+                    TagName = existingDigitalOutput.TagName,
+                    Timestamp = DateTime.Now.Second,
+                    Value = Convert.ToInt32(existingDigitalOutput.Value),
+                    TagType = IOType.DigitalOutput
+                });
+
                 db.SaveChanges();
             }
         }
