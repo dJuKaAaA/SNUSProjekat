@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Trending.MVVM.View.DbTagReportsView"
+﻿<UserControl x:Class="Trending.MVVM.View.DbAlarmReportsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -27,14 +27,14 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id"
                                     Binding="{Binding Id}"/>
-                <DataGridTextColumn Header="Tag Name"
-                                    Binding="{Binding TagName}"/>
+                <DataGridTextColumn Header="Alarm Id"
+                                    Binding="{Binding AlarmId}"/>
                 <DataGridTextColumn Header="Timestamp"
                                     Binding="{Binding Timestamp}"/>
-                <DataGridTextColumn Header="Value"
-                                    Binding="{Binding Value}"/>
-                <DataGridTextColumn Header="Tag Type"
-                                    Binding="{Binding TagType}"/>
+                <DataGridTextColumn Header="Priority"
+                                    Binding="{Binding TagAlarm.Priority}"/>
+                <DataGridTextColumn Header="Alarm Type"
+                                    Binding="{Binding TagAlarm.Type}"/>
             </DataGrid.Columns>
 
         </DataGrid>
@@ -87,36 +87,17 @@
                     </StackPanel>
                     
                 </Grid>
-                <Grid Visibility="{Binding TagTypeCriteriaVisibility}"
+                <Grid Visibility="{Binding PriorityCriteriaVisibility}"
                       VerticalAlignment="Center"
                       Width="200"
                       Margin="20 0">
 
                     <StackPanel>
-                        <TextBlock Text="Tag Type"
+                        <TextBlock Text="Priority"
                                    FontSize="16"/>
                         <ComboBox FontSize="18"
-                                  ItemsSource="{Binding TagTypes}"
-                                  SelectedItem="{Binding SelectedTagType}"/>
-                    </StackPanel>
-                    
-                </Grid>
-                <Grid Visibility="{Binding TagNameCriteriaVisibility}"
-                      VerticalAlignment="Center"
-                      Margin="20 0">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Margin="10 0"
-                                Grid.Column="0"
-                                Width="200">
-                        <TextBlock Text="Tag Name"
-                                   FontSize="16"/>
-                        <TextBox FontSize="18"
-                                 Text="{Binding TagName, UpdateSourceTrigger=PropertyChanged}"/>
+                                  ItemsSource="{Binding AlarmPriorities}"
+                                  SelectedItem="{Binding SelectedAlarmPriority}"/>
                     </StackPanel>
                     
                 </Grid>
@@ -129,5 +110,6 @@
             </WrapPanel>
             
         </Grid>
+
     </Grid>
 </UserControl>

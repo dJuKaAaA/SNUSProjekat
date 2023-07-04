@@ -77,6 +77,7 @@ namespace Trending.MVVM.ViewModel
         private readonly CoreAnalogInputRef.ScanServiceClient _analogScanClient;
         private readonly CoreDigitalInputRef.ScanServiceClient _digitalScanClient;
         private readonly SimDriverClient _simDriverClient;
+        private readonly CoreReportServiceRef.ReportServiceClient _reportServiceClient;
 
         public ICommand LogOutCommand { get; }
 
@@ -102,6 +103,7 @@ namespace Trending.MVVM.ViewModel
             _digitalScanClient = new CoreDigitalInputRef.ScanServiceClient(digitalInstanceContext);
 
             _simDriverClient = new SimDriverClient();
+            _reportServiceClient = new CoreReportServiceRef.ReportServiceClient();
 
             _navigationService.NavigationCompleted += OnNavigationCompleted;
 
@@ -400,12 +402,22 @@ namespace Trending.MVVM.ViewModel
                         {
                             warning.WarningMessage = "CAUTION";
                         }
+                        _reportServiceClient.CreateAlarmReport(new CoreReportServiceRef.AlarmReport()
+                        {
+                            AlarmId = warning.Alarm.Id,
+                            Timestamp = DateTime.Now.Second
+                        });
                         break;
                     case AlarmType.High:
                         if (warning.Alarm.Limit < warning.Alarm.AnalogInput.Value)
                         {
                             warning.WarningMessage = "CAUTION";
                         }
+                        _reportServiceClient.CreateAlarmReport(new CoreReportServiceRef.AlarmReport()
+                        {
+                            AlarmId = warning.Alarm.Id,
+                            Timestamp = DateTime.Now.Second
+                        });
                         break;
                 }
             }

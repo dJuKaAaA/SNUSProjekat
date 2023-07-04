@@ -104,12 +104,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\CoreSimDriverRef\Reference.cs">
+    <Compile Include="Connected Services\CoreReportServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\CoreTagReportRef\Reference.cs">
+    <Compile Include="Connected Services\CoreSimDriverRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -140,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MVVM\View\CreateUserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\DbAlarmReportsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,6 +186,7 @@
     <Compile Include="MVVM\ViewModel\CreateInputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateOutputViewModel.cs" />
     <Compile Include="MVVM\ViewModel\CreateUserViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\DbAlarmReportsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DbAnalogInputsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DbAnalogOutputsViewModel.cs" />
     <Compile Include="MVVM\ViewModel\DbDigitalInputsViewModel.cs" />
@@ -199,6 +204,9 @@
     </Compile>
     <Compile Include="MVVM\View\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\DbAlarmReportsView.xaml.cs">
+      <DependentUpon>DbAlarmReportsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MVVM\View\DbAnalogInputsView.xaml.cs">
       <DependentUpon>DbAnalogInputsView.xaml</DependentUpon>
@@ -296,6 +304,25 @@
     <None Include="Connected Services\CoreDigitalOutputRef\Trending.CoreDigitalOutputRef.DigitalOutput.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\CoreReportServiceRef\ReportService.wsdl" />
+    <None Include="Connected Services\CoreReportServiceRef\ReportService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreReportServiceRef\ReportService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreReportServiceRef\ReportService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreReportServiceRef\ReportService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreReportServiceRef\Trending.CoreReportServiceRef.AlarmReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\CoreReportServiceRef\Trending.CoreReportServiceRef.TagReport.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\CoreSimDriverRef\SimDriver.wsdl" />
     <None Include="Connected Services\CoreSimDriverRef\SimDriver.xsd">
       <SubType>Designer</SubType>
@@ -305,22 +332,6 @@
     </None>
     <None Include="Connected Services\CoreSimDriverRef\SimDriver2.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreTagReportRef\TagReportService.wsdl" />
-    <None Include="Connected Services\CoreTagReportRef\TagReportService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreTagReportRef\TagReportService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreTagReportRef\TagReportService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreTagReportRef\TagReportService3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreTagReportRef\Trending.CoreTagReportRef.TagReport.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\CoreUserRef\Trending.CoreUserRef.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -347,7 +358,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Connected Services\CoreReportServiceRef\ReportService.disco" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
@@ -356,8 +369,8 @@
     <WCFMetadataStorage Include="Connected Services\CoreAnalogOutputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreDigitalInputRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreDigitalOutputRef\" />
+    <WCFMetadataStorage Include="Connected Services\CoreReportServiceRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreSimDriverRef\" />
-    <WCFMetadataStorage Include="Connected Services\CoreTagReportRef\" />
     <WCFMetadataStorage Include="Connected Services\CoreUserRef\" />
   </ItemGroup>
   <ItemGroup>
@@ -451,16 +464,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CoreTagReportRef\TagReportService.disco" />
+    <None Include="Connected Services\CoreReportServiceRef\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CoreTagReportRef\configuration91.svcinfo" />
+    <None Include="Connected Services\CoreReportServiceRef\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\CoreTagReportRef\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreTagReportRef\Reference.svcmap">
+    <None Include="Connected Services\CoreReportServiceRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49980/Implementations/ReportService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SCADACore.Models" />
+  <xs:import schemaLocation="http://localhost:49980/Implementations/ReportService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SCADACore.Execptions" />
+  <xs:element name="GetMostRecentTagReports">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMostRecentTagReportsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetMostRecentTagReportsResult" nillable="true" type="q1:ArrayOfTagReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMostRecentAlarmReports">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMostRecentAlarmReportsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetMostRecentAlarmReportsResult" nillable="true" type="q2:ArrayOfAlarmReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateAlarmReport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="alarmReport" nillable="true" type="q3:AlarmReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlarmReportsInTimePeriod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="startPeriod" type="xs:int" />
+        <xs:element minOccurs="0" name="endPeriod" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlarmReportsInTimePeriodResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetAlarmReportsInTimePeriodResult" nillable="true" type="q4:ArrayOfAlarmReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlarmReportsForPriority">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="priority" type="q5:PriorityType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAlarmReportsForPriorityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetAlarmReportsForPriorityResult" nillable="true" type="q6:ArrayOfAlarmReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReportsInTimePeriod">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="startPeriod" type="xs:int" />
+        <xs:element minOccurs="0" name="endPeriod" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReportsInTimePeriodResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetTagReportsInTimePeriodResult" nillable="true" type="q7:ArrayOfTagReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReportsForTagType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SCADACore.Execptions" minOccurs="0" name="tagType" type="q8:IOType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReportsForTagTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetTagReportsForTagTypeResult" nillable="true" type="q9:ArrayOfTagReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReportsForTagName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="tagName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetTagReportsForTagNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SCADACore.Models" minOccurs="0" name="GetTagReportsForTagNameResult" nillable="true" type="q10:ArrayOfTagReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

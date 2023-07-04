@@ -39,6 +39,8 @@
                           Command="{Binding NavigateToDbAnalogOutputsViewCommand}"/>
                 <MenuItem Header="Tag Reports"
                           Command="{Binding NavigateToDbTagReportsViewCommand}"/>
+                <MenuItem Header="Alarm Reports"
+                          Command="{Binding NavigateToDbAlarmReportsViewCommand}"/>
             </MenuItem>
             <MenuItem Header="Log Out"
                       Command="{Binding LogOutCommand}"/>
@@ -91,6 +93,10 @@
 
                 <DataTemplate DataType="{x:Type viewmodel:DbTagReportsViewModel}">
                     <view:DbTagReportsView/>
+                </DataTemplate>
+
+                <DataTemplate DataType="{x:Type viewmodel:DbAlarmReportsViewModel}">
+                    <view:DbAlarmReportsView/>
                 </DataTemplate>
             
             </ContentControl.Resources>

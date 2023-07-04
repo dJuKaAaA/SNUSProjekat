@@ -15,5 +15,6 @@ namespace SCADACore.Context
         public DbSet<AnalogOutput> AnalogOutputs { get; set; }
         public DbSet<TagAlarm> TagAlarms { get; set; }
         public DbSet<TagReport> TagReports { get; set; }
+        public DbSet<AlarmReport> AlarmReports { get; set; }
     }
 }

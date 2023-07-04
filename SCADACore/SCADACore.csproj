@@ -76,7 +76,7 @@
     <Content Include="Implementations\DigitalInputService.svc" />
     <Content Include="Implementations\DigitalOutputService.svc" />
     <Content Include="Implementations\SimDriver.svc" />
-    <Content Include="Implementations\TagReportService.svc" />
+    <Content Include="Implementations\ReportService.svc" />
     <Content Include="Implementations\UserService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -84,9 +84,9 @@
     <Compile Include="Context\DbIOContext.cs" />
     <Compile Include="Context\DbUserContext.cs" />
     <Compile Include="Helper\IOAddressChecker.cs" />
-    <Compile Include="Interfaces\ITagReportService.cs" />
-    <Compile Include="Implementations\TagReportService.svc.cs">
-      <DependentUpon>TagReportService.svc</DependentUpon>
+    <Compile Include="Interfaces\IReportService.cs" />
+    <Compile Include="Implementations\ReportService.svc.cs">
+      <DependentUpon>ReportService.svc</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ISimDriver.cs" />
     <Compile Include="Implementations\SimDriver.svc.cs">
@@ -107,6 +107,10 @@
     <Compile Include="Migrations\202307041038016_miggy.cs" />
     <Compile Include="Migrations\202307041038016_miggy.designer.cs">
       <DependentUpon>202307041038016_miggy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202307041256082_miggymiggym.cs" />
+    <Compile Include="Migrations\202307041256082_miggymiggym.designer.cs">
+      <DependentUpon>202307041256082_miggymiggym.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AlarmReport.cs" />
@@ -169,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202307041038016_miggy.resx">
       <DependentUpon>202307041038016_miggy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202307041256082_miggymiggym.resx">
+      <DependentUpon>202307041256082_miggymiggym.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
